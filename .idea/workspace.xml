@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8390fa26-708b-4782-bbc2-52e3b5ecc028" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1YZFm1BDLs8kVq1sMzEicYH9R7N" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/mapper/config" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dz.djezzy.site.acceptance.web" />
+      <recent name="dz.djezzy.site.acceptance.mapper" />
+      <recent name="dz.djezzy.site.acceptance.business.services.impl" />
+      <recent name="dz.djezzy.site.acceptance.business.services" />
+      <recent name="dz.djezzy.site.acceptance.business.data.audit" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\WORK\java\network-acceptance\src\main\java\dz\djezzy\site\acceptance\mapper\config" />
+      <recent name="F:\WORK\java\network-acceptance\src\main\java\dz\djezzy\site\acceptance\business\data\entities" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="NetworkAcceptanceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="network-acceptance" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dz.djezzy.site.acceptance.NetworkAcceptanceApplication" />
+      <option name="VM_PARAMETERS" value="-Doracle.jdbc.timezoneAsRegion=false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8390fa26-708b-4782-bbc2-52e3b5ecc028" name="Default Changelist" comment="" />
+      <created>1583142364990</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583142364990</updated>
+      <workItem from="1583142374666" duration="1830000" />
+      <workItem from="1583144242755" duration="6742000" />
+      <workItem from="1583222978517" duration="2926000" />
+      <workItem from="1583309907207" duration="19136000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1780" y="181" width="1100" height="688" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583155641308">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1780" y="181" width="1100" height="688" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583155641308" />
+    <state x="2131" y="242" key="#com.intellij.ide.util.MemberChooser" timestamp="1583331436487">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2131" y="242" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583331436487" />
+    <state x="2148" y="451" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1583143204717">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2148" y="451" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583143204717" />
+    <state x="1993" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1583328069958">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1993" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583328069958" />
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1583336496790">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583336496790" />
+    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1583336496790">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583336496790" />
+    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1583336496790">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583336496790" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1583336496790">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583336496790" />
+    <state width="1877" height="285" key="GridCell.Tab.1.bottom" timestamp="1583336496791">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583336496791" />
+    <state width="1877" height="285" key="GridCell.Tab.1.center" timestamp="1583336496791">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583336496791" />
+    <state width="1877" height="285" key="GridCell.Tab.1.left" timestamp="1583336496791">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583336496791" />
+    <state width="1877" height="285" key="GridCell.Tab.1.right" timestamp="1583336496791">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583336496791" />
+    <state x="1982" y="243" key="run.anything.popup" timestamp="1583156134021">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1982" y="243" key="run.anything.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583156134021" />
+    <state x="1989" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1583331867979">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1989" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583331867979" />
+  </component>
+</project>
