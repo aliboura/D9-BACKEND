@@ -1,5 +1,6 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
+import dz.djezzy.site.acceptance.tools.BooleanToCharConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,9 +19,10 @@ import java.io.Serializable;
 public class Status implements Serializable {
 
     @Id
-    @Column(name = "STATUS_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STATUS_SEQ")
+    @SequenceGenerator(sequenceName = "STATUS_SEQUENCE_ID", allocationSize = 1, name = "STATUS_SEQ")
+    private int id;
 
     @NotNull
     @Column(name = "LABEL")
@@ -32,6 +34,7 @@ public class Status implements Serializable {
     @Column(name = "STYLE_CSS")
     private String styleCSS;
 
+    @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "MOTIF")
-    private Character motif;
+    private boolean motif;
 }

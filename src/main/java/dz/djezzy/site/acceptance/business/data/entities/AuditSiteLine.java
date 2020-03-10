@@ -11,16 +11,16 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "Columns", schema = "DEPDATA")
+@Table(name = "AUDIT_SITE_LINE", schema = "DEPDATA")
 public class AuditSiteLine extends Auditable {
 
     @Id
-    @Column(name = "AUDIT_LINE_ID")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = "AUDIT_ID", nullable = false)
+    @JoinColumn(name = "AUDIT_SITE_ID", nullable = false)
     private AuditSite auditSite;
 
     @Column(name = "OBSERVATION")

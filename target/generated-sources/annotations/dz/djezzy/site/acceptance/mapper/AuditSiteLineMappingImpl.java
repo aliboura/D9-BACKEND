@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-04T16:41:35+0100",
+    date = "2020-03-10T12:22:25+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -57,10 +57,7 @@ public class AuditSiteLineMappingImpl implements AuditSiteLineMapping {
 
         auditSiteLineDto.setSecondDecisionLabel( sourceSecondDecisionLabel( source ) );
         auditSiteLineDto.setFirstDecisionLabel( sourceFirstDecisionLabel( source ) );
-        Long id = sourceAuditSiteId( source );
-        if ( id != null ) {
-            auditSiteLineDto.setAuditSiteId( id );
-        }
+        auditSiteLineDto.setAuditSiteId( sourceAuditSiteId( source ) );
         auditSiteLineDto.setFirstDecisionId( sourceFirstDecisionId( source ) );
         auditSiteLineDto.setSecondDecisionId( sourceSecondDecisionId( source ) );
         auditSiteLineDto.setCreatedBy( source.getCreatedBy() );
@@ -130,18 +127,15 @@ public class AuditSiteLineMappingImpl implements AuditSiteLineMapping {
         return label;
     }
 
-    private Long sourceAuditSiteId(AuditSiteLine auditSiteLine) {
+    private int sourceAuditSiteId(AuditSiteLine auditSiteLine) {
         if ( auditSiteLine == null ) {
-            return null;
+            return 0;
         }
         AuditSite auditSite = auditSiteLine.getAuditSite();
         if ( auditSite == null ) {
-            return null;
+            return 0;
         }
-        Long id = auditSite.getId();
-        if ( id == null ) {
-            return null;
-        }
+        int id = auditSite.getId();
         return id;
     }
 

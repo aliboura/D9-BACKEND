@@ -27,4 +27,5 @@ public interface SubCategoriesMapping extends GenericMapper<SubCategories, SubCa
     @Override
     SubCategories toModel(SubCategoriesDto target);
 
+
 }

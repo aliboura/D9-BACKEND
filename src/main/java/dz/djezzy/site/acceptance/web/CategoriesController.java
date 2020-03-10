@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 @RestController
 @RequestMapping(ApiConstant.CATEGORY_API)
-public class CategoriesController extends GenericRestController<CategoriesService, Categories, CategoriesDto, Long> {
+public class CategoriesController extends GenericRestController<CategoriesService, Categories, CategoriesDto, Integer> {
 }

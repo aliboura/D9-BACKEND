@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 @RestController
 @RequestMapping(ApiConstant.STATUS_API)
-public class StatusController extends GenericRestController<StatusService, Status, StatusDto, Long> {
+public class StatusController extends GenericRestController<StatusService, Status, StatusDto, Integer> {
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-04T16:41:35+0100",
+    date = "2020-03-10T15:30:24+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -54,9 +54,14 @@ public class SubCategoriesMappingImpl implements SubCategoriesMapping {
         SubCategoriesDto subCategoriesDto = new SubCategoriesDto();
 
         subCategoriesDto.setCategoriesLabel( sourceCategoriesLabel( source ) );
-        subCategoriesDto.setCategoriesId( sourceCategoriesId( source ) );
+        Integer id = sourceCategoriesId( source );
+        if ( id != null ) {
+            subCategoriesDto.setCategoriesId( id );
+        }
         subCategoriesDto.setId( source.getId() );
         subCategoriesDto.setLabel( source.getLabel() );
+        subCategoriesDto.setPosition( source.getPosition() );
+        subCategoriesDto.setStatus( source.isStatus() );
 
         return subCategoriesDto;
     }
@@ -72,6 +77,8 @@ public class SubCategoriesMappingImpl implements SubCategoriesMapping {
         subCategories.setCategories( subCategoriesDtoToCategories( target ) );
         subCategories.setId( target.getId() );
         subCategories.setLabel( target.getLabel() );
+        subCategories.setPosition( target.getPosition() );
+        subCategories.setStatus( target.isStatus() );
 
         return subCategories;
     }
@@ -91,7 +98,7 @@ public class SubCategoriesMappingImpl implements SubCategoriesMapping {
         return label;
     }
 
-    private Long sourceCategoriesId(SubCategories subCategories) {
+    private Integer sourceCategoriesId(SubCategories subCategories) {
         if ( subCategories == null ) {
             return null;
         }
@@ -99,7 +106,7 @@ public class SubCategoriesMappingImpl implements SubCategoriesMapping {
         if ( categories == null ) {
             return null;
         }
-        Long id = categories.getId();
+        Integer id = categories.getId();
         if ( id == null ) {
             return null;
         }

@@ -16,10 +16,10 @@ public class DecisionDto implements Serializable {
     private int id;
     private String label;
     private int position;
-    private char status;
-    private char closed;
+    private boolean status;
+    private boolean closed;
 
-    public DecisionDto(String label, int position, char status, char closed) {
+    public DecisionDto(String label, int position, boolean status, boolean closed) {
         this.label = label;
         this.position = position;
         this.status = status;

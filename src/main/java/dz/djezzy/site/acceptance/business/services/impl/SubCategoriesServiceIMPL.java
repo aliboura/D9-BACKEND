@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class SubCategoriesServiceIMPL extends GenericServiceImpl<SubCategoriesRepository, SubCategories, SubCategoriesDto, Long>
+public class SubCategoriesServiceIMPL extends GenericServiceImpl<SubCategoriesRepository, SubCategories, SubCategoriesDto, Integer>
         implements SubCategoriesService {
 }

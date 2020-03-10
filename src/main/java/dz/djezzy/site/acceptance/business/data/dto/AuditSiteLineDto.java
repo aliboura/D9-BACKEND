@@ -13,8 +13,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AuditSiteLineDto extends AuditableDto {
 
-    private Long id;
-    private long auditSiteId;
+    private int id;
+    private int auditSiteId;
     private String observation;
     private byte[] image;
     private int firstDecisionId;

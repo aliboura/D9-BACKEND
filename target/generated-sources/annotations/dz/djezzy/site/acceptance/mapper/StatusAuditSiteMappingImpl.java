@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-04T16:41:35+0100",
+    date = "2020-03-10T12:22:25+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -54,10 +54,7 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
 
         StatusAuditSiteDto statusAuditSiteDto = new StatusAuditSiteDto();
 
-        Long id = sourceStatusId( source );
-        if ( id != null ) {
-            statusAuditSiteDto.setStatusId( id );
-        }
+        statusAuditSiteDto.setStatusId( sourceStatusId( source ) );
         statusAuditSiteDto.setStatusLabel( sourceStatusLabel( source ) );
         statusAuditSiteDto.setAuditSiteId( sourceAuditSiteId( source ) );
         statusAuditSiteDto.setCreatedBy( source.getCreatedBy() );
@@ -92,18 +89,15 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
         return statusAuditSite;
     }
 
-    private Long sourceStatusId(StatusAuditSite statusAuditSite) {
+    private int sourceStatusId(StatusAuditSite statusAuditSite) {
         if ( statusAuditSite == null ) {
-            return null;
+            return 0;
         }
         Status status = statusAuditSite.getStatus();
         if ( status == null ) {
-            return null;
+            return 0;
         }
-        Long id = status.getId();
-        if ( id == null ) {
-            return null;
-        }
+        int id = status.getId();
         return id;
     }
 
@@ -122,18 +116,15 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
         return label;
     }
 
-    private Long sourceAuditSiteId(StatusAuditSite statusAuditSite) {
+    private int sourceAuditSiteId(StatusAuditSite statusAuditSite) {
         if ( statusAuditSite == null ) {
-            return null;
+            return 0;
         }
         AuditSite auditSite = statusAuditSite.getAuditSite();
         if ( auditSite == null ) {
-            return null;
+            return 0;
         }
-        Long id = auditSite.getId();
-        if ( id == null ) {
-            return null;
-        }
+        int id = auditSite.getId();
         return id;
     }
 

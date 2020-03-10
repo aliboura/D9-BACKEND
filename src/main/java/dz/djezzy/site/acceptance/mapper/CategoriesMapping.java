@@ -14,13 +14,13 @@ public interface CategoriesMapping extends GenericMapper<Categories, CategoriesD
     CategoriesMapping INSTANCE = Mappers.getMapper(CategoriesMapping.class);
 
     @Mappings({
-            @Mapping(source = "subCategoriesList", target = "subCategoriesDtoList")
+            @Mapping(source = "subCategoriesList", target = "listSubCategories")
     })
     @Override
     CategoriesDto toDto(Categories source);
 
     @Mappings({
-            @Mapping(target = "subCategoriesList", source = "subCategoriesDtoList")
+            @Mapping(target = "subCategoriesList", source = "listSubCategories")
     })
     @Override
     Categories toModel(CategoriesDto target);

@@ -1,14 +1,12 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
+import dz.djezzy.site.acceptance.tools.BooleanToCharConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -21,7 +19,9 @@ import java.io.Serializable;
 public class Decision implements Serializable {
 
     @Id
-    @Column(name = "DECISION_ID")
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DECISION_SEQ")
+    @SequenceGenerator(sequenceName = "DECISION_SEQUENCE_ID", allocationSize = 1, name = "DECISION_SEQ")
     private int id;
 
     @NotNull
@@ -31,10 +31,12 @@ public class Decision implements Serializable {
     @Column(name = "POSITION")
     private int position;
 
+    @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "STATUS")
-    private char status;
+    private boolean status;
 
+    @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "CLOSED")
-    private char closed;
+    private boolean closed;
 
 }

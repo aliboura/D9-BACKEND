@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class CategoriesServiceIMPL extends GenericServiceImpl<CategoriesRepository, Categories, CategoriesDto, Long>
+public class CategoriesServiceIMPL extends GenericServiceImpl<CategoriesRepository, Categories, CategoriesDto, Integer>
         implements CategoriesService {
 }

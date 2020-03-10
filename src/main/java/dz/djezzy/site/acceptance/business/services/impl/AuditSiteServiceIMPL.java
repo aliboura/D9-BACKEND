@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class AuditSiteServiceIMPL extends GenericServiceImpl<AuditSiteRepository, AuditSite, AuditSiteDto, Long>
+public class AuditSiteServiceIMPL extends GenericServiceImpl<AuditSiteRepository, AuditSite, AuditSiteDto, Integer>
         implements AuditSiteService {
 }

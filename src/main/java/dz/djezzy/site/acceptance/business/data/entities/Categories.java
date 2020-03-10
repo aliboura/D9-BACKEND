@@ -13,18 +13,18 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "CATEGORIE", schema = "DEPDATA")
+@Table(name = "CATEGORY", schema = "DEPDATA")
 public class Categories implements Serializable {
 
     @Id
-    @Column(name = "CAT_ID")
-    private Long id;
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CATEGORY_SEQ")
+    @SequenceGenerator(sequenceName = "CATEGORY_SEQUENCE_ID", allocationSize = 1, name = "CATEGORY_SEQ")
+    private Integer id;
 
     @NotNull
-    @Column(name = "CAL_LIB", unique = true)
+    @Column(name = "LABEL", unique = true)
     private String label;
 
     @Column(name = "POSITION")
@@ -36,4 +36,12 @@ public class Categories implements Serializable {
     @OneToMany(mappedBy = "categories")
     private List<SubCategories> subCategoriesList = new ArrayList<>();
 
+    public Categories() {
+    }
+
+    public Categories(String label, int position, char status) {
+        this.label = label;
+        this.position = position;
+        this.status = status;
+    }
 }

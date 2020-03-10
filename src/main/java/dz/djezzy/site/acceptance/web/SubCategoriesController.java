@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 @RestController
 @RequestMapping(ApiConstant.SUB_CATEGORY_API)
-public class SubCategoriesController extends GenericRestController<SubCategoriesService, SubCategories, SubCategoriesDto, Long> {
+public class SubCategoriesController extends GenericRestController<SubCategoriesService, SubCategories, SubCategoriesDto, Integer> {
 }

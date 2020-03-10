@@ -14,9 +14,11 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class SubCategoriesDto implements Serializable {
 
-    private Long id;
+    private int id;
     private String label;
-    private Long categoriesId;
+    private int position;
+    private boolean status;
+    private int categoriesId;
     private String categoriesLabel;
 
     public SubCategoriesDto(String label) {

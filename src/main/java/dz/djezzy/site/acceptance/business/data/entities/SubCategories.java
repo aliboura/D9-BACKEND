@@ -1,5 +1,6 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
+import dz.djezzy.site.acceptance.tools.BooleanToCharConverter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,25 +13,28 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "SOUS_CAT", schema = "DEPDATA")
+@Table(name = "SUB_CATEGORIES", schema = "DEPDATA")
 public class SubCategories implements Serializable {
 
     @Id
-    @Column(name = "SOUS_CAT_ID")
-    private Long id;
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SUB_CATEGORY_SEQ")
+    @SequenceGenerator(sequenceName = "SUB_CATEGORIES_SEQUENCE_ID", allocationSize = 1, name = "SUB_CATEGORY_SEQ")
+    private int id;
 
     @NotNull
-    @Column(name = "SOUS_CAT_LIB", unique = true)
+    @Column(name = "LABEL", unique = true)
     private String label;
 
     @Column(name = "POSITION")
     private int position;
 
+    @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "STATUS")
-    private char status;
+    private boolean status;
 
     @ManyToOne
-    @JoinColumn(name = "CAT_ID")
+    @JoinColumn(name = "CATEGORY_ID")
     private Categories categories;
 
     public SubCategories(String label) {

@@ -19,9 +19,9 @@ import java.util.List;
 public class AuditSite extends Auditable {
 
     @Id
-    @Column(name = "AUDIT_ID")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @NotNull
     @Column(name = "DATE_AUDIT")
@@ -39,9 +39,6 @@ public class AuditSite extends Auditable {
 
     @Column(name = "REGION_ID")
     private int regionId;
-
-    @Column(name = "REP_OWNER")
-    private String repOwner;
 
     @Column(name = "DESCRIPTION")
     private String description;

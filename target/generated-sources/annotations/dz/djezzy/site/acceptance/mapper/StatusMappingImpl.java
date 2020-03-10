@@ -10,45 +10,11 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-04T16:20:11+0100",
+    date = "2020-03-10T12:22:25+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
 public class StatusMappingImpl implements StatusMapping {
-
-    @Override
-    public StatusDto toDto(Status source) {
-        if ( source == null ) {
-            return null;
-        }
-
-        StatusDto statusDto = new StatusDto();
-
-        statusDto.setId( source.getId() );
-        statusDto.setLabel( source.getLabel() );
-        statusDto.setDescription( source.getDescription() );
-        statusDto.setStyleCSS( source.getStyleCSS() );
-        statusDto.setMotif( source.getMotif() );
-
-        return statusDto;
-    }
-
-    @Override
-    public Status toModel(StatusDto target) {
-        if ( target == null ) {
-            return null;
-        }
-
-        Status status = new Status();
-
-        status.setId( target.getId() );
-        status.setLabel( target.getLabel() );
-        status.setDescription( target.getDescription() );
-        status.setStyleCSS( target.getStyleCSS() );
-        status.setMotif( target.getMotif() );
-
-        return status;
-    }
 
     @Override
     public List<StatusDto> toDto(Collection<Status> sourceList) {
@@ -76,5 +42,39 @@ public class StatusMappingImpl implements StatusMapping {
         }
 
         return list;
+    }
+
+    @Override
+    public StatusDto toDto(Status source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        StatusDto statusDto = new StatusDto();
+
+        statusDto.setId( source.getId() );
+        statusDto.setLabel( source.getLabel() );
+        statusDto.setDescription( source.getDescription() );
+        statusDto.setStyleCSS( source.getStyleCSS() );
+        statusDto.setMotif( source.isMotif() );
+
+        return statusDto;
+    }
+
+    @Override
+    public Status toModel(StatusDto target) {
+        if ( target == null ) {
+            return null;
+        }
+
+        Status status = new Status();
+
+        status.setId( target.getId() );
+        status.setLabel( target.getLabel() );
+        status.setDescription( target.getDescription() );
+        status.setStyleCSS( target.getStyleCSS() );
+        status.setMotif( target.isMotif() );
+
+        return status;
     }
 }

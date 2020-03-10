@@ -14,15 +14,11 @@ public interface StatusMapping extends GenericMapper<Status, StatusDto> {
 
     StatusMapping INSTANCE = Mappers.getMapper(StatusMapping.class);
 
+    //TEST
     @Override
     StatusDto toDto(Status source);
 
     @Override
     Status toModel(StatusDto target);
 
-    @Override
-    List<StatusDto> toDto(Collection<Status> sourceList);
-
-    @Override
-    List<Status> toModel(Collection<StatusDto> targetList);
 }

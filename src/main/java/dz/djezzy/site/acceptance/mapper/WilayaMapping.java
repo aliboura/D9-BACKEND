@@ -20,9 +20,4 @@ public interface WilayaMapping extends GenericMapper<Wilaya, WilayaDto> {
     @Override
     Wilaya toModel(WilayaDto target);
 
-    @Override
-    List<WilayaDto> toDto(Collection<Wilaya> sourceList);
-
-    @Override
-    List<Wilaya> toModel(Collection<WilayaDto> targetList);
 }

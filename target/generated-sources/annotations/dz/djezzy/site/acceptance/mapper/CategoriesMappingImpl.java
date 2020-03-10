@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-04T16:41:35+0100",
+    date = "2020-03-10T12:22:25+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -54,9 +54,11 @@ public class CategoriesMappingImpl implements CategoriesMapping {
 
         CategoriesDto categoriesDto = new CategoriesDto();
 
-        categoriesDto.setSubCategoriesDtoList( subCategoriesListToSubCategoriesDtoList( source.getSubCategoriesList() ) );
+        categoriesDto.setListSubCategories( subCategoriesListToSubCategoriesDtoList( source.getSubCategoriesList() ) );
         categoriesDto.setId( source.getId() );
         categoriesDto.setLabel( source.getLabel() );
+        categoriesDto.setPosition( source.getPosition() );
+        categoriesDto.setStatus( source.getStatus() );
 
         return categoriesDto;
     }
@@ -69,9 +71,11 @@ public class CategoriesMappingImpl implements CategoriesMapping {
 
         Categories categories = new Categories();
 
-        categories.setSubCategoriesList( subCategoriesDtoListToSubCategoriesList( target.getSubCategoriesDtoList() ) );
+        categories.setSubCategoriesList( subCategoriesDtoListToSubCategoriesList( target.getListSubCategories() ) );
         categories.setId( target.getId() );
         categories.setLabel( target.getLabel() );
+        categories.setPosition( target.getPosition() );
+        categories.setStatus( target.getStatus() );
 
         return categories;
     }

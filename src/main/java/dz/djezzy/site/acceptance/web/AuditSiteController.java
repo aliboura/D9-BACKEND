@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 @RestController
 @RequestMapping(ApiConstant.AUDIT_SITE_API)
-public class AuditSiteController extends GenericRestController<AuditSiteService, AuditSite, AuditSiteDto, Long> {
+public class AuditSiteController extends GenericRestController<AuditSiteService, AuditSite, AuditSiteDto, Integer> {
 }

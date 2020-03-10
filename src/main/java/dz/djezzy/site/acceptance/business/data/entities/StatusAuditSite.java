@@ -20,7 +20,8 @@ public class StatusAuditSite extends Auditable {
 
     @Id
     @Column(name = "ID")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @NotNull
     @Column(name = "STATUS_DATE")

@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class StatusServiceIMPL extends GenericServiceImpl<StatusRepository, Status, StatusDto, Long>
+public class StatusServiceIMPL extends GenericServiceImpl<StatusRepository, Status, StatusDto, Integer>
         implements StatusService {
 }

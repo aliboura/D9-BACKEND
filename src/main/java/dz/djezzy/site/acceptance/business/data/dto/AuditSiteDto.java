@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AuditSiteDto extends AuditableDto {
 
-    private Long id;
+    private int id;
     private Date auditDate;
     private String userId;
     private String siteCode;
@@ -25,11 +25,11 @@ public class AuditSiteDto extends AuditableDto {
     private String description;
     private String observation;
 
-    private Long currentCategoriesId;
+    private int currentCategoriesId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String currentCategoriesLabel;
 
-    private Long currentSatusId;
+    private int currentSatusId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String currentSatusLabel;
 
