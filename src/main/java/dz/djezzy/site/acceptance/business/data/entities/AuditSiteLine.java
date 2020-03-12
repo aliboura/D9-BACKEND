@@ -1,6 +1,7 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
 import dz.djezzy.site.acceptance.business.data.audit.Auditable;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +10,6 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
 @Table(name = "AUDIT_SITE_LINE", schema = "DEPDATA")
 public class AuditSiteLine extends Auditable {
@@ -37,5 +37,18 @@ public class AuditSiteLine extends Auditable {
     @ManyToOne
     @JoinColumn(name = "SECOND_DECISION_ID")
     private Decision secondDecision;
+
+    public AuditSiteLine() {
+        super();
+    }
+
+    public AuditSiteLine(int id, AuditSite auditSite, String observation, byte[] image, Decision firstDecision, Decision secondDecision) {
+        this.id = id;
+        this.auditSite = auditSite;
+        this.observation = observation;
+        this.image = image;
+        this.firstDecision = firstDecision;
+        this.secondDecision = secondDecision;
+    }
 
 }

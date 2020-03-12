@@ -2,7 +2,62 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8390fa26-708b-4782-bbc2-52e3b5ecc028" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/specification/CustomRsqlVisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/specification/GenericRsqlSpecBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/specification/GenericRsqlSpecification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/specification/RsqlSearchOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/network-acceptance.iml" beforeDir="false" afterPath="$PROJECT_DIR$/network-acceptance.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/AuditSite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/AuditSite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/AuditSiteLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/AuditSiteLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/Site.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/Site.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/AuditSiteLineRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/AuditSiteLineRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/AuditSiteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/AuditSiteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/CategoriesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/CategoriesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/CommuneRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/CommuneRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/DecisionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/DecisionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/SiteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/SiteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/StatusAuditSiteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/StatusAuditSiteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/StatusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/StatusRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/SubCategoriesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/SubCategoriesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/TypeSiteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/TypeSiteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/WilayaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/WilayaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/GenericService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/GenericService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/GenericServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/GenericServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/GenericRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/GenericRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/SiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/SiteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/data/entities/AuditSite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/data/entities/AuditSite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/data/entities/AuditSiteLine.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/data/entities/AuditSiteLine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/data/entities/Site.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/data/entities/Site.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/AuditSiteLineRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/AuditSiteLineRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/AuditSiteRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/AuditSiteRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/CategoriesRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/CategoriesRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/CommuneRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/CommuneRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/DecisionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/DecisionRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/SiteRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/SiteRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/StatusAuditSiteRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/StatusAuditSiteRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/StatusRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/StatusRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/SubCategoriesRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/SubCategoriesRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/TypeSiteRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/TypeSiteRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/WilayaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/repository/WilayaRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/services/GenericService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/services/GenericService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/services/impl/GenericServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/business/services/impl/GenericServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/mapper/CategoriesMappingImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/mapper/CategoriesMappingImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/web/GenericRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/web/GenericRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/web/SiteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dz/djezzy/site/acceptance/web/SiteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/AuditSiteLineMappingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/AuditSiteLineMappingImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/CategoriesMappingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/CategoriesMappingImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/CommunMappingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/CommunMappingImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/DecisionMappingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/DecisionMappingImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/SiteMappingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/SiteMappingImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/StatusAuditSiteMappingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/StatusAuditSiteMappingImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/StatusMappingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/StatusMappingImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/SubCategoriesMappingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/SubCategoriesMappingImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/TypeSiteMappingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/TypeSiteMappingImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/WilayaMappingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/WilayaMappingImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +153,9 @@
       <workItem from="1583654853134" duration="6477000" />
       <workItem from="1583742030412" duration="2662000" />
       <workItem from="1583744865495" duration="15728000" />
-      <workItem from="1583830259971" duration="10522000" />
+      <workItem from="1583830259971" duration="12975000" />
+      <workItem from="1583915408779" duration="16619000" />
+      <workItem from="1584000252099" duration="9366000" />
     </task>
     <task id="LOCAL-00001" summary="add -- project commit">
       <created>1583336861395</created>
@@ -114,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583851108868</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add -- create sub-categories crud mask">
+      <created>1583856058958</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1583856058958</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,17 +187,19 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add -- project commit" />
     <MESSAGE value="add -- create liquibase DB file &amp; update all mapping classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="add -- create liquibase DB file &amp; update all mapping classes" />
+    <MESSAGE value="add -- create sub-categories crud mask" />
+    <option name="LAST_COMMIT_MESSAGE" value="add -- create sub-categories crud mask" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1780" y="181" width="1100" height="688" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583751313435">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
     <state x="1780" y="181" width="1100" height="688" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583751313435" />
-    <state x="2131" y="242" key="#com.intellij.ide.util.MemberChooser" timestamp="1583762022376">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state x="-1155" y="-10" key="#com.intellij.ide.util.MemberChooser" timestamp="1584019461187">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
-    <state x="2131" y="242" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583762022376" />
+    <state x="-1155" y="-10" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584019461187" />
+    <state x="2131" y="242" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583942713523" />
     <state x="2148" y="451" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1583143204717">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
@@ -142,114 +208,130 @@
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
     <state x="1993" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583751029345" />
-    <state x="2056" y="273" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583750946412">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state x="-1230" y="21" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584020471111">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state x="-1230" y="21" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020471111" />
     <state x="2056" y="273" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583750946412" />
-    <state x="2081" y="229" key="#xdebugger.evaluate" timestamp="1583760558259">
+    <state x="-1205" y="-23" key="#xdebugger.evaluate" timestamp="1584020426419">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
+    </state>
+    <state x="-1205" y="-23" key="#xdebugger.evaluate/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020426419" />
+    <state x="2081" y="229" key="#xdebugger.evaluate/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583947618637" />
+    <state x="1847" y="117" key="CommitChangelistDialog2" timestamp="1583856056973">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
-    <state x="2081" y="229" key="#xdebugger.evaluate/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583760558259" />
-    <state x="1847" y="117" key="CommitChangelistDialog2" timestamp="1583851088862">
-      <screen x="1366" y="0" width="1920" height="1050" />
-    </state>
-    <state x="1847" y="117" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583851088862" />
+    <state x="1847" y="117" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583856056973" />
     <state x="2106" y="281" key="FileChooserDialogImpl" timestamp="1583846670142">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
     <state x="2106" y="281" key="FileChooserDialogImpl/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583846670142" />
-    <state width="1877" height="198" key="GridCell.Tab.0.bottom" timestamp="1583850628053">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="250" key="GridCell.Tab.0.bottom" timestamp="1584020538763">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state width="1877" height="250" key="GridCell.Tab.0.bottom/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020538763" />
     <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1583678187233" />
-    <state width="1877" height="198" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583850628053" />
-    <state width="1877" height="198" key="GridCell.Tab.0.center" timestamp="1583850628053">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="352" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
+    <state width="1877" height="250" key="GridCell.Tab.0.center" timestamp="1584020538762">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state width="1877" height="250" key="GridCell.Tab.0.center/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020538762" />
     <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1583678187233" />
-    <state width="1877" height="198" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583850628053" />
-    <state width="1877" height="198" key="GridCell.Tab.0.left" timestamp="1583850628053">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="352" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
+    <state width="1877" height="250" key="GridCell.Tab.0.left" timestamp="1584020538762">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state width="1877" height="250" key="GridCell.Tab.0.left/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020538762" />
     <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1583678187233" />
-    <state width="1877" height="198" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583850628053" />
-    <state width="1877" height="198" key="GridCell.Tab.0.right" timestamp="1583850628053">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="352" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
+    <state width="1877" height="250" key="GridCell.Tab.0.right" timestamp="1584020538762">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state width="1877" height="250" key="GridCell.Tab.0.right/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020538762" />
     <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1583678187233" />
-    <state width="1877" height="198" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583850628053" />
-    <state width="1877" height="198" key="GridCell.Tab.1.bottom" timestamp="1583850628053">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="352" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
+    <state width="1877" height="250" key="GridCell.Tab.1.bottom" timestamp="1584020538763">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state width="1877" height="250" key="GridCell.Tab.1.bottom/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020538763" />
     <state width="1323" height="182" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1583678187238" />
-    <state width="1877" height="198" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583850628053" />
-    <state width="1877" height="198" key="GridCell.Tab.1.center" timestamp="1583850628053">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
+    <state width="1877" height="250" key="GridCell.Tab.1.center" timestamp="1584020538763">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state width="1877" height="250" key="GridCell.Tab.1.center/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020538763" />
     <state width="1323" height="182" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1583678187233" />
-    <state width="1877" height="198" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583850628053" />
-    <state width="1877" height="198" key="GridCell.Tab.1.left" timestamp="1583850628053">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
+    <state width="1877" height="250" key="GridCell.Tab.1.left" timestamp="1584020538763">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state width="1877" height="250" key="GridCell.Tab.1.left/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020538763" />
     <state width="1323" height="182" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1583678187233" />
-    <state width="1877" height="198" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583850628053" />
-    <state width="1877" height="198" key="GridCell.Tab.1.right" timestamp="1583850628053">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
+    <state width="1877" height="250" key="GridCell.Tab.1.right" timestamp="1584020538763">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state width="1877" height="250" key="GridCell.Tab.1.right/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020538763" />
     <state width="1323" height="182" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1583678187233" />
-    <state width="1877" height="198" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583850628053" />
-    <state width="1877" height="352" key="GridCell.Tab.2.bottom" timestamp="1583771335982">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
+    <state width="1877" height="352" key="GridCell.Tab.2.bottom" timestamp="1584020537026">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
-    <state width="1877" height="352" key="GridCell.Tab.2.bottom/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583771335982" />
-    <state width="1877" height="352" key="GridCell.Tab.2.center" timestamp="1583771335982">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="352" key="GridCell.Tab.2.bottom/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020537026" />
+    <state width="1877" height="352" key="GridCell.Tab.2.bottom/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
+    <state width="1877" height="352" key="GridCell.Tab.2.center" timestamp="1584020537026">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
-    <state width="1877" height="352" key="GridCell.Tab.2.center/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583771335982" />
-    <state width="1877" height="352" key="GridCell.Tab.2.left" timestamp="1583771335982">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="352" key="GridCell.Tab.2.center/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020537026" />
+    <state width="1877" height="352" key="GridCell.Tab.2.center/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
+    <state width="1877" height="352" key="GridCell.Tab.2.left" timestamp="1584020537026">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
-    <state width="1877" height="352" key="GridCell.Tab.2.left/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583771335982" />
-    <state width="1877" height="352" key="GridCell.Tab.2.right" timestamp="1583771335982">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state width="1877" height="352" key="GridCell.Tab.2.left/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020537026" />
+    <state width="1877" height="352" key="GridCell.Tab.2.left/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
+    <state width="1877" height="352" key="GridCell.Tab.2.right" timestamp="1584020537026">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
-    <state width="1877" height="352" key="GridCell.Tab.2.right/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583771335982" />
+    <state width="1877" height="352" key="GridCell.Tab.2.right/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020537026" />
+    <state width="1877" height="352" key="GridCell.Tab.2.right/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583948126789" />
     <state x="1625" y="17" key="SettingsEditor" timestamp="1583767132845">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
     <state x="184" y="12" key="SettingsEditor/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1583677555650" />
     <state x="1625" y="17" key="SettingsEditor/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583767132845" />
-    <state x="1918" y="259" key="Vcs.Push.Dialog.v2" timestamp="1583851112159">
+    <state x="1918" y="259" key="Vcs.Push.Dialog.v2" timestamp="1583856061568">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
-    <state x="1918" y="259" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583851112159" />
-    <state x="2135" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583856032353">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state x="1918" y="259" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583856061568" />
+    <state x="-1828" y="-160" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1584019280620">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state x="-1828" y="-160" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584019280620" />
+    <state x="-1151" y="191" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584027672670">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
+    </state>
+    <state x="-1151" y="191" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584027672670" />
     <state x="2135" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583856032353" />
-    <state x="1900" y="144" width="852" height="763" key="find.popup" timestamp="1583759139356">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state x="-1386" y="-108" width="852" height="763" key="find.popup" timestamp="1584020200517">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state x="-1386" y="-108" width="852" height="763" key="find.popup/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584020200517" />
     <state x="380" y="101" width="606" height="536" key="find.popup/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1583678485893" />
-    <state x="1900" y="144" width="852" height="763" key="find.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583759139356" />
-    <state x="1982" y="243" key="run.anything.popup" timestamp="1583749940295">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state x="1900" y="144" width="852" height="763" key="find.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583944515244" />
+    <state x="-1304" y="-9" key="run.anything.popup" timestamp="1584017345828">
+      <screen x="-1920" y="-252" width="1920" height="1050" />
     </state>
+    <state x="-1304" y="-9" key="run.anything.popup/0.0.1366.738/-1920.-252.1920.1050@-1920.-252.1920.1050" timestamp="1584017345828" />
     <state x="1982" y="243" key="run.anything.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583749940295" />
-    <state x="1989" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1583759132994">
+    <state x="1989" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1583945063925">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
     <state x="443" y="160" width="670" height="477" key="search.everywhere.popup/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1583678197993" />
-    <state x="1989" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583759132994" />
+    <state x="1989" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1583945063925" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/GenericRestController.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/target/generated-sources/annotations/dz/djezzy/site/acceptance/mapper/CategoriesMappingImpl.java</url>
           <line>54</line>

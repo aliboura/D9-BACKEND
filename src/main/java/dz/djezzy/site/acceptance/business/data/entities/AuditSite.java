@@ -1,6 +1,7 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
 import dz.djezzy.site.acceptance.business.data.audit.Auditable;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "AUDIT_SITE", schema = "DEPDATA")
 public class AuditSite extends Auditable {
@@ -85,4 +86,18 @@ public class AuditSite extends Auditable {
 
     @OneToMany(mappedBy = "auditSite", cascade = CascadeType.ALL)
     private List<StatusAuditSite> statusAuditSitesList = new ArrayList<>();
+
+    public AuditSite() {
+    }
+
+    public AuditSite(int id, Date auditDate, String userId, String siteCode, int wilayaId, int regionId, String description, String observation) {
+        this.id = id;
+        this.auditDate = auditDate;
+        this.userId = userId;
+        this.siteCode = siteCode;
+        this.wilayaId = wilayaId;
+        this.regionId = regionId;
+        this.description = description;
+        this.observation = observation;
+    }
 }

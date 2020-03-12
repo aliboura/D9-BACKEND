@@ -12,7 +12,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(schema = "NDEPDATA", name = "SITE")
+@Table(name = "SITE", schema = "NDEPDATA")
 public class Site implements Serializable {
 
     @Id
@@ -55,4 +55,9 @@ public class Site implements Serializable {
     @JoinColumn(name = "WILAYA_ID")
     private Wilaya wilaya;
 
+    public Site(String codeSite, String nomSite, String numSite) {
+        this.codeSite = codeSite;
+        this.nomSite = nomSite;
+        this.numSite = numSite;
+    }
 }

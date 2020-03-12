@@ -1,5 +1,8 @@
 package dz.djezzy.site.acceptance.web;
 
+import cz.jirutka.rsql.parser.RSQLParser;
+import cz.jirutka.rsql.parser.ast.Node;
+import dz.djezzy.site.acceptance.business.data.specification.CustomRsqlVisitor;
 import dz.djezzy.site.acceptance.business.services.GenericService;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,6 +59,18 @@ public class GenericRestController<S extends GenericService<T, DTO, ID>, T, DTO,
             return service.findAll(PageRequest.of(page, size, Sort.by(Direction.ASC, field)));
         else
             return service.findAll(PageRequest.of(page, size, Sort.by(Direction.DESC, field)));
+    }
+
+    @GetMapping(params = {"page", "size", "sort", "field", "search"}, value = "/search_adv")
+    @ResponseBody
+    public Page<DTO> findAllByRsql(@RequestParam("page") int page,
+                                   @RequestParam("size") int size,
+                                   @RequestParam("sort") String sort,
+                                   @RequestParam("field") String field,
+                                   @RequestParam(value = "search") String search) {
+        Node rootNode = new RSQLParser().parse(search);
+        Specification<T> spec = rootNode.accept(new CustomRsqlVisitor<>());
+        return service.findAll(spec, PageRequest.of(page, size, Sort.by(Direction.ASC, field)));
     }
 
     @PostMapping

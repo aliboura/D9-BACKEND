@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-10T12:22:25+0100",
+    date = "2020-03-12T14:28:04+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -89,6 +89,8 @@ public class CategoriesMappingImpl implements CategoriesMapping {
 
         subCategoriesDto.setId( subCategories.getId() );
         subCategoriesDto.setLabel( subCategories.getLabel() );
+        subCategoriesDto.setPosition( subCategories.getPosition() );
+        subCategoriesDto.setStatus( subCategories.isStatus() );
 
         return subCategoriesDto;
     }
@@ -115,6 +117,8 @@ public class CategoriesMappingImpl implements CategoriesMapping {
 
         subCategories.setId( subCategoriesDto.getId() );
         subCategories.setLabel( subCategoriesDto.getLabel() );
+        subCategories.setPosition( subCategoriesDto.getPosition() );
+        subCategories.setStatus( subCategoriesDto.isStatus() );
 
         return subCategories;
     }

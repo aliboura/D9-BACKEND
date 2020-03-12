@@ -1,35 +1,42 @@
 package dz.djezzy.site.acceptance.business.services;
 
+import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface GenericService<T, DTO, ID> {
 
-    public List<DTO> findAll();
+    List<DTO> findAll();
 
-    public List<DTO> findAll(Sort sort);
+    List<DTO> findAll(Sort sort);
 
-    public Page<DTO> findAll(Pageable pageable);
+    Page<DTO> findAll(Pageable pageable);
 
-    public DTO save(DTO dto);
+    Page<DTO> findAll(Predicate predicate, Pageable pageable);
 
-    public Iterable<DTO> saveAll(Iterable<DTO> iterable);
+    Page<DTO> findAll(@Nullable Specification<T> spec, Pageable pageable);
 
-    public void deleteById(ID id);
+    DTO save(DTO dto);
 
-    public void delete(DTO dto);
+    Iterable<DTO> saveAll(Iterable<DTO> iterable);
 
-    public void deleteAll(Iterable<DTO> iterable);
+    void deleteById(ID id);
 
-    public DTO getOne(ID id);
+    void delete(DTO dto);
 
-    public Optional<DTO> findById(ID id);
+    void deleteAll(Iterable<DTO> iterable);
 
-    public Long count();
+    DTO getOne(ID id);
 
-    public List<DTO> findAllByExample(DTO example);
+    Optional<DTO> findById(ID id);
+
+    Long count();
+
+    List<DTO> findAllByExample(DTO example);
 }
