@@ -17,7 +17,7 @@ public class StatusAuditSiteDto extends AuditableDto {
     private int id;
     private Date statusDate;
     private String description;
-    private Character current;
+    private boolean current;
     private int statusId;
     private String statusLabel;
     private int auditSiteId;

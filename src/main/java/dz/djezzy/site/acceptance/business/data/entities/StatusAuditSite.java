@@ -1,6 +1,7 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
 import dz.djezzy.site.acceptance.business.data.audit.Auditable;
+import dz.djezzy.site.acceptance.tools.BooleanToCharConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,8 +31,9 @@ public class StatusAuditSite extends Auditable {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "CURRENT")
-    private Character current;
+    private boolean current;
 
     @ManyToOne
     @JoinColumn(name = "STATUS_ID")
