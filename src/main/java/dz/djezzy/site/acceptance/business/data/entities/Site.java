@@ -8,6 +8,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@SqlResultSetMapping(
+        name = "wilayaMapping",
+        classes = @ConstructorResult(
+                targetClass = Wilaya.class,
+                columns = {@ColumnResult(name = "id", type = Integer.class),
+                        @ColumnResult(name = "label")}))
 @Getter
 @Setter
 @NoArgsConstructor

@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <property name="now" value="sysdate" dbms="oracle"/>
+<!--    <property name="now" value="sysdate" dbms="oracle"/>-->
 
     <changeSet id="0001-01" author="RBOU">
         <createTable tableName="CATEGORY" schemaName="DEPDATA">

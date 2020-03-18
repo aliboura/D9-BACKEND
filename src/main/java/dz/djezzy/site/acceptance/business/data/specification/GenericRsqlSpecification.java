@@ -1,13 +1,16 @@
 package dz.djezzy.site.acceptance.business.data.specification;
 
 import cz.jirutka.rsql.parser.ast.ComparisonOperator;
+import dz.djezzy.site.acceptance.tools.LocalDateUtil;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class GenericRsqlSpecification<T> implements Specification<T> {
@@ -27,11 +30,24 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
     public Predicate toPredicate(final Root<T> root, final CriteriaQuery<?> query, final CriteriaBuilder builder) {
         final List<Object> args = castArguments(root);
         final Object argument = args.get(0);
+        Join join = null;
+        int lengthJoin = 2;
+        if (property.contains(".")) {
+            lengthJoin = property.split(Pattern.quote(".")).length;
+            for (int i = 0; i < lengthJoin - 1; i++) {
+                join = root.join(property.split(Pattern.quote("."))[i]);
+            }
+        }
+
         switch (RsqlSearchOperation.getSimpleOperator(operator)) {
 
             case EQUAL: {
-                if (argument instanceof String) {
-                    return builder.like(root.get(property), argument.toString().replace('*', '%'));
+                if (null != join) {
+                    return builder.equal(join.<Integer>get(property.split(Pattern.quote("."))[lengthJoin - 1]), argument);
+                } else if (argument instanceof String) {
+                    return builder.like(builder.upper(root.get(property)), argument.toString().toUpperCase().replace('*', '%'));
+                } else if (argument instanceof LocalDate) {
+                    return builder.between(root.get(property), LocalDateUtil.asDate(((LocalDate) argument).atTime(00, 00)), LocalDateUtil.asDate(((LocalDate) argument).atTime(23, 59)));
                 } else if (argument == null) {
                     return builder.isNull(root.get(property));
                 } else {
@@ -68,23 +84,32 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
         return null;
     }
 
-    // === private
-
     private List<Object> castArguments(final Root<T> root) {
-
-        final Class<? extends Object> type = root.get(property).getJavaType();
-
+        final Class<? extends Object> type;
+        if (property.contains(".")) {
+            type = root.get(property.split(Pattern.quote("."))[0]).getJavaType();
+        } else {
+            type = root.get(property).getJavaType();
+        }
         final List<Object> args = arguments.stream().map(arg -> {
-            if (type.equals(Integer.class)) {
+            if (equals(Integer.class)) {
                 return Integer.parseInt(arg);
             } else if (type.equals(Long.class)) {
                 return Long.parseLong(arg);
+            } else if (type.equals(Object.class)) {
+                return Long.parseLong(arg);
+            } else if (type.equals(Date.class)) {
+                return LocalDate.parse(arg.toString());
             } else {
                 return arg;
             }
         }).collect(Collectors.toList());
 
         return args;
+    }
+
+    private DateFormat format() {
+        return new SimpleDateFormat("dd/MM/yyyy");
     }
 
 }
