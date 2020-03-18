@@ -105,19 +105,19 @@ public class GenericServiceImpl<S extends JpaRepository<T, ID> & QuerydslPredica
         return null;
     }
 
-    private DTO asDto(T object) {
+    protected DTO asDto(T object) {
         return getMapper().toDto(object);
     }
 
-    private List<DTO> asDto(List<T> objects) {
+    protected List<DTO> asDto(List<T> objects) {
         return getMapper().toDto(objects);
     }
 
-    private T asObject(DTO dto) {
+    protected T asObject(DTO dto) {
         return getMapper().toModel(dto);
     }
 
-    private List<T> asObject(List<DTO> dtos) {
+    protected List<T> asObject(List<DTO> dtos) {
         return getMapper().toModel(dtos);
     }
 

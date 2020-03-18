@@ -7,6 +7,10 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface WilayaRepository extends JpaRepository<Wilaya, Integer>, QuerydslPredicateExecutor<Wilaya>, JpaSpecificationExecutor<Wilaya> {
+
+    List<Wilaya> findByRegionId(String regionId);
 }
