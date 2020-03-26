@@ -7,7 +7,7 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SiteRepository extends JpaRepository<Site, Integer>, QuerydslPredicateExecutor<Site>, JpaSpecificationExecutor<Site> {
+public interface SiteRepository extends JpaRepository<Site, Long>, QuerydslPredicateExecutor<Site>, JpaSpecificationExecutor<Site> {
 
 
 }

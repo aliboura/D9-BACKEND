@@ -10,6 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class SiteServiceIMPL extends GenericServiceImpl<SiteRepository, Site, SiteDto, Integer>
+public class SiteServiceIMPL extends GenericServiceImpl<SiteRepository, Site, SiteDto, Long>
         implements SiteService {
 }

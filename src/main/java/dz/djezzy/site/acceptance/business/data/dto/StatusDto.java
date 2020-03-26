@@ -18,6 +18,7 @@ public class StatusDto implements Serializable {
     private String description;
     private String styleCSS;
     private boolean motif;
+    private boolean first;
 
     public StatusDto(String label, String description, String styleCSS, boolean motif) {
         this.label = label;

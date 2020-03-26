@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-16T09:44:55+0100",
+    date = "2020-03-26T15:49:37+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -57,6 +57,7 @@ public class StatusMappingImpl implements StatusMapping {
         statusDto.setDescription( source.getDescription() );
         statusDto.setStyleCSS( source.getStyleCSS() );
         statusDto.setMotif( source.isMotif() );
+        statusDto.setFirst( source.isFirst() );
 
         return statusDto;
     }
@@ -74,6 +75,7 @@ public class StatusMappingImpl implements StatusMapping {
         status.setDescription( target.getDescription() );
         status.setStyleCSS( target.getStyleCSS() );
         status.setMotif( target.isMotif() );
+        status.setFirst( target.isFirst() );
 
         return status;
     }

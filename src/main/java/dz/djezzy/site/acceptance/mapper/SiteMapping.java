@@ -31,4 +31,5 @@ public interface SiteMapping extends GenericMapper<Site, SiteDto> {
     @Override
     Site toModel(SiteDto target);
 
+
 }

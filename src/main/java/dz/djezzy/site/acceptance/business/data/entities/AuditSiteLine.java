@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -18,6 +19,18 @@ public class AuditSiteLine extends Auditable {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull
+    @Column(name = "LABEL")
+    private String label;
+
+    @NotNull
+    @Column(name = "SUB_CATEGORIES_ID")
+    private Integer subCategoriesId;
+
+    @ManyToOne
+    @JoinColumn(name = "CATEGORIES_ID")
+    private Categories categories;
 
     @ManyToOne
     @JoinColumn(name = "AUDIT_SITE_ID", nullable = false)

@@ -37,4 +37,8 @@ public class Status implements Serializable {
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "MOTIF")
     private boolean motif;
+
+    @Convert(converter = BooleanToCharConverter.class)
+    @Column(name = "FIRST")
+    private boolean first;
 }

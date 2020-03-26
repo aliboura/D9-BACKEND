@@ -1,6 +1,7 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
 import dz.djezzy.site.acceptance.business.data.audit.Auditable;
+import dz.djezzy.site.acceptance.tools.BooleanToCharConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,7 @@ public class AuditSite extends Auditable {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotNull
     @Column(name = "DATE_AUDIT")
@@ -39,7 +40,7 @@ public class AuditSite extends Auditable {
     private int wilayaId;
 
     @Column(name = "REGION_ID")
-    private int regionId;
+    private String regionId;
 
     @Column(name = "DESCRIPTION")
     private String description;
@@ -55,6 +56,10 @@ public class AuditSite extends Auditable {
     @JoinColumn(name = "STATUS_CURRENT_ID", nullable = false)
     private Status currentSatus;
 
+    @Convert(converter = BooleanToCharConverter.class)
+    @JoinColumn(name = "FIRST_STEP")
+    private Boolean firstStep;
+
     @ManyToOne
     @JoinColumn(name = "FISRT_DECISION_ID")
     private Decision firstDecision;
@@ -67,6 +72,10 @@ public class AuditSite extends Auditable {
 
     @Column(name = "FIRST_DECISION_ENGINEER_OM")
     private String firstDecisionEngineerOM;
+
+    @Convert(converter = BooleanToCharConverter.class)
+    @JoinColumn(name = "SECOND_STEP")
+    private Boolean secondStep;
 
     @ManyToOne
     @JoinColumn(name = "SECOND_DECISION_ID")
@@ -90,7 +99,7 @@ public class AuditSite extends Auditable {
     public AuditSite() {
     }
 
-    public AuditSite(int id, Date auditDate, String userId, String siteCode, int wilayaId, int regionId, String description, String observation) {
+    public AuditSite(int id, Date auditDate, String userId, String siteCode, int wilayaId, String regionId, String description, String observation) {
         this.id = id;
         this.auditDate = auditDate;
         this.userId = userId;

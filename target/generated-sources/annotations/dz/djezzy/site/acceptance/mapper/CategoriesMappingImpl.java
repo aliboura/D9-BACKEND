@@ -1,22 +1,24 @@
 package dz.djezzy.site.acceptance.mapper;
 
 import dz.djezzy.site.acceptance.business.data.dto.CategoriesDto;
-import dz.djezzy.site.acceptance.business.data.dto.SubCategoriesDto;
 import dz.djezzy.site.acceptance.business.data.entities.Categories;
-import dz.djezzy.site.acceptance.business.data.entities.SubCategories;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.Generated;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-16T09:44:55+0100",
+    date = "2020-03-26T15:49:37+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
 public class CategoriesMappingImpl implements CategoriesMapping {
+
+    @Autowired
+    private SubCategoriesMapping subCategoriesMapping;
 
     @Override
     public List<CategoriesDto> toDto(Collection<Categories> sourceList) {
@@ -54,11 +56,17 @@ public class CategoriesMappingImpl implements CategoriesMapping {
 
         CategoriesDto categoriesDto = new CategoriesDto();
 
-        categoriesDto.setListSubCategories( subCategoriesListToSubCategoriesDtoList( source.getSubCategoriesList() ) );
+        categoriesDto.setPreviousCatId( sourcePreviousId( source ) );
+        categoriesDto.setListSubCategories( subCategoriesMapping.toDto( source.getSubCategoriesList() ) );
+        categoriesDto.setNextCatLabel( sourceNextLabel( source ) );
+        categoriesDto.setNextCatId( sourceNextId( source ) );
+        categoriesDto.setPreviousCatLabel( sourcePreviousLabel( source ) );
         categoriesDto.setId( source.getId() );
         categoriesDto.setLabel( source.getLabel() );
         categoriesDto.setPosition( source.getPosition() );
         categoriesDto.setStatus( source.getStatus() );
+        categoriesDto.setFirst( source.getFirst() );
+        categoriesDto.setLast( source.getLast() );
 
         return categoriesDto;
     }
@@ -71,68 +79,117 @@ public class CategoriesMappingImpl implements CategoriesMapping {
 
         Categories categories = new Categories();
 
-        categories.setSubCategoriesList( subCategoriesDtoListToSubCategoriesList( target.getListSubCategories() ) );
+        categories.setNext( categoriesDtoToCategories( target ) );
+        categories.setPrevious( categoriesDtoToCategories1( target ) );
+        categories.setSubCategoriesList( subCategoriesMapping.toModel( target.getListSubCategories() ) );
         categories.setId( target.getId() );
         categories.setLabel( target.getLabel() );
         categories.setPosition( target.getPosition() );
         categories.setStatus( target.getStatus() );
+        categories.setFirst( target.getFirst() );
+        categories.setLast( target.getLast() );
+
+        Categories target1 = doAfterMapping( categories );
+        if ( target1 != null ) {
+            return target1;
+        }
 
         return categories;
     }
 
-    protected SubCategoriesDto subCategoriesToSubCategoriesDto(SubCategories subCategories) {
-        if ( subCategories == null ) {
+    private Integer sourcePreviousId(Categories categories) {
+        if ( categories == null ) {
             return null;
         }
-
-        SubCategoriesDto subCategoriesDto = new SubCategoriesDto();
-
-        subCategoriesDto.setId( subCategories.getId() );
-        subCategoriesDto.setLabel( subCategories.getLabel() );
-        subCategoriesDto.setPosition( subCategories.getPosition() );
-        subCategoriesDto.setStatus( subCategories.isStatus() );
-
-        return subCategoriesDto;
+        Categories previous = categories.getPrevious();
+        if ( previous == null ) {
+            return null;
+        }
+        Integer id = previous.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 
-    protected List<SubCategoriesDto> subCategoriesListToSubCategoriesDtoList(List<SubCategories> list) {
-        if ( list == null ) {
+    private String sourceNextLabel(Categories categories) {
+        if ( categories == null ) {
             return null;
         }
-
-        List<SubCategoriesDto> list1 = new ArrayList<SubCategoriesDto>( list.size() );
-        for ( SubCategories subCategories : list ) {
-            list1.add( subCategoriesToSubCategoriesDto( subCategories ) );
+        Categories next = categories.getNext();
+        if ( next == null ) {
+            return null;
         }
-
-        return list1;
+        String label = next.getLabel();
+        if ( label == null ) {
+            return null;
+        }
+        return label;
     }
 
-    protected SubCategories subCategoriesDtoToSubCategories(SubCategoriesDto subCategoriesDto) {
-        if ( subCategoriesDto == null ) {
+    private Integer sourceNextId(Categories categories) {
+        if ( categories == null ) {
             return null;
         }
-
-        SubCategories subCategories = new SubCategories();
-
-        subCategories.setId( subCategoriesDto.getId() );
-        subCategories.setLabel( subCategoriesDto.getLabel() );
-        subCategories.setPosition( subCategoriesDto.getPosition() );
-        subCategories.setStatus( subCategoriesDto.isStatus() );
-
-        return subCategories;
+        Categories next = categories.getNext();
+        if ( next == null ) {
+            return null;
+        }
+        Integer id = next.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 
-    protected List<SubCategories> subCategoriesDtoListToSubCategoriesList(List<SubCategoriesDto> list) {
-        if ( list == null ) {
+    private String sourcePreviousLabel(Categories categories) {
+        if ( categories == null ) {
+            return null;
+        }
+        Categories previous = categories.getPrevious();
+        if ( previous == null ) {
+            return null;
+        }
+        String label = previous.getLabel();
+        if ( label == null ) {
+            return null;
+        }
+        return label;
+    }
+
+    protected Categories categoriesDtoToCategories(CategoriesDto categoriesDto) {
+        if ( categoriesDto == null ) {
             return null;
         }
 
-        List<SubCategories> list1 = new ArrayList<SubCategories>( list.size() );
-        for ( SubCategoriesDto subCategoriesDto : list ) {
-            list1.add( subCategoriesDtoToSubCategories( subCategoriesDto ) );
+        Categories categories = new Categories();
+
+        categories.setId( categoriesDto.getNextCatId() );
+        categories.setLabel( categoriesDto.getNextCatLabel() );
+
+        Categories target = doAfterMapping( categories );
+        if ( target != null ) {
+            return target;
         }
 
-        return list1;
+        return categories;
+    }
+
+    protected Categories categoriesDtoToCategories1(CategoriesDto categoriesDto) {
+        if ( categoriesDto == null ) {
+            return null;
+        }
+
+        Categories categories = new Categories();
+
+        categories.setId( categoriesDto.getPreviousCatId() );
+        categories.setLabel( categoriesDto.getPreviousCatLabel() );
+
+        Categories target = doAfterMapping( categories );
+        if ( target != null ) {
+            return target;
+        }
+
+        return categories;
     }
 }

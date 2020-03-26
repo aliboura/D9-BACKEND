@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class SiteDto implements Serializable {
 
-    private int id;
+    private long id;
     private String codeSite;
     private Date dateD1;
     private String nomSite;

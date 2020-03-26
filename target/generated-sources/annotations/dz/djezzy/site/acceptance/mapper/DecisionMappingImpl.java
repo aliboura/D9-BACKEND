@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-16T09:44:54+0100",
+    date = "2020-03-26T15:49:37+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -55,8 +55,8 @@ public class DecisionMappingImpl implements DecisionMapping {
         decisionDto.setId( source.getId() );
         decisionDto.setLabel( source.getLabel() );
         decisionDto.setPosition( source.getPosition() );
-        decisionDto.setStatus( source.isStatus() );
-        decisionDto.setClosed( source.isClosed() );
+        decisionDto.setStatus( source.getStatus() );
+        decisionDto.setClosed( source.getClosed() );
 
         return decisionDto;
     }
@@ -72,8 +72,8 @@ public class DecisionMappingImpl implements DecisionMapping {
         decision.setId( target.getId() );
         decision.setLabel( target.getLabel() );
         decision.setPosition( target.getPosition() );
-        decision.setStatus( target.isStatus() );
-        decision.setClosed( target.isClosed() );
+        decision.setStatus( target.getStatus() );
+        decision.setClosed( target.getClosed() );
 
         return decision;
     }

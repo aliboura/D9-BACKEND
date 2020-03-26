@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-16T09:44:54+0100",
+    date = "2020-03-26T15:49:38+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -56,14 +56,17 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
 
         statusAuditSiteDto.setStatusId( sourceStatusId( source ) );
         statusAuditSiteDto.setStatusLabel( sourceStatusLabel( source ) );
-        statusAuditSiteDto.setAuditSiteId( sourceAuditSiteId( source ) );
+        Integer id1 = sourceAuditSiteId( source );
+        if ( id1 != null ) {
+            statusAuditSiteDto.setAuditSiteId( id1 );
+        }
         statusAuditSiteDto.setCreatedBy( source.getCreatedBy() );
         statusAuditSiteDto.setModifiedBy( source.getModifiedBy() );
         statusAuditSiteDto.setModificationDate( source.getModificationDate() );
         statusAuditSiteDto.setId( source.getId() );
         statusAuditSiteDto.setStatusDate( source.getStatusDate() );
         statusAuditSiteDto.setDescription( source.getDescription() );
-        statusAuditSiteDto.setCurrent( source.getCurrent() );
+        statusAuditSiteDto.setCurrent( source.isCurrent() );
 
         return statusAuditSiteDto;
     }
@@ -84,7 +87,7 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
         statusAuditSite.setId( target.getId() );
         statusAuditSite.setStatusDate( target.getStatusDate() );
         statusAuditSite.setDescription( target.getDescription() );
-        statusAuditSite.setCurrent( target.getCurrent() );
+        statusAuditSite.setCurrent( target.isCurrent() );
 
         return statusAuditSite;
     }
@@ -116,15 +119,18 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
         return label;
     }
 
-    private int sourceAuditSiteId(StatusAuditSite statusAuditSite) {
+    private Integer sourceAuditSiteId(StatusAuditSite statusAuditSite) {
         if ( statusAuditSite == null ) {
-            return 0;
+            return null;
         }
         AuditSite auditSite = statusAuditSite.getAuditSite();
         if ( auditSite == null ) {
-            return 0;
+            return null;
         }
-        int id = auditSite.getId();
+        Integer id = auditSite.getId();
+        if ( id == null ) {
+            return null;
+        }
         return id;
     }
 
