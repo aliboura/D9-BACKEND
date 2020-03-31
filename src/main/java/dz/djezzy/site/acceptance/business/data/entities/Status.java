@@ -22,10 +22,10 @@ public class Status implements Serializable {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STATUS_SEQ")
     @SequenceGenerator(sequenceName = "STATUS_SEQUENCE_ID", allocationSize = 1, name = "STATUS_SEQ")
-    private int id;
+    private Integer id;
 
     @NotNull
-    @Column(name = "LABEL")
+    @Column(name = "LABEL", unique = true)
     private String label;
 
     @Column(name = "DESCRIPTION")

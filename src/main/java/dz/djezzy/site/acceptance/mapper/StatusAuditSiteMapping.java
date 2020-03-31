@@ -1,11 +1,10 @@
 package dz.djezzy.site.acceptance.mapper;
 
 import dz.djezzy.site.acceptance.business.data.dto.StatusAuditSiteDto;
+import dz.djezzy.site.acceptance.business.data.entities.AuditSite;
 import dz.djezzy.site.acceptance.business.data.entities.StatusAuditSite;
 import dz.djezzy.site.acceptance.mapper.config.GenericMapper;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
@@ -28,4 +27,15 @@ public interface StatusAuditSiteMapping extends GenericMapper<StatusAuditSite, S
     })
     @Override
     StatusAuditSite toModel(StatusAuditSiteDto target);
+
+    @AfterMapping
+    default StatusAuditSite doAfterMapping(@MappingTarget StatusAuditSite entity) {
+        if (entity != null && entity.getStatus().getId() == null) {
+            entity.setStatus(null);
+        }
+        if (entity != null && entity.getAuditSite().getId() == null) {
+            entity.setAuditSite(null);
+        }
+        return entity;
+    }
 }

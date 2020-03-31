@@ -21,8 +21,9 @@ public class StatusAuditSite extends Auditable {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STATUS_AUDIT_SITE_SEQ")
+    @SequenceGenerator(sequenceName = "STATUS_AUDIT_SITE_SEQUENCE_ID", allocationSize = 1, name = "STATUS_AUDIT_SITE_SEQ")
+    private Integer id;
 
     @NotNull
     @Column(name = "STATUS_DATE")

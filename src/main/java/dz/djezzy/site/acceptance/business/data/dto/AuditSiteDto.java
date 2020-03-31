@@ -16,18 +16,19 @@ import java.util.List;
 @NoArgsConstructor
 public class AuditSiteDto extends AuditableDto {
 
-    @ReadOnlyProperty
-    private int id;
+    private Integer id;
     private Date auditDate;
     private String userId;
     private String siteCode;
-    private int wilayaId;
+    private Integer wilayaId;
     private String regionId;
     private String repOwner;
     private String description;
     private String observation;
+    private Boolean lastStep;
+    private Boolean closed;
 
-    private int currentCategoriesId;
+    private Integer currentCategoriesId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String currentCategoriesLabel;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -37,22 +38,20 @@ public class AuditSiteDto extends AuditableDto {
     private Integer nextCategoriesId;
 
     private int currentSatusId;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String currentSatusLabel;
 
+
     // First Decision
-    private Boolean firstStep;
+    private Boolean firstVisit;
     private Integer firstDecisionId;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String firstDecisionLabel;
     private Date firstDecisionDate;
     private String firstDecisionEngineerSite;
     private String firstDecisionEngineerOM;
 
     // Second Decision
-    private Boolean secondStep;
+    private Boolean secondVisit;
     private Integer secondDecisionId;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String secondDecisionLabel;
     private Date secondDecisionDate;
     private String secondDecisionEngineerSite;

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-26T15:49:38+0100",
+    date = "2020-03-31T16:21:05+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -56,10 +56,7 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
 
         statusAuditSiteDto.setStatusId( sourceStatusId( source ) );
         statusAuditSiteDto.setStatusLabel( sourceStatusLabel( source ) );
-        Integer id1 = sourceAuditSiteId( source );
-        if ( id1 != null ) {
-            statusAuditSiteDto.setAuditSiteId( id1 );
-        }
+        statusAuditSiteDto.setAuditSiteId( sourceAuditSiteId( source ) );
         statusAuditSiteDto.setCreatedBy( source.getCreatedBy() );
         statusAuditSiteDto.setModifiedBy( source.getModifiedBy() );
         statusAuditSiteDto.setModificationDate( source.getModificationDate() );
@@ -89,18 +86,26 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
         statusAuditSite.setDescription( target.getDescription() );
         statusAuditSite.setCurrent( target.isCurrent() );
 
+        StatusAuditSite target1 = doAfterMapping( statusAuditSite );
+        if ( target1 != null ) {
+            return target1;
+        }
+
         return statusAuditSite;
     }
 
-    private int sourceStatusId(StatusAuditSite statusAuditSite) {
+    private Integer sourceStatusId(StatusAuditSite statusAuditSite) {
         if ( statusAuditSite == null ) {
-            return 0;
+            return null;
         }
         Status status = statusAuditSite.getStatus();
         if ( status == null ) {
-            return 0;
+            return null;
         }
-        int id = status.getId();
+        Integer id = status.getId();
+        if ( id == null ) {
+            return null;
+        }
         return id;
     }
 

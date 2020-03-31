@@ -57,8 +57,12 @@ public class AuditSite extends Auditable {
     private Status currentSatus;
 
     @Convert(converter = BooleanToCharConverter.class)
-    @JoinColumn(name = "FIRST_STEP")
-    private Boolean firstStep;
+    @JoinColumn(name = "LAST_STEP")
+    private Boolean lastStep;
+
+    @Convert(converter = BooleanToCharConverter.class)
+    @JoinColumn(name = "FIRST_VISIT")
+    private Boolean firstVisit;
 
     @ManyToOne
     @JoinColumn(name = "FISRT_DECISION_ID")
@@ -74,8 +78,12 @@ public class AuditSite extends Auditable {
     private String firstDecisionEngineerOM;
 
     @Convert(converter = BooleanToCharConverter.class)
-    @JoinColumn(name = "SECOND_STEP")
-    private Boolean secondStep;
+    @JoinColumn(name = "SECOND_VISIT")
+    private Boolean secondVisit;
+
+    @Convert(converter = BooleanToCharConverter.class)
+    @JoinColumn(name = "CLOSED")
+    private Boolean closed;
 
     @ManyToOne
     @JoinColumn(name = "SECOND_DECISION_ID")
@@ -90,10 +98,10 @@ public class AuditSite extends Auditable {
     @Column(name = "SECOND_DECISION_ENGINEER_OM")
     private String secondDecisionEngineerOM;
 
-    @OneToMany(mappedBy = "auditSite", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "auditSite")
     private List<AuditSiteLine> auditLineList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "auditSite", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "auditSite")
     private List<StatusAuditSite> statusAuditSitesList = new ArrayList<>();
 
     public AuditSite() {

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -22,5 +23,14 @@ public class StatusServiceIMPL extends GenericServiceImpl<StatusRepository, Stat
     public StatusDto findFirstStatus() {
         List<Status> list = statusRepository.findFirstStatus();
         return list != null && !list.isEmpty() ? asDto(list.get(0)) : null;
+    }
+
+    @Override
+    public Optional<StatusDto> findByLabel(String label) {
+        Optional<Status> opt = statusRepository.findByLabel(label);
+        if (opt.isPresent()) {
+            return Optional.of(asDto(opt.get()));
+        }
+        return Optional.empty();
     }
 }

@@ -1,5 +1,6 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
+import dz.djezzy.site.acceptance.tools.BooleanToCharConverter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -52,6 +53,10 @@ public class Site implements Serializable {
     @Basic
     @Column(name = "SERVICE_DEMANDEUR", length = 10)
     private String serviceDemandeur;
+
+    @Convert(converter = BooleanToCharConverter.class)
+    @Column(name = "AUDITED")
+    private Boolean audited;
 
     @ManyToOne
     @JoinColumn(name = "TYPE_SITE_ID")

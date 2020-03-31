@@ -14,11 +14,11 @@ import java.util.Date;
 @AllArgsConstructor
 public class StatusAuditSiteDto extends AuditableDto {
 
-    private int id;
+    private Integer id;
     private Date statusDate;
     private String description;
     private boolean current;
-    private int statusId;
+    private Integer statusId;
     private String statusLabel;
-    private int auditSiteId;
+    private Integer auditSiteId;
 }

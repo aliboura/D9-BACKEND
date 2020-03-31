@@ -7,7 +7,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,8 +29,9 @@ public class Categories implements Serializable {
     @Column(name = "POSITION")
     private Integer position;
 
+    @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "STATUS")
-    private char status;
+    private Boolean status;
 
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "first")
@@ -58,7 +58,7 @@ public class Categories implements Serializable {
     public Categories() {
     }
 
-    public Categories(String label, int position, char status) {
+    public Categories(String label, int position, Boolean status) {
         this.label = label;
         this.position = position;
         this.status = status;

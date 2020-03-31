@@ -6,7 +6,7 @@ import dz.djezzy.site.acceptance.mapper.config.GenericMapper;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring", uses = {AuditSiteLineMapping.class, CategoriesMapping.class})
+@Mapper(componentModel = "spring", uses = {AuditSiteLineMapping.class, CategoriesMapping.class, StatusAuditSiteMapping.class})
 public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto> {
 
     AuditSiteMapping INSTANCE = Mappers.getMapper(AuditSiteMapping.class);

@@ -13,17 +13,15 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class StatusDto implements Serializable {
 
-    private int id;
+    private Integer id;
     private String label;
     private String description;
     private String styleCSS;
     private boolean motif;
     private boolean first;
 
-    public StatusDto(String label, String description, String styleCSS, boolean motif) {
+    public StatusDto(Integer id, String label) {
+        this.id = id;
         this.label = label;
-        this.description = description;
-        this.styleCSS = styleCSS;
-        this.motif = motif;
     }
 }

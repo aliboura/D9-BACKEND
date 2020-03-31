@@ -18,7 +18,7 @@ public class CategoriesDto implements Serializable {
     private Integer id;
     private String label;
     private Integer position;
-    private char status;
+    private Boolean status;
     private Boolean first;
     private Boolean last;
 

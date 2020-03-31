@@ -24,6 +24,7 @@ public class SiteDto implements Serializable {
     private String prioriteRadio;
     private String regionId;
     private String serviceDemandeur;
+    private Boolean audited;
 
     private String typeSiteId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)

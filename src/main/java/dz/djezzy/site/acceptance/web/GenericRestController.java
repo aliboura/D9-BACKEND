@@ -37,7 +37,7 @@ public class GenericRestController<S extends GenericService<T, DTO, ID>, T, DTO,
     @GetMapping(params = {"sort", "field"})
     public List<DTO> findAll(@RequestParam(value = "sort") String sort,
                              @RequestParam(value = "field") String field) {
-        if (sort.equals("ASC"))
+        if (sort.equalsIgnoreCase("ASC"))
             listAll = service.findAll(Sort.by(Direction.ASC, field));
         else
             listAll = service.findAll(Sort.by(Direction.DESC, field));

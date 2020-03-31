@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -28,32 +29,38 @@ public class GenericServiceImpl<S extends JpaRepository<T, ID> & QuerydslPredica
 
 
     @Override
+    @Transactional(readOnly = true)
     public List<DTO> findAll() {
         return asDto(dao.findAll());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<DTO> findAll(Sort sort) {
         return asDto(dao.findAll(sort));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<DTO> findAll(Pageable pageable) {
         return dao.findAll(pageable).map(data -> asDto(data));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<DTO> findAll(Predicate predicate, Pageable pageable) {
         return dao.findAll(predicate, pageable).map(data -> asDto(data));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<DTO> findAll(Specification<T> spec, Pageable pageable) {
         return dao.findAll(spec, pageable).map(data -> asDto(data));
     }
 
 
     @Override
+    @Transactional
     public DTO save(DTO dto) {
         T object = asObject(dto);
         T saved = dao.save(object);
@@ -61,6 +68,7 @@ public class GenericServiceImpl<S extends JpaRepository<T, ID> & QuerydslPredica
     }
 
     @Override
+    @Transactional
     public Iterable<DTO> saveAll(Iterable<DTO> iterable) {
         if (iterable != null) {
             iterable.forEach(x -> save(x));
@@ -86,21 +94,25 @@ public class GenericServiceImpl<S extends JpaRepository<T, ID> & QuerydslPredica
     }
 
     @Override
+    @Transactional(readOnly = true)
     public DTO getOne(ID id) {
         return asDto(dao.getOne(id));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<DTO> findById(ID id) {
         return Optional.empty();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Long count() {
         return dao.count();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<DTO> findAllByExample(DTO example) {
         return null;
     }
