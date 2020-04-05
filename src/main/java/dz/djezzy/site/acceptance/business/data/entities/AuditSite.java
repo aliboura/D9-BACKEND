@@ -65,6 +65,10 @@ public class AuditSite extends Auditable {
     private Boolean firstVisit;
 
     @ManyToOne
+    @JoinColumn(name = "TYPE_AUDIT_SITE_ID")
+    private TypeAuditSite typeAuditSite;
+
+    @ManyToOne
     @JoinColumn(name = "FISRT_DECISION_ID")
     private Decision firstDecision;
 

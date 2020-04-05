@@ -8,21 +8,23 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {DecisionMapping.class})
 public interface SubCategoriesMapping extends GenericMapper<SubCategories, SubCategoriesDto> {
 
     SubCategoriesMapping INSTANCE = Mappers.getMapper(SubCategoriesMapping.class);
 
     @Mappings({
             @Mapping(source = "categories.id", target = "categoriesId"),
-            @Mapping(source = "categories.label", target = "categoriesLabel")
+            @Mapping(source = "categories.label", target = "categoriesLabel"),
+            @Mapping(source = "decisions", target = "decisionsList")
     })
     @Override
     SubCategoriesDto toDto(SubCategories source);
 
     @Mappings({
             @Mapping(target = "categories.id", source = "categoriesId"),
-            @Mapping(target = "categories.label", source = "categoriesLabel")
+            @Mapping(target = "categories.label", source = "categoriesLabel"),
+            @Mapping(target = "decisions", source = "decisionsList")
     })
     @Override
     SubCategories toModel(SubCategoriesDto target);

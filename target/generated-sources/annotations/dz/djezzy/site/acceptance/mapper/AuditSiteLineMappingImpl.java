@@ -1,10 +1,12 @@
 package dz.djezzy.site.acceptance.mapper;
 
 import dz.djezzy.site.acceptance.business.data.dto.AuditSiteLineDto;
+import dz.djezzy.site.acceptance.business.data.dto.SubCategoriesDto;
 import dz.djezzy.site.acceptance.business.data.entities.AuditSite;
 import dz.djezzy.site.acceptance.business.data.entities.AuditSiteLine;
 import dz.djezzy.site.acceptance.business.data.entities.Categories;
 import dz.djezzy.site.acceptance.business.data.entities.Decision;
+import dz.djezzy.site.acceptance.business.data.entities.SubCategories;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-31T16:21:05+0100",
+    date = "2020-04-05T09:45:07+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -23,6 +25,8 @@ public class AuditSiteLineMappingImpl implements AuditSiteLineMapping {
 
     @Autowired
     private CategoriesMapping categoriesMapping;
+    @Autowired
+    private SubCategoriesMapping subCategoriesMapping;
 
     @Override
     public List<AuditSiteLineDto> toDto(Collection<AuditSiteLine> sourceList) {
@@ -62,8 +66,12 @@ public class AuditSiteLineMappingImpl implements AuditSiteLineMapping {
 
         auditSiteLineDto.setCategoriesLabel( sourceCategoriesLabel( source ) );
         auditSiteLineDto.setSecondDecisionLabel( sourceSecondDecisionLabel( source ) );
+        auditSiteLineDto.setSubCategoriesLabel( sourceSubCategoriesLabel( source ) );
+        auditSiteLineDto.setSubCategoriesId( sourceSubCategoriesId( source ) );
         auditSiteLineDto.setCategoriesId( sourceCategoriesId( source ) );
         auditSiteLineDto.setFirstDecisionLabel( sourceFirstDecisionLabel( source ) );
+        auditSiteLineDto.setSubCategories( subCategoriesMapping.toDto( source.getSubCategories() ) );
+        auditSiteLineDto.setSubCategoriesValueType( sourceSubCategoriesValueType( source ) );
         auditSiteLineDto.setAuditSiteId( sourceAuditSiteId( source ) );
         auditSiteLineDto.setFirstDecisionId( sourceFirstDecisionId( source ) );
         auditSiteLineDto.setSecondDecisionId( sourceSecondDecisionId( source ) );
@@ -72,7 +80,7 @@ public class AuditSiteLineMappingImpl implements AuditSiteLineMapping {
         auditSiteLineDto.setModificationDate( source.getModificationDate() );
         auditSiteLineDto.setId( source.getId() );
         auditSiteLineDto.setLabel( source.getLabel() );
-        auditSiteLineDto.setSubCategoriesId( source.getSubCategoriesId() );
+        auditSiteLineDto.setBlocking( source.isBlocking() );
         auditSiteLineDto.setObservation( source.getObservation() );
         byte[] image = source.getImage();
         if ( image != null ) {
@@ -90,9 +98,19 @@ public class AuditSiteLineMappingImpl implements AuditSiteLineMapping {
 
         AuditSiteLine auditSiteLine = new AuditSiteLine();
 
+        auditSiteLine.setSubCategories( auditSiteLineDtoToSubCategories( target ) );
         auditSiteLine.setFirstDecision( auditSiteLineDtoToDecision( target ) );
         auditSiteLine.setAuditSite( auditSiteLineDtoToAuditSite( target ) );
-        auditSiteLine.setCategories( auditSiteLineDtoToCategories( target ) );
+        if ( target.getSubCategories() != null ) {
+            if ( auditSiteLine.getCategories() == null ) {
+                auditSiteLine.setCategories( new Categories() );
+            }
+            subCategoriesDtoToCategories( target.getSubCategories(), auditSiteLine.getCategories() );
+        }
+        if ( auditSiteLine.getCategories() == null ) {
+            auditSiteLine.setCategories( new Categories() );
+        }
+        auditSiteLineDtoToCategories( target, auditSiteLine.getCategories() );
         auditSiteLine.setSecondDecision( auditSiteLineDtoToDecision1( target ) );
         auditSiteLine.setCreatedBy( target.getCreatedBy() );
         auditSiteLine.setModifiedBy( target.getModifiedBy() );
@@ -101,7 +119,7 @@ public class AuditSiteLineMappingImpl implements AuditSiteLineMapping {
             auditSiteLine.setId( target.getId() );
         }
         auditSiteLine.setLabel( target.getLabel() );
-        auditSiteLine.setSubCategoriesId( target.getSubCategoriesId() );
+        auditSiteLine.setBlocking( target.isBlocking() );
         auditSiteLine.setObservation( target.getObservation() );
         byte[] image = target.getImage();
         if ( image != null ) {
@@ -146,6 +164,33 @@ public class AuditSiteLineMappingImpl implements AuditSiteLineMapping {
         return label;
     }
 
+    private String sourceSubCategoriesLabel(AuditSiteLine auditSiteLine) {
+        if ( auditSiteLine == null ) {
+            return null;
+        }
+        SubCategories subCategories = auditSiteLine.getSubCategories();
+        if ( subCategories == null ) {
+            return null;
+        }
+        String label = subCategories.getLabel();
+        if ( label == null ) {
+            return null;
+        }
+        return label;
+    }
+
+    private Integer sourceSubCategoriesId(AuditSiteLine auditSiteLine) {
+        if ( auditSiteLine == null ) {
+            return null;
+        }
+        SubCategories subCategories = auditSiteLine.getSubCategories();
+        if ( subCategories == null ) {
+            return null;
+        }
+        int id = subCategories.getId();
+        return id;
+    }
+
     private Integer sourceCategoriesId(AuditSiteLine auditSiteLine) {
         if ( auditSiteLine == null ) {
             return null;
@@ -174,6 +219,21 @@ public class AuditSiteLineMappingImpl implements AuditSiteLineMapping {
             return null;
         }
         return label;
+    }
+
+    private Integer sourceSubCategoriesValueType(AuditSiteLine auditSiteLine) {
+        if ( auditSiteLine == null ) {
+            return null;
+        }
+        SubCategories subCategories = auditSiteLine.getSubCategories();
+        if ( subCategories == null ) {
+            return null;
+        }
+        Integer valueType = subCategories.getValueType();
+        if ( valueType == null ) {
+            return null;
+        }
+        return valueType;
     }
 
     private Integer sourceAuditSiteId(AuditSiteLine auditSiteLine) {
@@ -221,6 +281,22 @@ public class AuditSiteLineMappingImpl implements AuditSiteLineMapping {
         return id;
     }
 
+    protected SubCategories auditSiteLineDtoToSubCategories(AuditSiteLineDto auditSiteLineDto) {
+        if ( auditSiteLineDto == null ) {
+            return null;
+        }
+
+        SubCategories subCategories = new SubCategories();
+
+        if ( auditSiteLineDto.getSubCategoriesId() != null ) {
+            subCategories.setId( auditSiteLineDto.getSubCategoriesId() );
+        }
+        subCategories.setValueType( auditSiteLineDto.getSubCategoriesValueType() );
+        subCategories.setLabel( auditSiteLineDto.getSubCategoriesLabel() );
+
+        return subCategories;
+    }
+
     protected Decision auditSiteLineDtoToDecision(AuditSiteLineDto auditSiteLineDto) {
         if ( auditSiteLineDto == null ) {
             return null;
@@ -246,22 +322,34 @@ public class AuditSiteLineMappingImpl implements AuditSiteLineMapping {
         return auditSite;
     }
 
-    protected Categories auditSiteLineDtoToCategories(AuditSiteLineDto auditSiteLineDto) {
-        if ( auditSiteLineDto == null ) {
-            return null;
+    protected void subCategoriesDtoToCategories(SubCategoriesDto subCategoriesDto, Categories mappingTarget) {
+        if ( subCategoriesDto == null ) {
+            return;
         }
 
-        Categories categories = new Categories();
+        mappingTarget.setId( subCategoriesDto.getId() );
+        mappingTarget.setLabel( subCategoriesDto.getLabel() );
+        mappingTarget.setPosition( subCategoriesDto.getPosition() );
+        mappingTarget.setStatus( subCategoriesDto.isStatus() );
 
-        categories.setId( auditSiteLineDto.getCategoriesId() );
-        categories.setLabel( auditSiteLineDto.getCategoriesLabel() );
-
-        Categories target = categoriesMapping.doAfterMapping( categories );
+        Categories target = categoriesMapping.doAfterMapping( mappingTarget );
         if ( target != null ) {
-            return target;
+            return;
+        }
+    }
+
+    protected void auditSiteLineDtoToCategories(AuditSiteLineDto auditSiteLineDto, Categories mappingTarget) {
+        if ( auditSiteLineDto == null ) {
+            return;
         }
 
-        return categories;
+        mappingTarget.setId( auditSiteLineDto.getCategoriesId() );
+        mappingTarget.setLabel( auditSiteLineDto.getCategoriesLabel() );
+
+        Categories target = categoriesMapping.doAfterMapping( mappingTarget );
+        if ( target != null ) {
+            return;
+        }
     }
 
     protected Decision auditSiteLineDtoToDecision1(AuditSiteLineDto auditSiteLineDto) {

@@ -20,5 +20,6 @@ public class StatusAuditSiteDto extends AuditableDto {
     private boolean current;
     private Integer statusId;
     private String statusLabel;
+    private String statusStyleCSS;
     private Integer auditSiteId;
 }

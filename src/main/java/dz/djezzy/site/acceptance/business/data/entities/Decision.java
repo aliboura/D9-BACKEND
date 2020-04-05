@@ -7,6 +7,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,6 +29,9 @@ public class Decision implements Serializable {
     @Column(name = "POSITION")
     private Integer position;
 
+    @Column(name = "TYPE_VALUE")
+    private Integer typeValue;
+
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "STATUS")
     private Boolean status;
@@ -34,5 +39,8 @@ public class Decision implements Serializable {
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "CLOSED")
     private Boolean closed;
+
+    @ManyToMany(mappedBy = "decisions")
+    private List<SubCategories> subCategories = new ArrayList<>();
 
 }

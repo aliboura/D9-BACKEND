@@ -27,6 +27,8 @@ public class AuditSiteDto extends AuditableDto {
     private String observation;
     private Boolean lastStep;
     private Boolean closed;
+    private Integer typeAuditSiteId;
+    private String typeAuditSiteLabel;
 
     private Integer currentCategoriesId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -39,6 +41,7 @@ public class AuditSiteDto extends AuditableDto {
 
     private int currentSatusId;
     private String currentSatusLabel;
+    private String currentSatusStyleCSS;
 
 
     // First Decision

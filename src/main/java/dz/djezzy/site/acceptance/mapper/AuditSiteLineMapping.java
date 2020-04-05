@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
 import java.util.Collection;
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {CategoriesMapping.class})
+@Mapper(componentModel = "spring", uses = {CategoriesMapping.class, SubCategoriesMapping.class, DecisionMapping.class})
 public interface AuditSiteLineMapping extends GenericMapper<AuditSiteLine, AuditSiteLineDto> {
 
     AuditSiteLineMapping INSTANCE = Mappers.getMapper(AuditSiteLineMapping.class);
@@ -19,6 +19,10 @@ public interface AuditSiteLineMapping extends GenericMapper<AuditSiteLine, Audit
             @Mapping(source = "auditSite.id", target = "auditSiteId"),
             @Mapping(source = "categories.id", target = "categoriesId"),
             @Mapping(source = "categories.label", target = "categoriesLabel"),
+            @Mapping(source = "subCategories", target = "subCategories"),
+            @Mapping(source = "subCategories.id", target = "subCategoriesId"),
+            @Mapping(source = "subCategories.label", target = "subCategoriesLabel"),
+            @Mapping(source = "subCategories.valueType", target = "subCategoriesValueType"),
             @Mapping(source = "firstDecision.id", target = "firstDecisionId"),
             @Mapping(source = "firstDecision.label", target = "firstDecisionLabel"),
             @Mapping(source = "secondDecision.id", target = "secondDecisionId"),
@@ -29,8 +33,12 @@ public interface AuditSiteLineMapping extends GenericMapper<AuditSiteLine, Audit
 
     @Mappings({
             @Mapping(target = "auditSite.id", source = "auditSiteId"),
+            @Mapping(target = "categories", source = "subCategories"),
             @Mapping(target = "categories.id", source = "categoriesId"),
             @Mapping(target = "categories.label", source = "categoriesLabel"),
+            @Mapping(target = "subCategories.id", source = "subCategoriesId"),
+            @Mapping(target = "subCategories.label", source = "subCategoriesLabel"),
+            @Mapping(target = "subCategories.valueType", source = "subCategoriesValueType"),
             @Mapping(target = "firstDecision.id", source = "firstDecisionId"),
             @Mapping(target = "firstDecision.label", source = "firstDecisionLabel"),
             @Mapping(target = "secondDecision.id", source = "secondDecisionId"),

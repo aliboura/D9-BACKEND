@@ -14,11 +14,4 @@ public interface StatusMapping extends GenericMapper<Status, StatusDto> {
 
     StatusMapping INSTANCE = Mappers.getMapper(StatusMapping.class);
 
-    //TEST
-    @Override
-    StatusDto toDto(Status source);
-
-    @Override
-    Status toModel(StatusDto target);
-
 }

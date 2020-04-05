@@ -7,15 +7,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.Generated;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-31T16:21:05+0100",
+    date = "2020-04-05T09:45:07+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
 public class SubCategoriesMappingImpl implements SubCategoriesMapping {
+
+    @Autowired
+    private DecisionMapping decisionMapping;
 
     @Override
     public List<SubCategoriesDto> toDto(Collection<SubCategories> sourceList) {
@@ -58,10 +62,13 @@ public class SubCategoriesMappingImpl implements SubCategoriesMapping {
         if ( id != null ) {
             subCategoriesDto.setCategoriesId( id );
         }
+        subCategoriesDto.setDecisionsList( decisionMapping.toDto( source.getDecisions() ) );
         subCategoriesDto.setId( source.getId() );
         subCategoriesDto.setLabel( source.getLabel() );
         subCategoriesDto.setPosition( source.getPosition() );
+        subCategoriesDto.setValueType( source.getValueType() );
         subCategoriesDto.setStatus( source.isStatus() );
+        subCategoriesDto.setBlocking( source.isBlocking() );
 
         return subCategoriesDto;
     }
@@ -75,10 +82,13 @@ public class SubCategoriesMappingImpl implements SubCategoriesMapping {
         SubCategories subCategories = new SubCategories();
 
         subCategories.setCategories( subCategoriesDtoToCategories( target ) );
+        subCategories.setDecisions( decisionMapping.toModel( target.getDecisionsList() ) );
         subCategories.setId( target.getId() );
         subCategories.setLabel( target.getLabel() );
         subCategories.setPosition( target.getPosition() );
+        subCategories.setValueType( target.getValueType() );
         subCategories.setStatus( target.isStatus() );
+        subCategories.setBlocking( target.isBlocking() );
 
         return subCategories;
     }

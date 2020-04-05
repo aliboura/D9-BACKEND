@@ -1,6 +1,7 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
 import dz.djezzy.site.acceptance.business.data.audit.Auditable;
+import dz.djezzy.site.acceptance.tools.BooleanToCharConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,9 +25,13 @@ public class AuditSiteLine extends Auditable {
     @Column(name = "LABEL")
     private String label;
 
-    @NotNull
-    @Column(name = "SUB_CATEGORIES_ID")
-    private Integer subCategoriesId;
+    @ManyToOne
+    @JoinColumn(name = "SUB_CATEGORIES_ID")
+    private SubCategories subCategories;
+
+    @Convert(converter = BooleanToCharConverter.class)
+    @Column(name = "BLOCKING")
+    private boolean blocking;
 
     @ManyToOne
     @JoinColumn(name = "CATEGORIES_ID")

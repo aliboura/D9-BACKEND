@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-31T16:21:05+0100",
+    date = "2020-04-05T09:45:07+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -54,6 +54,7 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
 
         StatusAuditSiteDto statusAuditSiteDto = new StatusAuditSiteDto();
 
+        statusAuditSiteDto.setStatusStyleCSS( sourceStatusStyleCSS( source ) );
         statusAuditSiteDto.setStatusId( sourceStatusId( source ) );
         statusAuditSiteDto.setStatusLabel( sourceStatusLabel( source ) );
         statusAuditSiteDto.setAuditSiteId( sourceAuditSiteId( source ) );
@@ -92,6 +93,21 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
         }
 
         return statusAuditSite;
+    }
+
+    private String sourceStatusStyleCSS(StatusAuditSite statusAuditSite) {
+        if ( statusAuditSite == null ) {
+            return null;
+        }
+        Status status = statusAuditSite.getStatus();
+        if ( status == null ) {
+            return null;
+        }
+        String styleCSS = status.getStyleCSS();
+        if ( styleCSS == null ) {
+            return null;
+        }
+        return styleCSS;
     }
 
     private Integer sourceStatusId(StatusAuditSite statusAuditSite) {
@@ -148,6 +164,7 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
 
         status.setLabel( statusAuditSiteDto.getStatusLabel() );
         status.setId( statusAuditSiteDto.getStatusId() );
+        status.setStyleCSS( statusAuditSiteDto.getStatusStyleCSS() );
 
         return status;
     }

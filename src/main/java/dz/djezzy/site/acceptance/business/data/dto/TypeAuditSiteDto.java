@@ -1,19 +1,18 @@
 package dz.djezzy.site.acceptance.business.data.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
 
 @Getter
 @Setter
-public class DecisionDto implements Serializable {
+@NoArgsConstructor
+@AllArgsConstructor
+public class TypeAuditSiteDto {
 
     private Integer id;
     private String label;
-    private Integer position;
-    private Integer typeValue;
+    private String description;
     private Boolean status;
-    private Boolean closed;
-
 }

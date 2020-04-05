@@ -10,39 +10,11 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-31T16:21:05+0100",
+    date = "2020-04-05T09:45:07+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
 public class StatusMappingImpl implements StatusMapping {
-
-    @Override
-    public List<StatusDto> toDto(Collection<Status> sourceList) {
-        if ( sourceList == null ) {
-            return null;
-        }
-
-        List<StatusDto> list = new ArrayList<StatusDto>( sourceList.size() );
-        for ( Status status : sourceList ) {
-            list.add( toDto( status ) );
-        }
-
-        return list;
-    }
-
-    @Override
-    public List<Status> toModel(Collection<StatusDto> targetList) {
-        if ( targetList == null ) {
-            return null;
-        }
-
-        List<Status> list = new ArrayList<Status>( targetList.size() );
-        for ( StatusDto statusDto : targetList ) {
-            list.add( toModel( statusDto ) );
-        }
-
-        return list;
-    }
 
     @Override
     public StatusDto toDto(Status source) {
@@ -78,5 +50,33 @@ public class StatusMappingImpl implements StatusMapping {
         status.setFirst( target.isFirst() );
 
         return status;
+    }
+
+    @Override
+    public List<StatusDto> toDto(Collection<Status> sourceList) {
+        if ( sourceList == null ) {
+            return null;
+        }
+
+        List<StatusDto> list = new ArrayList<StatusDto>( sourceList.size() );
+        for ( Status status : sourceList ) {
+            list.add( toDto( status ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<Status> toModel(Collection<StatusDto> targetList) {
+        if ( targetList == null ) {
+            return null;
+        }
+
+        List<Status> list = new ArrayList<Status>( targetList.size() );
+        for ( StatusDto statusDto : targetList ) {
+            list.add( toModel( statusDto ) );
+        }
+
+        return list;
     }
 }
