@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Setter
 public class AuditStepsDto implements Serializable {
     private AuditSiteDto auditSite;
+    private CategoriesDto currentCategory;
     private Boolean editCategories;
     private Iterable<AuditSiteLineDto> auditSiteLineList;
 }

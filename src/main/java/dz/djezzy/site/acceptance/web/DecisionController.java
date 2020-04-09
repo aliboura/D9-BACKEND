@@ -17,8 +17,4 @@ public class DecisionController extends GenericRestController<DecisionService, D
     @Autowired
     private DecisionService decisionService;
 
-    @GetMapping(params = {"type"})
-    public List<DecisionDto> findByTypeValue(@RequestParam("type") Integer type) {
-        return decisionService.findByTypeValue(type);
-    }
 }

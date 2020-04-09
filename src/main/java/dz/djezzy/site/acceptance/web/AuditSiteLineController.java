@@ -30,9 +30,9 @@ public class AuditSiteLineController extends GenericRestController<AuditSiteLine
         if (steps.getEditCategories()) {
             AuditSiteDto auditSiteDtoOpt = auditSiteService.getOne(steps.getAuditSite().getId());
             if (auditSiteDtoOpt != null
-                    && auditSiteDtoOpt.getCurrentCategory() != null
-                    && auditSiteDtoOpt.getCurrentCategory().getNextCatId() != null) {
-                auditSiteDtoOpt.setCurrentCategoriesId(auditSiteDtoOpt.getCurrentCategory().getNextCatId());
+                    && steps.getCurrentCategory() != null
+                    && steps.getCurrentCategory().getNextCatId() != null) {
+                auditSiteDtoOpt.setCurrentCategoriesId(steps.getCurrentCategory().getNextCatId());
                 return auditSiteService.save(auditSiteDtoOpt);
             }
         }

@@ -23,4 +23,10 @@ public class CategoriesServiceIMPL extends GenericServiceImpl<CategoriesReposito
         List<Categories> list = categoriesRepository.findFirstCategory();
         return list != null && !list.isEmpty() ? asDto(list.get(0)) : null;
     }
+
+    @Override
+    public CategoriesDto findFirstCategoryByTypeAuditSite(Integer typeAuditSiteId) {
+        List<Categories> list = categoriesRepository.findFirstCategoryByTypeAuditSite(typeAuditSiteId);
+        return list != null && !list.isEmpty() ? asDto(list.get(0)) : null;
+    }
 }

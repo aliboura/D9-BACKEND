@@ -15,16 +15,14 @@ public interface SubCategoriesMapping extends GenericMapper<SubCategories, SubCa
 
     @Mappings({
             @Mapping(source = "categories.id", target = "categoriesId"),
-            @Mapping(source = "categories.label", target = "categoriesLabel"),
-            @Mapping(source = "decisions", target = "decisionsList")
+            @Mapping(source = "categories.label", target = "categoriesLabel")
     })
     @Override
     SubCategoriesDto toDto(SubCategories source);
 
     @Mappings({
             @Mapping(target = "categories.id", source = "categoriesId"),
-            @Mapping(target = "categories.label", source = "categoriesLabel"),
-            @Mapping(target = "decisions", source = "decisionsList")
+            @Mapping(target = "categories.label", source = "categoriesLabel")
     })
     @Override
     SubCategories toModel(SubCategoriesDto target);

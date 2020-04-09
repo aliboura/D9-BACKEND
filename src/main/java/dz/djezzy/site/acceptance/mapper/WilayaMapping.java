@@ -14,10 +14,4 @@ public interface WilayaMapping extends GenericMapper<Wilaya, WilayaDto> {
 
     WilayaMapping INSTANCE = Mappers.getMapper(WilayaMapping.class);
 
-    @Override
-    WilayaDto toDto(Wilaya source);
-
-    @Override
-    Wilaya toModel(WilayaDto target);
-
 }

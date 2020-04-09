@@ -15,14 +15,4 @@ public class WilayaDto implements Serializable {
     private String label;
     private String regionId;
 
-    public WilayaDto(int id, String label, String regionId) {
-        this.id = id;
-        this.label = label;
-        this.regionId = regionId;
-    }
-
-    public WilayaDto(String label, String regionId) {
-        this.label = label;
-        this.regionId = regionId;
-    }
 }

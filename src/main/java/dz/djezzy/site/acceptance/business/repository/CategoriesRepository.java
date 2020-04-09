@@ -13,6 +13,9 @@ import java.util.List;
 @Repository
 public interface CategoriesRepository extends JpaRepository<Categories, Integer>, QuerydslPredicateExecutor<Categories>, JpaSpecificationExecutor<Categories> {
 
-    @Query("select c from Categories c where c.first = true")
+    @Query("select c from Categories c where c.first = true and c.status = true")
     List<Categories> findFirstCategory();
+
+    @Query("select c from Categories c where c.first = true and c.status = true and c.typeAuditSite.id = ?1")
+    List<Categories> findFirstCategoryByTypeAuditSite(Integer typeAuditSiteId);
 }

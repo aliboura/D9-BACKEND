@@ -18,9 +18,4 @@ public class TypeSiteDto implements Serializable {
     private String typeInstallation;
     private String typeSiteLib;
 
-    public TypeSiteDto(String typeDetailEquip, String typeInstallation, String typeSiteLib) {
-        this.typeDetailEquip = typeDetailEquip;
-        this.typeInstallation = typeInstallation;
-        this.typeSiteLib = typeSiteLib;
-    }
 }

@@ -47,13 +47,6 @@ public class SubCategories implements Serializable {
     @JoinColumn(name = "CATEGORY_ID")
     private Categories categories;
 
-    @ManyToMany
-    @JoinTable(
-            name = "sub_categories_decision", schema = "DEPDATA",
-            joinColumns = @JoinColumn(name = "SUB_CATEGORIES_ID", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "DECISION_ID", referencedColumnName = "id"))
-    private List<Decision> decisions = new ArrayList<>();
-
     public SubCategories(String label) {
         this.label = label;
     }

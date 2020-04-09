@@ -12,6 +12,8 @@ public interface CategoriesMapping extends GenericMapper<Categories, CategoriesD
     CategoriesMapping INSTANCE = Mappers.getMapper(CategoriesMapping.class);
 
     @Mappings({
+            @Mapping(source = "typeAuditSite.id", target = "typeAuditSiteId"),
+            @Mapping(source = "typeAuditSite.label", target = "typeAuditSiteLabel"),
             @Mapping(source = "next.id", target = "nextCatId"),
             @Mapping(source = "next.label", target = "nextCatLabel"),
             @Mapping(source = "previous.id", target = "previousCatId"),
@@ -22,6 +24,8 @@ public interface CategoriesMapping extends GenericMapper<Categories, CategoriesD
     CategoriesDto toDto(Categories source);
 
     @Mappings({
+            @Mapping(target = "typeAuditSite.id", source = "typeAuditSiteId"),
+            @Mapping(target = "typeAuditSite.label", source = "typeAuditSiteLabel"),
             @Mapping(target = "next.id", source = "nextCatId"),
             @Mapping(target = "next.label", source = "nextCatLabel"),
             @Mapping(target = "previous.id", source = "previousCatId"),

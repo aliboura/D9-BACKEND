@@ -29,10 +29,6 @@ public class AuditSiteLine extends Auditable {
     @JoinColumn(name = "SUB_CATEGORIES_ID")
     private SubCategories subCategories;
 
-    @Convert(converter = BooleanToCharConverter.class)
-    @Column(name = "BLOCKING")
-    private boolean blocking;
-
     @ManyToOne
     @JoinColumn(name = "CATEGORIES_ID")
     private Categories categories;

@@ -39,4 +39,7 @@ public class TypeAuditSite implements Serializable {
 
     @OneToMany(mappedBy = "typeAuditSite")
     private List<AuditSite> auditSiteList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "typeAuditSite")
+    private List<Categories> categoriesList = new ArrayList<>();
 }

@@ -25,5 +25,4 @@ public class SubCategoriesDto implements Serializable {
     private boolean blocking;
     private int categoriesId;
     private String categoriesLabel;
-    private List<DecisionDto> decisionsList = new ArrayList<>();
 }

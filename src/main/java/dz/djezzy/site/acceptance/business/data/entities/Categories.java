@@ -42,6 +42,10 @@ public class Categories implements Serializable {
     private Boolean last;
 
     @ManyToOne
+    @JoinColumn(name = "TYPE_AUDIT_SITE_ID")
+    private TypeAuditSite typeAuditSite;
+
+    @ManyToOne
     @JoinColumn(name = "NEXT_CATEGORY_ID")
     private Categories next;
 
@@ -51,9 +55,6 @@ public class Categories implements Serializable {
 
     @OneToMany(mappedBy = "categories")
     private List<SubCategories> subCategoriesList;
-
-    @OneToMany(mappedBy = "categories")
-    private List<AuditSiteLine> auditSiteLines;
 
     public Categories() {
     }

@@ -2,6 +2,7 @@ package dz.djezzy.site.acceptance.mapper;
 
 import dz.djezzy.site.acceptance.business.data.dto.DecisionDto;
 import dz.djezzy.site.acceptance.business.data.entities.Decision;
+import dz.djezzy.site.acceptance.business.data.entities.DecisionType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-04-05T09:45:07+0100",
+    date = "2020-04-08T17:50:37+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -52,10 +53,11 @@ public class DecisionMappingImpl implements DecisionMapping {
 
         DecisionDto decisionDto = new DecisionDto();
 
+        decisionDto.setDecisionTypeId( sourceDecisionTypeId( source ) );
+        decisionDto.setDecisionTypeLabel( sourceDecisionTypeLabel( source ) );
         decisionDto.setId( source.getId() );
         decisionDto.setLabel( source.getLabel() );
         decisionDto.setPosition( source.getPosition() );
-        decisionDto.setTypeValue( source.getTypeValue() );
         decisionDto.setStatus( source.getStatus() );
         decisionDto.setClosed( source.getClosed() );
 
@@ -70,13 +72,56 @@ public class DecisionMappingImpl implements DecisionMapping {
 
         Decision decision = new Decision();
 
+        decision.setDecisionType( decisionDtoToDecisionType( target ) );
         decision.setId( target.getId() );
         decision.setLabel( target.getLabel() );
         decision.setPosition( target.getPosition() );
-        decision.setTypeValue( target.getTypeValue() );
         decision.setStatus( target.getStatus() );
         decision.setClosed( target.getClosed() );
 
         return decision;
+    }
+
+    private Integer sourceDecisionTypeId(Decision decision) {
+        if ( decision == null ) {
+            return null;
+        }
+        DecisionType decisionType = decision.getDecisionType();
+        if ( decisionType == null ) {
+            return null;
+        }
+        Integer id = decisionType.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
+    }
+
+    private String sourceDecisionTypeLabel(Decision decision) {
+        if ( decision == null ) {
+            return null;
+        }
+        DecisionType decisionType = decision.getDecisionType();
+        if ( decisionType == null ) {
+            return null;
+        }
+        String label = decisionType.getLabel();
+        if ( label == null ) {
+            return null;
+        }
+        return label;
+    }
+
+    protected DecisionType decisionDtoToDecisionType(DecisionDto decisionDto) {
+        if ( decisionDto == null ) {
+            return null;
+        }
+
+        DecisionType decisionType = new DecisionType();
+
+        decisionType.setLabel( decisionDto.getDecisionTypeLabel() );
+        decisionType.setId( decisionDto.getDecisionTypeId() );
+
+        return decisionType;
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.ReadOnlyProperty;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,6 +23,10 @@ public class CategoriesDto implements Serializable {
     private Boolean first;
     private Boolean last;
 
+    private Integer typeAuditSiteId;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String typeAuditSiteLabel;
+
     private Integer nextCatId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String nextCatLabel;
@@ -30,5 +35,5 @@ public class CategoriesDto implements Serializable {
     private String previousCatLabel;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private List<SubCategoriesDto> listSubCategories;
+    private List<SubCategoriesDto> listSubCategories = new ArrayList<>();
 }

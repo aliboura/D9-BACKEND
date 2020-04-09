@@ -8,6 +8,7 @@ public class ApiConstant {
     public static final String AUDIT_SITE_LINE_API = "/audit_lines";
     public static final String CATEGORY_API = "/categories";
     public static final String DECISION_API = "/decisions";
+    public static final String DECISION_TYPE_API = "/decision_types";
     public static final String STATUS_API = "/status";
     public static final String STATUS_AUDIT_API = "/status_audit";
     public static final String SUB_CATEGORY_API = "/sub_categories";

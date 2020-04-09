@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface DecisionService extends GenericService<Decision, DecisionDto, Integer> {
 
-    List<DecisionDto> findByTypeValue(Integer type);
-
 }

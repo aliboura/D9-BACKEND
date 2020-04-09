@@ -6,7 +6,11 @@ import dz.djezzy.site.acceptance.mapper.config.GenericMapper;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring", uses = {AuditSiteLineMapping.class, CategoriesMapping.class, StatusAuditSiteMapping.class})
+@Mapper(componentModel = "spring", uses = {
+        CategoriesMapping.class,
+        DecisionMapping.class,
+        StatusAuditSiteMapping.class,
+        AuditSiteLineMapping.class})
 public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto> {
 
     AuditSiteMapping INSTANCE = Mappers.getMapper(AuditSiteMapping.class);
@@ -19,7 +23,6 @@ public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto>
             @Mapping(source = "currentSatus.styleCSS", target = "currentSatusStyleCSS"),
             @Mapping(source = "currentCategories.id", target = "currentCategoriesId"),
             @Mapping(source = "currentCategories.label", target = "currentCategoriesLabel"),
-            @Mapping(source = "currentCategories", target = "currentCategory"),
             @Mapping(source = "firstDecision.id", target = "firstDecisionId"),
             @Mapping(source = "firstDecision.label", target = "firstDecisionLabel"),
             @Mapping(source = "secondDecision.id", target = "secondDecisionId"),
@@ -38,13 +41,11 @@ public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto>
             @Mapping(target = "currentSatus.styleCSS", source = "currentSatusStyleCSS"),
             @Mapping(target = "currentCategories.id", source = "currentCategoriesId"),
             @Mapping(target = "currentCategories.label", source = "currentCategoriesLabel"),
-            @Mapping(target = "currentCategories", source = "currentCategory"),
             @Mapping(target = "firstDecision.id", source = "firstDecisionId"),
             @Mapping(target = "firstDecision.label", source = "firstDecisionLabel"),
             @Mapping(target = "secondDecision.id", source = "secondDecisionId"),
             @Mapping(target = "secondDecision.label", source = "secondDecisionLabel"),
-            @Mapping(target = "auditLineList", source = "auditSiteLineDtoList"),
-            @Mapping(target = "statusAuditSitesList", source = "statusAuditSitesDtoList")
+            @Mapping(target = "auditLineList", source = "auditSiteLineDtoList")
     })
     @Override
     AuditSite toModel(AuditSiteDto target);

@@ -20,8 +20,4 @@ public class StatusDto implements Serializable {
     private boolean motif;
     private boolean first;
 
-    public StatusDto(Integer id, String label) {
-        this.id = id;
-        this.label = label;
-    }
 }

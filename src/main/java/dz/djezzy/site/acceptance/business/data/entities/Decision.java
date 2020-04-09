@@ -29,9 +29,6 @@ public class Decision implements Serializable {
     @Column(name = "POSITION")
     private Integer position;
 
-    @Column(name = "TYPE_VALUE")
-    private Integer typeValue;
-
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "STATUS")
     private Boolean status;
@@ -40,7 +37,9 @@ public class Decision implements Serializable {
     @Column(name = "CLOSED")
     private Boolean closed;
 
-    @ManyToMany(mappedBy = "decisions")
-    private List<SubCategories> subCategories = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "DECISION_TYPE_ID")
+    private DecisionType decisionType;
+
 
 }

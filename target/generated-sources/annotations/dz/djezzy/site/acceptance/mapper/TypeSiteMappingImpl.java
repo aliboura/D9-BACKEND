@@ -10,39 +10,11 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-04-05T09:45:07+0100",
+    date = "2020-04-08T17:50:38+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
 public class TypeSiteMappingImpl implements TypeSiteMapping {
-
-    @Override
-    public List<TypeSiteDto> toDto(Collection<TypeSite> sourceList) {
-        if ( sourceList == null ) {
-            return null;
-        }
-
-        List<TypeSiteDto> list = new ArrayList<TypeSiteDto>( sourceList.size() );
-        for ( TypeSite typeSite : sourceList ) {
-            list.add( toDto( typeSite ) );
-        }
-
-        return list;
-    }
-
-    @Override
-    public List<TypeSite> toModel(Collection<TypeSiteDto> targetList) {
-        if ( targetList == null ) {
-            return null;
-        }
-
-        List<TypeSite> list = new ArrayList<TypeSite>( targetList.size() );
-        for ( TypeSiteDto typeSiteDto : targetList ) {
-            list.add( toModel( typeSiteDto ) );
-        }
-
-        return list;
-    }
 
     @Override
     public TypeSiteDto toDto(TypeSite source) {
@@ -74,5 +46,33 @@ public class TypeSiteMappingImpl implements TypeSiteMapping {
         typeSite.setTypeSiteLib( target.getTypeSiteLib() );
 
         return typeSite;
+    }
+
+    @Override
+    public List<TypeSiteDto> toDto(Collection<TypeSite> sourceList) {
+        if ( sourceList == null ) {
+            return null;
+        }
+
+        List<TypeSiteDto> list = new ArrayList<TypeSiteDto>( sourceList.size() );
+        for ( TypeSite typeSite : sourceList ) {
+            list.add( toDto( typeSite ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<TypeSite> toModel(Collection<TypeSiteDto> targetList) {
+        if ( targetList == null ) {
+            return null;
+        }
+
+        List<TypeSite> list = new ArrayList<TypeSite>( targetList.size() );
+        for ( TypeSiteDto typeSiteDto : targetList ) {
+            list.add( toModel( typeSiteDto ) );
+        }
+
+        return list;
     }
 }

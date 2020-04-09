@@ -2,6 +2,7 @@ package dz.djezzy.site.acceptance.mapper;
 
 import dz.djezzy.site.acceptance.business.data.dto.CategoriesDto;
 import dz.djezzy.site.acceptance.business.data.entities.Categories;
+import dz.djezzy.site.acceptance.business.data.entities.TypeAuditSite;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-04-05T09:45:07+0100",
+    date = "2020-04-08T17:50:38+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -58,8 +59,10 @@ public class CategoriesMappingImpl implements CategoriesMapping {
 
         categoriesDto.setPreviousCatId( sourcePreviousId( source ) );
         categoriesDto.setListSubCategories( subCategoriesMapping.toDto( source.getSubCategoriesList() ) );
-        categoriesDto.setNextCatLabel( sourceNextLabel( source ) );
         categoriesDto.setNextCatId( sourceNextId( source ) );
+        categoriesDto.setTypeAuditSiteId( sourceTypeAuditSiteId( source ) );
+        categoriesDto.setTypeAuditSiteLabel( sourceTypeAuditSiteLabel( source ) );
+        categoriesDto.setNextCatLabel( sourceNextLabel( source ) );
         categoriesDto.setPreviousCatLabel( sourcePreviousLabel( source ) );
         categoriesDto.setId( source.getId() );
         categoriesDto.setLabel( source.getLabel() );
@@ -80,6 +83,7 @@ public class CategoriesMappingImpl implements CategoriesMapping {
         Categories categories = new Categories();
 
         categories.setNext( categoriesDtoToCategories( target ) );
+        categories.setTypeAuditSite( categoriesDtoToTypeAuditSite( target ) );
         categories.setPrevious( categoriesDtoToCategories1( target ) );
         categories.setSubCategoriesList( subCategoriesMapping.toModel( target.getListSubCategories() ) );
         categories.setId( target.getId() );
@@ -112,21 +116,6 @@ public class CategoriesMappingImpl implements CategoriesMapping {
         return id;
     }
 
-    private String sourceNextLabel(Categories categories) {
-        if ( categories == null ) {
-            return null;
-        }
-        Categories next = categories.getNext();
-        if ( next == null ) {
-            return null;
-        }
-        String label = next.getLabel();
-        if ( label == null ) {
-            return null;
-        }
-        return label;
-    }
-
     private Integer sourceNextId(Categories categories) {
         if ( categories == null ) {
             return null;
@@ -140,6 +129,51 @@ public class CategoriesMappingImpl implements CategoriesMapping {
             return null;
         }
         return id;
+    }
+
+    private Integer sourceTypeAuditSiteId(Categories categories) {
+        if ( categories == null ) {
+            return null;
+        }
+        TypeAuditSite typeAuditSite = categories.getTypeAuditSite();
+        if ( typeAuditSite == null ) {
+            return null;
+        }
+        Integer id = typeAuditSite.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
+    }
+
+    private String sourceTypeAuditSiteLabel(Categories categories) {
+        if ( categories == null ) {
+            return null;
+        }
+        TypeAuditSite typeAuditSite = categories.getTypeAuditSite();
+        if ( typeAuditSite == null ) {
+            return null;
+        }
+        String label = typeAuditSite.getLabel();
+        if ( label == null ) {
+            return null;
+        }
+        return label;
+    }
+
+    private String sourceNextLabel(Categories categories) {
+        if ( categories == null ) {
+            return null;
+        }
+        Categories next = categories.getNext();
+        if ( next == null ) {
+            return null;
+        }
+        String label = next.getLabel();
+        if ( label == null ) {
+            return null;
+        }
+        return label;
     }
 
     private String sourcePreviousLabel(Categories categories) {
@@ -173,6 +207,19 @@ public class CategoriesMappingImpl implements CategoriesMapping {
         }
 
         return categories;
+    }
+
+    protected TypeAuditSite categoriesDtoToTypeAuditSite(CategoriesDto categoriesDto) {
+        if ( categoriesDto == null ) {
+            return null;
+        }
+
+        TypeAuditSite typeAuditSite = new TypeAuditSite();
+
+        typeAuditSite.setId( categoriesDto.getTypeAuditSiteId() );
+        typeAuditSite.setLabel( categoriesDto.getTypeAuditSiteLabel() );
+
+        return typeAuditSite;
     }
 
     protected Categories categoriesDtoToCategories1(CategoriesDto categoriesDto) {

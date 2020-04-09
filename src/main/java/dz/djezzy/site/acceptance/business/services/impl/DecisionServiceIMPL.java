@@ -18,8 +18,4 @@ public class DecisionServiceIMPL extends GenericServiceImpl<DecisionRepository, 
     @Autowired
     private DecisionRepository decisionRepository;
 
-    @Override
-    public List<DecisionDto> findByTypeValue(Integer type) {
-        return asDto(decisionRepository.findByTypeValue(type));
-    }
 }

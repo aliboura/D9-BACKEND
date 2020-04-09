@@ -1,12 +1,13 @@
 package dz.djezzy.site.acceptance.business.data.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import dz.djezzy.site.acceptance.business.data.audit.AuditableDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,10 +17,11 @@ public class AuditSiteLineDto extends AuditableDto {
     private Integer id;
     private String label;
     private Integer auditSiteId;
+
     private Integer subCategoriesId;
-    private String subCategoriesLabel;
-    private Integer subCategoriesValueType;
+    private Integer valueType;
     private boolean blocking;
+
     private Integer categoriesId;
     private String categoriesLabel;
     private String observation;
@@ -29,6 +31,5 @@ public class AuditSiteLineDto extends AuditableDto {
     private Integer secondDecisionId;
     private String secondDecisionLabel;
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private SubCategoriesDto subCategories;
+
 }

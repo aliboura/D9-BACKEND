@@ -43,7 +43,11 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
 
             case EQUAL: {
                 if (null != join) {
-                    return builder.equal(join.<Integer>get(property.split(Pattern.quote("."))[lengthJoin - 1]), argument);
+                    if (argument instanceof String) {
+                        return builder.like(builder.upper(join.<String>get(property.split(Pattern.quote("."))[lengthJoin - 1])), argument.toString().toUpperCase().replace('*', '%'));
+                    } else {
+                        return builder.equal(join.<Integer>get(property.split(Pattern.quote("."))[lengthJoin - 1]), argument);
+                    }
                 } else if (argument instanceof String) {
                     return builder.like(builder.upper(root.get(property)), argument.toString().toUpperCase().replace('*', '%'));
                 } else if (argument instanceof LocalDate) {
@@ -86,13 +90,16 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
 
     private List<Object> castArguments(final Root<T> root) {
         final Class<? extends Object> type;
+        String child;
         if (property.contains(".")) {
             type = root.get(property.split(Pattern.quote("."))[0]).getJavaType();
+            child = property.split(Pattern.quote("."))[1];
         } else {
             type = root.get(property).getJavaType();
+            child = null;
         }
         final List<Object> args = arguments.stream().map(arg -> {
-            if (equals(Integer.class)) {
+            if (type.equals(Integer.class)) {
                 return Integer.parseInt(arg);
             } else if (type.equals(Long.class)) {
                 return Long.parseLong(arg);
@@ -101,6 +108,13 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
             } else if (type.equals(Date.class)) {
                 return LocalDate.parse(arg.toString());
             } else {
+                if (child != null) {
+                    if (child.equals("id")) {
+                        return Integer.parseInt(arg);
+                    } else {
+                        return arg;
+                    }
+                }
                 return arg;
             }
         }).collect(Collectors.toList());
