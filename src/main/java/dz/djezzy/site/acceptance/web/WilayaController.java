@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping(ApiConstant.WILAYA_API)
 public class WilayaController extends GenericRestController<WilayaService, Wilaya, WilayaDto, Integer> {

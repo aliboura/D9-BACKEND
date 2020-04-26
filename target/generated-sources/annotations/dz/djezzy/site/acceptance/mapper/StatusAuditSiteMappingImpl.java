@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-04-08T17:50:38+0100",
+    date = "2020-04-26T10:53:27+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -54,8 +54,10 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
 
         StatusAuditSiteDto statusAuditSiteDto = new StatusAuditSiteDto();
 
-        statusAuditSiteDto.setStatusStyleCSS( sourceStatusStyleCSS( source ) );
+        statusAuditSiteDto.setStatusDescription( sourceStatusDescription( source ) );
         statusAuditSiteDto.setStatusId( sourceStatusId( source ) );
+        statusAuditSiteDto.setStatusIconCSS( sourceStatusIconCSS( source ) );
+        statusAuditSiteDto.setStatusStyleCSS( sourceStatusStyleCSS( source ) );
         statusAuditSiteDto.setStatusLabel( sourceStatusLabel( source ) );
         statusAuditSiteDto.setAuditSiteId( sourceAuditSiteId( source ) );
         statusAuditSiteDto.setCreatedBy( source.getCreatedBy() );
@@ -65,6 +67,7 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
         statusAuditSiteDto.setStatusDate( source.getStatusDate() );
         statusAuditSiteDto.setDescription( source.getDescription() );
         statusAuditSiteDto.setCurrent( source.isCurrent() );
+        statusAuditSiteDto.setLast( source.isLast() );
 
         return statusAuditSiteDto;
     }
@@ -86,6 +89,7 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
         statusAuditSite.setStatusDate( target.getStatusDate() );
         statusAuditSite.setDescription( target.getDescription() );
         statusAuditSite.setCurrent( target.isCurrent() );
+        statusAuditSite.setLast( target.isLast() );
 
         StatusAuditSite target1 = doAfterMapping( statusAuditSite );
         if ( target1 != null ) {
@@ -95,7 +99,7 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
         return statusAuditSite;
     }
 
-    private String sourceStatusStyleCSS(StatusAuditSite statusAuditSite) {
+    private String sourceStatusDescription(StatusAuditSite statusAuditSite) {
         if ( statusAuditSite == null ) {
             return null;
         }
@@ -103,11 +107,11 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
         if ( status == null ) {
             return null;
         }
-        String styleCSS = status.getStyleCSS();
-        if ( styleCSS == null ) {
+        String description = status.getDescription();
+        if ( description == null ) {
             return null;
         }
-        return styleCSS;
+        return description;
     }
 
     private Integer sourceStatusId(StatusAuditSite statusAuditSite) {
@@ -123,6 +127,36 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
             return null;
         }
         return id;
+    }
+
+    private String sourceStatusIconCSS(StatusAuditSite statusAuditSite) {
+        if ( statusAuditSite == null ) {
+            return null;
+        }
+        Status status = statusAuditSite.getStatus();
+        if ( status == null ) {
+            return null;
+        }
+        String iconCSS = status.getIconCSS();
+        if ( iconCSS == null ) {
+            return null;
+        }
+        return iconCSS;
+    }
+
+    private String sourceStatusStyleCSS(StatusAuditSite statusAuditSite) {
+        if ( statusAuditSite == null ) {
+            return null;
+        }
+        Status status = statusAuditSite.getStatus();
+        if ( status == null ) {
+            return null;
+        }
+        String styleCSS = status.getStyleCSS();
+        if ( styleCSS == null ) {
+            return null;
+        }
+        return styleCSS;
     }
 
     private String sourceStatusLabel(StatusAuditSite statusAuditSite) {
@@ -163,8 +197,10 @@ public class StatusAuditSiteMappingImpl implements StatusAuditSiteMapping {
         Status status = new Status();
 
         status.setLabel( statusAuditSiteDto.getStatusLabel() );
-        status.setId( statusAuditSiteDto.getStatusId() );
         status.setStyleCSS( statusAuditSiteDto.getStatusStyleCSS() );
+        status.setDescription( statusAuditSiteDto.getStatusDescription() );
+        status.setId( statusAuditSiteDto.getStatusId() );
+        status.setIconCSS( statusAuditSiteDto.getStatusIconCSS() );
 
         return status;
     }

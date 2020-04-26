@@ -15,7 +15,9 @@ public interface StatusAuditSiteMapping extends GenericMapper<StatusAuditSite, S
     @Mappings({
             @Mapping(source = "status.id", target = "statusId"),
             @Mapping(source = "status.label", target = "statusLabel"),
+            @Mapping(source = "status.description", target = "statusDescription"),
             @Mapping(source = "status.styleCSS", target = "statusStyleCSS"),
+            @Mapping(source = "status.iconCSS", target = "statusIconCSS"),
             @Mapping(source = "auditSite.id", target = "auditSiteId")
     })
     @Override
@@ -24,7 +26,9 @@ public interface StatusAuditSiteMapping extends GenericMapper<StatusAuditSite, S
     @Mappings({
             @Mapping(target = "status.id", source = "statusId"),
             @Mapping(target = "status.label", source = "statusLabel"),
+            @Mapping(target = "status.description", source = "statusDescription"),
             @Mapping(target = "status.styleCSS", source = "statusStyleCSS"),
+            @Mapping(target = "status.iconCSS", source = "statusIconCSS"),
             @Mapping(target = "auditSite.id", source = "auditSiteId")
     })
     @Override

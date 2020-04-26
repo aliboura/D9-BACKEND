@@ -36,6 +36,10 @@ public class StatusAuditSite extends Auditable {
     @Column(name = "CURRENT")
     private boolean current;
 
+    @Convert(converter = BooleanToCharConverter.class)
+    @Column(name = "LAST")
+    private boolean last;
+
     @ManyToOne
     @JoinColumn(name = "STATUS_ID")
     private Status status;

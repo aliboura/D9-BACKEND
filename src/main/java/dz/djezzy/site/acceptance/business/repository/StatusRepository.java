@@ -16,7 +16,7 @@ public interface StatusRepository extends JpaRepository<Status, Integer>, Queryd
     @Query("select s from Status s where s.first = true")
     List<Status> findFirstStatus();
 
-    public Optional<Status> findByLabel(String label);
+    Optional<Status> findByLabel(String label);
 
 
 }

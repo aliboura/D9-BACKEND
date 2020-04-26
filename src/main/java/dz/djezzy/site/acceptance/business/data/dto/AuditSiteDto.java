@@ -28,6 +28,10 @@ public class AuditSiteDto extends AuditableDto {
     private String observation;
     private Boolean lastStep;
     private Boolean closed;
+    private Boolean secondCheck;
+    private Date firstCheckDate;
+    private Date secondCheckDate;
+
 
     private Integer typeAuditSiteId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -38,16 +42,18 @@ public class AuditSiteDto extends AuditableDto {
     private String currentCategoriesLabel;
 
     private int currentSatusId;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String currentSatusLabel;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String currentSatusDescription;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String currentSatusStyleCSS;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String currentSatusIconCSS;
 
 
     // First Decision
     private Boolean firstVisit;
     private Integer firstDecisionId;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String firstDecisionLabel;
     private Date firstDecisionDate;
     private String firstDecisionEngineerSite;
@@ -56,7 +62,6 @@ public class AuditSiteDto extends AuditableDto {
     // Second Decision
     private Boolean secondVisit;
     private Integer secondDecisionId;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String secondDecisionLabel;
     private Date secondDecisionDate;
     private String secondDecisionEngineerSite;
@@ -64,4 +69,5 @@ public class AuditSiteDto extends AuditableDto {
 
     private List<AuditSiteLineDto> auditSiteLineDtoList = new ArrayList<>();
     private List<StatusAuditSiteDto> statusAuditSitesDtoList = new ArrayList<>();
+
 }

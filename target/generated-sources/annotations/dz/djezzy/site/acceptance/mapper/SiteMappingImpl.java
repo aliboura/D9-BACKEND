@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-04-08T17:50:38+0100",
+    date = "2020-04-26T10:53:28+0100",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.1 (Oracle Corporation)"
 )
 @Component
@@ -67,6 +67,7 @@ public class SiteMappingImpl implements SiteMapping {
         siteDto.setRegionId( source.getRegionId() );
         siteDto.setServiceDemandeur( source.getServiceDemandeur() );
         siteDto.setAudited( source.getAudited() );
+        siteDto.setPowerSupplyConform( source.getPowerSupplyConform() );
 
         return siteDto;
     }
@@ -90,6 +91,7 @@ public class SiteMappingImpl implements SiteMapping {
         site.setRegionId( target.getRegionId() );
         site.setServiceDemandeur( target.getServiceDemandeur() );
         site.setAudited( target.getAudited() );
+        site.setPowerSupplyConform( target.getPowerSupplyConform() );
 
         return site;
     }

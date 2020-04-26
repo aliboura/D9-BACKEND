@@ -17,6 +17,7 @@ public class StatusDto implements Serializable {
     private String label;
     private String description;
     private String styleCSS;
+    private String iconCSS;
     private boolean motif;
     private boolean first;
 

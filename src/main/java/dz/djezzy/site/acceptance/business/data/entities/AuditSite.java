@@ -64,6 +64,12 @@ public class AuditSite extends Auditable {
     @JoinColumn(name = "FIRST_VISIT")
     private Boolean firstVisit;
 
+    @Column(name = "FIRST_CHECK_DATE")
+    private Date firstCheckDate;
+
+    @Column(name = "SECOND_CHECK_DATE")
+    private Date secondCheckDate;
+
     @ManyToOne
     @JoinColumn(name = "TYPE_AUDIT_SITE_ID")
     private TypeAuditSite typeAuditSite;
@@ -89,6 +95,10 @@ public class AuditSite extends Auditable {
     @JoinColumn(name = "CLOSED")
     private Boolean closed;
 
+    @Convert(converter = BooleanToCharConverter.class)
+    @JoinColumn(name = "SECCOND_CHECK")
+    private Boolean secondCheck;
+
     @ManyToOne
     @JoinColumn(name = "SECOND_DECISION_ID")
     private Decision secondDecision;
@@ -102,9 +112,11 @@ public class AuditSite extends Auditable {
     @Column(name = "SECOND_DECISION_ENGINEER_OM")
     private String secondDecisionEngineerOM;
 
-    @OneToMany(mappedBy = "auditSite")
+    @OrderBy("id ASC")
+    @OneToMany(mappedBy = "auditSite", cascade = CascadeType.MERGE)
     private List<AuditSiteLine> auditLineList = new ArrayList<>();
 
+    @OrderBy("id ASC")
     @OneToMany(mappedBy = "auditSite")
     private List<StatusAuditSite> statusAuditSitesList = new ArrayList<>();
 

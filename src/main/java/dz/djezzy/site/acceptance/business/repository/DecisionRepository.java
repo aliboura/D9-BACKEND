@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface DecisionRepository extends JpaRepository<Decision, Integer>, QuerydslPredicateExecutor<Decision>, JpaSpecificationExecutor<Decision> {
-
+    Decision findByLabelAndPosition(String label, Integer position);
 }

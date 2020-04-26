@@ -18,4 +18,8 @@ public class DecisionServiceIMPL extends GenericServiceImpl<DecisionRepository, 
     @Autowired
     private DecisionRepository decisionRepository;
 
+    @Override
+    public DecisionDto findByLabelAndPosition(String label, Integer position) {
+        return asDto(decisionRepository.findByLabelAndPosition(label, position));
+    }
 }

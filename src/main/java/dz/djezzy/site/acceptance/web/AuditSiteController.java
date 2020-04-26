@@ -1,130 +1,110 @@
 package dz.djezzy.site.acceptance.web;
 
 import dz.djezzy.site.acceptance.business.data.dto.AuditSiteDto;
+import dz.djezzy.site.acceptance.business.data.dto.AuditStepsDto;
 import dz.djezzy.site.acceptance.business.data.dto.StatusAuditSiteDto;
 import dz.djezzy.site.acceptance.business.data.dto.StatusDto;
 import dz.djezzy.site.acceptance.business.data.entities.AuditSite;
-import dz.djezzy.site.acceptance.business.data.entities.StatusAuditSite;
 import dz.djezzy.site.acceptance.business.data.enums.StatusEnum;
 import dz.djezzy.site.acceptance.business.services.AuditSiteService;
 import dz.djezzy.site.acceptance.business.services.StatusAuditSiteService;
 import dz.djezzy.site.acceptance.business.services.StatusService;
 import dz.djezzy.site.acceptance.tools.ApiConstant;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.Optional;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping(ApiConstant.AUDIT_SITE_API)
 public class AuditSiteController extends GenericRestController<AuditSiteService, AuditSite, AuditSiteDto, Integer> {
 
     private final StatusAuditSiteService statusAuditSiteService;
     private final StatusService statusService;
+    private final AuditSiteService auditSiteService;
 
-    public AuditSiteController(StatusAuditSiteService statusAuditSiteService, StatusService statusService) {
+    public AuditSiteController(StatusAuditSiteService statusAuditSiteService, StatusService statusService, AuditSiteService auditSiteService) {
         this.statusAuditSiteService = statusAuditSiteService;
         this.statusService = statusService;
+        this.auditSiteService = auditSiteService;
     }
 
 
+    @Transactional
     @Override
     @PostMapping
     public AuditSiteDto create(@RequestBody AuditSiteDto entity) {
         AuditSiteDto saved = super.create(entity);
-        StatusAuditSiteDto dto = createStatusAudit(saved);
+        StatusAuditSiteDto dto = auditSiteService.createStatusAudit(saved);
         statusAuditSiteService.save(dto);
         return saved;
     }
 
-    @Override
-    @PutMapping
-    public AuditSiteDto update(@RequestBody AuditSiteDto entity) {
-        Optional<StatusDto> status = checkStatus(entity);
+    @PreAuthorize("hasAnyAuthority('ROLE_ENGINEER_SITE','ROLE_ENGINEER_OM')")
+    @Transactional
+    @PutMapping(value = "/goToFinish")
+    public AuditSiteDto goToFinish(@RequestBody AuditStepsDto steps) {
+        AuditSiteDto doSaved = auditSiteService.goToNextSteps(steps);
+        Optional<StatusDto> status = auditSiteService.checkStatus(doSaved);
         if (status.isPresent()) {
-            entity.setCurrentSatusId(status.get().getId());
-            entity.setCurrentSatusLabel(status.get().getLabel());
+            doSaved.setCurrentSatusId(status.get().getId());
+            doSaved.setCurrentSatusLabel(status.get().getLabel());
+            if (status.get().getLabel().equals(StatusEnum.Conform.toString())) {
+                doSaved.setClosed(true);
+            }
+            if (status.get().getLabel().equals(StatusEnum.Validate_Site.toString())) {
+                if (doSaved.getFirstVisit() && !doSaved.getSecondVisit()) {
+                    doSaved.setFirstVisit(false);
+                } else if (doSaved.getFirstVisit() && doSaved.getSecondVisit()) {
+                    doSaved.setSecondVisit(false);
+                }
+            }
         }
 
-        super.update(entity);
-        Boolean exist = false;
-        if (!entity.getStatusAuditSitesDtoList().isEmpty()) {
-            entity.getStatusAuditSitesDtoList().forEach(x -> x.setCurrent(false));
-            StatusAuditSiteDto state = entity.getStatusAuditSitesDtoList().stream().filter(x -> x.getStatusId() == entity.getCurrentSatusId())
-                    .findAny()
-                    .orElse(null);
-            exist = state == null;
-        }
-        if (exist) {
-            StatusAuditSiteDto statusAuditSiteDto = createStatusAudit(entity);
+        AuditSiteDto saved = auditSiteService.save(doSaved);
+        if (checkExistStatus(saved)) {
+            changeCurrentStatus(doSaved);
+            StatusAuditSiteDto statusAuditSiteDto = auditSiteService.createStatusAudit(saved);
             statusAuditSiteService.save(statusAuditSiteDto);
         }
-        return entity;
+        return saved;
     }
 
-    private StatusAuditSiteDto createStatusAudit(AuditSiteDto entity) {
-        StatusAuditSiteDto statusAuditSite = new StatusAuditSiteDto();
-        statusAuditSite.setStatusId(entity.getCurrentSatusId());
-        statusAuditSite.setStatusLabel(entity.getCurrentSatusLabel());
-        statusAuditSite.setAuditSiteId(entity.getId());
-        statusAuditSite.setCurrent(true);
-        statusAuditSite.setStatusDate(new Date());
-        statusAuditSite.setDescription(entity.getSiteCode() + " - " + entity.getCurrentSatusLabel());
-        return statusAuditSite;
-    }
-
-    private Optional<StatusDto> checkStatus(AuditSiteDto entity) {
-        if (entity.getCurrentSatusLabel().equals(StatusEnum.In_Progress.toString())) {
-            if (entity.getFirstDecisionDate() != null
-                    && entity.getFirstDecisionEngineerSite() != null
-                    && entity.getFirstDecisionEngineerOM() != null) {
-                return checkConfirmedStatus(entity);
-            } else {
-                return Optional.empty();
-            }
-        } else {
-            if (entity.getSecondDecisionDate() != null
-                    && entity.getSecondDecisionEngineerSite() != null
-                    && entity.getSecondDecisionEngineerOM() != null) {
-                return checkConfirmedStatus(entity);
-            } else {
-                return Optional.empty();
-            }
+    private void changeCurrentStatus(AuditSiteDto siteDto) {
+        if (!siteDto.getStatusAuditSitesDtoList().isEmpty()) {
+            siteDto.getStatusAuditSitesDtoList().forEach(x -> {
+                x.setCurrent(false);
+                x.setLast(false);
+                statusAuditSiteService.save(x);
+            });
         }
     }
 
-    private Optional<StatusDto> checkConfirmedStatus(AuditSiteDto entity) {
-        if (entity.getFirstVisit() && !entity.getSecondVisit()) {
-            return setStatusConfirmedValues(entity.getFirstDecisionId());
-        } else if (entity.getFirstVisit() && entity.getSecondVisit()) {
-            return setStatusConfirmedValues(entity.getSecondDecisionId());
-        }
-        return null;
+    private boolean checkExistStatus(AuditSiteDto siteDto) {
+        StatusAuditSiteDto state = siteDto.getStatusAuditSitesDtoList().stream()
+                .filter(x -> x.getStatusId() == siteDto.getCurrentSatusId() && x.isCurrent())
+                .findAny()
+                .orElse(null);
+        return state == null;
     }
 
-    private Optional<StatusDto> setStatusConfirmedValues(int decisionId) {
-        if (decisionId == 5) {
-            return statusService.findByLabel(StatusEnum.Conform.toString());
-        } else if (decisionId == 6) {
-            return statusService.findByLabel(StatusEnum.Accepted.toString());
-        } else if (decisionId == 7) {
-            return statusService.findByLabel(StatusEnum.No_Conform.toString());
+    @Transactional
+    @PutMapping("/second-visit")
+    public ResponseEntity<AuditSiteDto> secondVisit(@RequestBody AuditSiteDto entity) {
+        AuditSiteDto doSave = auditSiteService.setCurrentStatus(entity, StatusEnum.In_Progress_Validate_V2.toString());
+        doSave.setSecondCheckDate(new Date());
+        doSave.setSecondCheck(true);
+        AuditSiteDto saved = auditSiteService.save(doSave);
+        if (checkExistStatus(saved)) {
+            changeCurrentStatus(saved);
+            StatusAuditSiteDto dto = auditSiteService.createStatusAudit(saved);
+            statusAuditSiteService.save(dto);
         }
-        return null;
+        return ResponseEntity.ok(saved);
     }
 
-    private Optional<StatusDto> setStatusDecision(String decisionEngineerSite, String decisionEngineerOM) {
-        if (decisionEngineerSite == null
-                && decisionEngineerOM == null) {
-            return null;
-        } else if (decisionEngineerSite != null
-                && decisionEngineerOM == null) {
-            return statusService.findByLabel(StatusEnum.Validate_Site.toString());
-        } else if (decisionEngineerSite != null) {
-            return statusService.findByLabel(StatusEnum.Validate_OM.toString());
-        }
-        return null;
-    }
 
 }

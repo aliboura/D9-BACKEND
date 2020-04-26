@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SiteRepository extends JpaRepository<Site, Long>, QuerydslPredicateExecutor<Site>, JpaSpecificationExecutor<Site> {
 
+    Site findByCodeSite(String codeSite);
 
 }

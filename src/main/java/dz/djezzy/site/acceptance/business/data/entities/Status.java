@@ -34,6 +34,9 @@ public class Status implements Serializable {
     @Column(name = "STYLE_CSS")
     private String styleCSS;
 
+    @Column(name = "ICON_CSS")
+    private String iconCSS;
+
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "MOTIF")
     private boolean motif;

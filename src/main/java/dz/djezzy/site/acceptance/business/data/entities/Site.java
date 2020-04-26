@@ -58,6 +58,10 @@ public class Site implements Serializable {
     @Column(name = "AUDITED")
     private Boolean audited;
 
+    @Convert(converter = BooleanToCharConverter.class)
+    @Column(name = "POWER_SUPPLY_CONFORM")
+    private Boolean powerSupplyConform;
+
     @ManyToOne
     @JoinColumn(name = "TYPE_SITE_ID")
     private TypeSite typeSite;

@@ -20,7 +20,9 @@ public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto>
             @Mapping(source = "typeAuditSite.label", target = "typeAuditSiteLabel"),
             @Mapping(source = "currentSatus.id", target = "currentSatusId"),
             @Mapping(source = "currentSatus.label", target = "currentSatusLabel"),
+            @Mapping(source = "currentSatus.description", target = "currentSatusDescription"),
             @Mapping(source = "currentSatus.styleCSS", target = "currentSatusStyleCSS"),
+            @Mapping(source = "currentSatus.iconCSS", target = "currentSatusIconCSS"),
             @Mapping(source = "currentCategories.id", target = "currentCategoriesId"),
             @Mapping(source = "currentCategories.label", target = "currentCategoriesLabel"),
             @Mapping(source = "firstDecision.id", target = "firstDecisionId"),
@@ -38,14 +40,17 @@ public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto>
             @Mapping(target = "typeAuditSite.label", source = "typeAuditSiteLabel"),
             @Mapping(target = "currentSatus.id", source = "currentSatusId"),
             @Mapping(target = "currentSatus.label", source = "currentSatusLabel"),
+            @Mapping(target = "currentSatus.description", source = "currentSatusDescription"),
             @Mapping(target = "currentSatus.styleCSS", source = "currentSatusStyleCSS"),
+            @Mapping(target = "currentSatus.iconCSS", source = "currentSatusIconCSS"),
             @Mapping(target = "currentCategories.id", source = "currentCategoriesId"),
             @Mapping(target = "currentCategories.label", source = "currentCategoriesLabel"),
             @Mapping(target = "firstDecision.id", source = "firstDecisionId"),
             @Mapping(target = "firstDecision.label", source = "firstDecisionLabel"),
             @Mapping(target = "secondDecision.id", source = "secondDecisionId"),
             @Mapping(target = "secondDecision.label", source = "secondDecisionLabel"),
-            @Mapping(target = "auditLineList", source = "auditSiteLineDtoList")
+            @Mapping(target = "auditLineList", source = "auditSiteLineDtoList"),
+            @Mapping(target = "statusAuditSitesList", source = "statusAuditSitesDtoList")
     })
     @Override
     AuditSite toModel(AuditSiteDto target);
