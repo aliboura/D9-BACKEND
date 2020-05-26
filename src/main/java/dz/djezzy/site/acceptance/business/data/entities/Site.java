@@ -8,23 +8,18 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-@SqlResultSetMapping(
-        name = "wilayaMapping",
-        classes = @ConstructorResult(
-                targetClass = Wilaya.class,
-                columns = {@ColumnResult(name = "id", type = Integer.class),
-                        @ColumnResult(name = "label")}))
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "SITE", schema = "NDEPDATA")
+@Table(name = "SITE", schema = "DEPDATA")
 public class Site implements Serializable {
 
     @Id
     @Column(name = "SITE_ID")
-    private long id;
+    private Long id;
 
     @Basic
     @Column(name = "CODE_SITE", length = 15)
@@ -54,6 +49,18 @@ public class Site implements Serializable {
     @Column(name = "SERVICE_DEMANDEUR", length = 10)
     private String serviceDemandeur;
 
+    @Column(name = "USER_V1", length = 100)
+    private String userV1;
+
+    @Column(name = "USER_V1_DATE")
+    private Date UserV1Date;
+
+    @Column(name = "USER_V2", length = 100)
+    private String userV2;
+
+    @Column(name = "USER_V2_DATE")
+    private Date UserV2Date;
+
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "AUDITED")
     private Boolean audited;
@@ -68,7 +75,15 @@ public class Site implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "WILAYA_ID")
-    private Wilaya wilaya;
+    private WilayaRegion wilaya;
+
+    @OrderBy("id DESC")
+    @OneToMany(mappedBy = "site")
+    private List<AuditSite> auditSite;
+
+    @OrderBy("id DESC")
+    @OneToMany(mappedBy = "site")
+    private List<VisitPlanning> VisitPlanningList;
 
     public Site(String codeSite, String nomSite, String numSite) {
         this.codeSite = codeSite;

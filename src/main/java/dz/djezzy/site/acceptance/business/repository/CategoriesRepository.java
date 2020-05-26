@@ -18,4 +18,6 @@ public interface CategoriesRepository extends JpaRepository<Categories, Integer>
 
     @Query("select c from Categories c where c.first = true and c.status = true and c.typeAuditSite.id = ?1")
     List<Categories> findFirstCategoryByTypeAuditSite(Integer typeAuditSiteId);
+
+    List<Categories> findByStatus(Boolean status);
 }

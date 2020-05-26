@@ -1,7 +1,5 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,15 +7,13 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(schema = "NDEPDATA", name = "TYPE_SITE")
+@Table(name = "TYPE_SITE", schema = "DEPDATA")
 public class TypeSite implements Serializable {
 
     @Id

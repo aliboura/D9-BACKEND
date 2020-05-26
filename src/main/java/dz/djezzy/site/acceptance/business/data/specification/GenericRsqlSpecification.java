@@ -29,7 +29,8 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
     @Override
     public Predicate toPredicate(final Root<T> root, final CriteriaQuery<?> query, final CriteriaBuilder builder) {
         final List<Object> args = castArguments(root);
-        final Object argument = args.get(0);
+        final Object argument;
+        argument = args.get(0);
         Join join = null;
         int lengthJoin = 2;
         if (property.contains(".")) {
@@ -44,13 +45,17 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
             case EQUAL: {
                 if (null != join) {
                     if (argument instanceof String) {
-                        return builder.like(builder.upper(join.<String>get(property.split(Pattern.quote("."))[lengthJoin - 1])), argument.toString().toUpperCase().replace('*', '%'));
-                    } else {
+                        return builder.equal(builder.upper(join.<String>get(property.split(Pattern.quote("."))[lengthJoin - 1])), argument.toString().toUpperCase());
+                    } else if (argument instanceof Integer) {
                         return builder.equal(join.<Integer>get(property.split(Pattern.quote("."))[lengthJoin - 1]), argument);
+                    } else if (argument instanceof Boolean) {
+                        return builder.equal(join.<Boolean>get(property.split(Pattern.quote("."))[lengthJoin - 1]), argument);
                     }
                 } else if (argument instanceof String) {
                     return builder.like(builder.upper(root.get(property)), argument.toString().toUpperCase().replace('*', '%'));
-                } else if (argument instanceof LocalDate) {
+                } else if (argument instanceof Boolean) {
+                    return builder.equal(root.get(property), argument);
+                } else if (argument instanceof LocalDateUtil) {
                     return builder.between(root.get(property), LocalDateUtil.asDate(((LocalDate) argument).atTime(00, 00)), LocalDateUtil.asDate(((LocalDate) argument).atTime(23, 59)));
                 } else if (argument == null) {
                     return builder.isNull(root.get(property));
@@ -79,8 +84,12 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
             case LESS_THAN_OR_EQUAL: {
                 return builder.lessThanOrEqualTo(root.<String>get(property), argument.toString());
             }
-            case IN:
-                return root.get(property).in(args);
+            case IN: {
+                if (null != join) {
+                    return join.<String>get(property.split(Pattern.quote("."))[lengthJoin - 1]).in(args.toArray(new Integer[args.size()]));
+                } else
+                    return root.get(property).in(args.toArray(new String[args.size()]));
+            }
             case NOT_IN:
                 return builder.not(root.get(property).in(args));
         }
@@ -91,9 +100,11 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
     private List<Object> castArguments(final Root<T> root) {
         final Class<? extends Object> type;
         String child;
+
         if (property.contains(".")) {
-            type = root.get(property.split(Pattern.quote("."))[0]).getJavaType();
-            child = property.split(Pattern.quote("."))[1];
+            String[] joins = property.split(Pattern.quote("."));
+            type = root.join(property.split(Pattern.quote("."))[joins.length - 2]).getJavaType();
+            child = property.split(Pattern.quote("."))[joins.length - 1];
         } else {
             type = root.get(property).getJavaType();
             child = null;
@@ -105,8 +116,10 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
                 return Long.parseLong(arg);
             } else if (type.equals(Object.class)) {
                 return Long.parseLong(arg);
+            } else if (type.equals(Boolean.class)) {
+                return Boolean.valueOf(arg);
             } else if (type.equals(Date.class)) {
-                return LocalDate.parse(arg.toString());
+                return LocalDate.parse(arg);
             } else {
                 if (child != null) {
                     if (child.equals("id")) {

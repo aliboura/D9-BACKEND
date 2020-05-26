@@ -22,7 +22,8 @@ public class TypeAuditSite implements Serializable {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TYPE_AUDIT_SITE_SEQ")
+    @SequenceGenerator(sequenceName = "TYPE_AUDIT_SITE_SEQUENCE_ID", allocationSize = 1, name = "TYPE_AUDIT_SITE_SEQ")
     private Integer id;
 
     @NotNull

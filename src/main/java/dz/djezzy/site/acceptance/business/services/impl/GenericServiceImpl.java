@@ -102,7 +102,8 @@ public class GenericServiceImpl<S extends JpaRepository<T, ID> & QuerydslPredica
     @Override
     @Transactional(readOnly = true)
     public Optional<DTO> findById(ID id) {
-        return Optional.empty();
+        Optional<T> opt = dao.findById(id);
+        return opt.isPresent() ? Optional.of(asDto(opt.get())) : Optional.empty();
     }
 
     @Override

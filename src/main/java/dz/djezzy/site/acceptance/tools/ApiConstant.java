@@ -17,4 +17,5 @@ public class ApiConstant {
     public static final String WILAYA_REGION_API = "/wilaya_regions";
     public static final String COMMUNE_API = "/communes";
     public static final String TYPE_SITE_API = "/type_sites";
+    public static final String VISITS_API = "/visits";
 }

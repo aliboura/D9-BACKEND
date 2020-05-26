@@ -17,7 +17,7 @@ public class WilayaRegion {
 
     @Id
     @Column(name = "ID")
-    private int id;
+    private Integer id;
 
     @Basic
     @Column(name = "LABEL", length = 30)

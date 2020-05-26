@@ -18,6 +18,15 @@ public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto>
     @Mappings({
             @Mapping(source = "typeAuditSite.id", target = "typeAuditSiteId"),
             @Mapping(source = "typeAuditSite.label", target = "typeAuditSiteLabel"),
+            @Mapping(source = "site.id", target = "siteId"),
+            @Mapping(source = "site.codeSite", target = "siteCode"),
+            @Mapping(source = "site.nomSite", target = "siteName"),
+            @Mapping(source = "site.dateD1", target = "dateD1"),
+            @Mapping(source = "site.typeSite.id", target = "typeSiteId"),
+            @Mapping(source = "site.wilaya.label", target = "wilayaLabel"),
+            @Mapping(source = "site.serviceDemandeur", target = "serviceDemandeur"),
+            @Mapping(source = "site.userV1", target = "siteUserV1"),
+            @Mapping(source = "site.userV2", target = "siteUserV2"),
             @Mapping(source = "currentSatus.id", target = "currentSatusId"),
             @Mapping(source = "currentSatus.label", target = "currentSatusLabel"),
             @Mapping(source = "currentSatus.description", target = "currentSatusDescription"),
@@ -38,6 +47,15 @@ public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto>
     @Mappings({
             @Mapping(target = "typeAuditSite.id", source = "typeAuditSiteId"),
             @Mapping(target = "typeAuditSite.label", source = "typeAuditSiteLabel"),
+            @Mapping(target = "site.id", source = "siteId"),
+            @Mapping(target = "site.codeSite", source = "siteCode"),
+            @Mapping(target = "site.nomSite", source = "siteName"),
+            @Mapping(target = "site.dateD1", source = "dateD1"),
+            @Mapping(target = "site.typeSite.id", source = "typeSiteId"),
+            @Mapping(target = "site.wilaya.label", source = "wilayaLabel"),
+            @Mapping(target = "site.serviceDemandeur", source = "serviceDemandeur"),
+            @Mapping(target = "site.userV1", source = "siteUserV1"),
+            @Mapping(target = "site.userV2", source = "siteUserV2"),
             @Mapping(target = "currentSatus.id", source = "currentSatusId"),
             @Mapping(target = "currentSatus.label", source = "currentSatusLabel"),
             @Mapping(target = "currentSatus.description", source = "currentSatusDescription"),
@@ -57,6 +75,9 @@ public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto>
 
     @AfterMapping
     default AuditSite doAfterMapping(@MappingTarget AuditSite entity) {
+        if (entity != null && entity.getSite().getId() == null) {
+            entity.setSite(null);
+        }
         if (entity != null && entity.getFirstDecision().getId() == null) {
             entity.setFirstDecision(null);
         }

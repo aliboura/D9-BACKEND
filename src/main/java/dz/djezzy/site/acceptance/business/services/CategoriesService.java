@@ -10,4 +10,6 @@ public interface CategoriesService extends GenericService<Categories, Categories
     CategoriesDto findFirstCategory();
 
     CategoriesDto findFirstCategoryByTypeAuditSite(Integer typeAuditSiteId);
+
+    List<CategoriesDto> findByStatus(Boolean status);
 }

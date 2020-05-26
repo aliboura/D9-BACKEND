@@ -4,7 +4,6 @@ import dz.djezzy.site.acceptance.business.data.audit.Auditable;
 import dz.djezzy.site.acceptance.tools.BooleanToCharConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -31,10 +30,6 @@ public class AuditSite extends Auditable {
 
     @Column(name = "USER_ID")
     private String userId;
-
-    @NotNull
-    @Column(name = "SITE_CODE")
-    private String siteCode;
 
     @Column(name = "WILAYA_ID")
     private int wilayaId;
@@ -112,6 +107,10 @@ public class AuditSite extends Auditable {
     @Column(name = "SECOND_DECISION_ENGINEER_OM")
     private String secondDecisionEngineerOM;
 
+    @ManyToOne
+    @JoinColumn(name = "SITE_ID")
+    private Site site;
+
     @OrderBy("id ASC")
     @OneToMany(mappedBy = "auditSite", cascade = CascadeType.MERGE)
     private List<AuditSiteLine> auditLineList = new ArrayList<>();
@@ -123,11 +122,10 @@ public class AuditSite extends Auditable {
     public AuditSite() {
     }
 
-    public AuditSite(int id, Date auditDate, String userId, String siteCode, int wilayaId, String regionId, String description, String observation) {
+    public AuditSite(int id, Date auditDate, String userId, int wilayaId, String regionId, String description, String observation) {
         this.id = id;
         this.auditDate = auditDate;
         this.userId = userId;
-        this.siteCode = siteCode;
         this.wilayaId = wilayaId;
         this.regionId = regionId;
         this.description = description;

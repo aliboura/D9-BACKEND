@@ -20,7 +20,6 @@ public class AuditSiteDto extends AuditableDto {
     private Integer id;
     private Date auditDate;
     private String userId;
-    private String siteCode;
     private Integer wilayaId;
     private String regionId;
     private String repOwner;
@@ -32,6 +31,23 @@ public class AuditSiteDto extends AuditableDto {
     private Date firstCheckDate;
     private Date secondCheckDate;
 
+    private Long siteId;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String siteCode;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Date dateD1;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String siteName;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String typeSiteId;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String wilayaLabel;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String serviceDemandeur;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String siteUserV1;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String siteUserV2;
 
     private Integer typeAuditSiteId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)

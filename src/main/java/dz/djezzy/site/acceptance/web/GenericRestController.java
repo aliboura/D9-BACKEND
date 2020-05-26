@@ -91,9 +91,13 @@ public class GenericRestController<S extends GenericService<T, DTO, ID>, T, DTO,
     }
 
     @PutMapping
-    public @ResponseBody
-    DTO update(@RequestBody DTO entity) {
+    public DTO update(@RequestBody DTO entity) {
         return service.save(entity);
+    }
+
+    @PutMapping(value = "/all", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<DTO> update(@RequestBody List<DTO> list) {
+        return (List<DTO>) service.saveAll(list);
     }
 
     @DeleteMapping
