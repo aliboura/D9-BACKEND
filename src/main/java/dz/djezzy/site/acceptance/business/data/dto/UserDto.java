@@ -31,4 +31,16 @@ public class UserDto implements Serializable {
 
     private Set<RoleDto> roleSet = new HashSet<>();
     private Set<WilayaRegionDto> wilayaSet = new HashSet<>();
+
+    @JsonDeserialize(using = BytesDeserializer.class)
+    public Boolean isSiteEngineer(Set<RoleDto> roleSet) {
+        RoleDto roleSiteEngineer = roleSet.stream().filter(x -> x.getLabel().equals("ENGINEER_SITE")).findAny().orElse(null);
+        return roleSiteEngineer != null;
+    }
+
+    @JsonDeserialize(using = BytesDeserializer.class)
+    public Boolean isOMEngineer(Set<RoleDto> roleSet) {
+        RoleDto roleOMEngineer = roleSet.stream().filter(x -> x.getLabel().equals("ENGINEER_OM")).findAny().orElse(null);
+        return roleOMEngineer != null;
+    }
 }

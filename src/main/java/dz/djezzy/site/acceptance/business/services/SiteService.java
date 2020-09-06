@@ -15,10 +15,10 @@ public interface SiteService extends GenericService<Site, SiteDto, Long> {
 
     Page<SiteDto> findByLikeCodeSite(Boolean audited, String codeSite, List<Integer> cities, Pageable pageable);
 
-    Page<SiteDto> findSites(String codeSite, String userV1, Pageable pageable);
+    Page<SiteDto> findSites(String codeSite, String username, Pageable pageable);
 
-    Page<SiteDto> findSites(String codeSite, List<Integer> wilayas, String userV1, Pageable pageable);
+    Page<SiteDto> findSites(String codeSite, List<Integer> wilayas, String username, Pageable pageable);
 
-    Page<SiteDto> findSitesByUserWilayas(List<Integer> wilayas, String userV1, Pageable pageable);
+    Page<SiteDto> findSitesByUserWilayas(String username, Pageable pageable);
 
 }

@@ -1,5 +1,6 @@
 package dz.djezzy.site.acceptance.business.data.audit;
 
+import dz.djezzy.site.acceptance.tools.AppsUtils;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,10 +12,7 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 
     @Override
     public Optional<String> getCurrentAuditor() {
-        String name = "SYSTEM";
-        Authentication auth = SecurityContextHolder.getContext()
-                .getAuthentication();
-        name = (String) auth.getPrincipal();
+        String name = AppsUtils.getUserPrincipal();
         return Optional.ofNullable(name);
     }
 }

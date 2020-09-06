@@ -20,6 +20,7 @@ public class StatusAuditSiteDto extends AuditableDto {
     private String description;
     private boolean current;
     private boolean last;
+    private String username;
     private Integer statusId;
     private String statusLabel;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)

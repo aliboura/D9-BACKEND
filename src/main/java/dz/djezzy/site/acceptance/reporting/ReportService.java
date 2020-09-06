@@ -1,49 +1,65 @@
 package dz.djezzy.site.acceptance.reporting;
 
-import dz.djezzy.site.acceptance.business.data.dto.AuditSiteDto;
-import dz.djezzy.site.acceptance.business.services.AuditSiteService;
 import lombok.AllArgsConstructor;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ResourceUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.*;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @Component
 public class ReportService {
 
-    private final AuditSiteService auditSiteService;
-
-    public byte[] exportReport(Integer id) throws FileNotFoundException, JRException {
-        byte[] bytes = null;
-        Optional<AuditSiteDto> auditSite = auditSiteService.findById(id);
-        if (auditSite.isPresent()) {
-            List<AuditSiteDto> list = Arrays.asList(auditSite.get());
-
-            File file = ResourceUtils.getFile("src/main/resources/reports/d9-forms.jrxml");
-            JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(list);
-            Map<String, Object> parameters = new HashMap<>();
-            parameters.put("P_AUDIT", auditSite.get().getId());
-            JRBeanCollectionDataSource dataSourceLines = new JRBeanCollectionDataSource(auditSite.get().getAuditSiteLineDtoList());
-            parameters.put("PAuditSiteLinesCollect", dataSourceLines);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-            bytes = JasperExportManager.exportReportToPdf(jasperPrint);
-        }
-        return bytes;
-    }
-
-    public <T> JasperPrint exportReport(String name, List<T> data, Map<String, Object> params) throws FileNotFoundException, JRException {
-        File file = ResourceUtils.getFile("src/main/resources/reports/" + name + ".jrxml");
-        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+    public <T> JasperPrint coompileReport(String name, List<T> data, Map<String, Object> params) throws IOException, JRException {
+        InputStream file = new ClassPathResource("reports/" + name + ".jrxml").getInputStream();
+        JasperReport jasperReport = JasperCompileManager.compileReport(file);
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
         return jasperPrint;
+    }
+
+
+    public ResponseEntity<byte[]> exportToPDF(JasperPrint jasperPrint, String fileType, String fileName) throws JRException {
+        byte[] bytes = JasperExportManager.exportReportToPdf(jasperPrint);
+        ContentDisposition contentDisposition = ContentDisposition.builder("inline")
+                .filename(fileName + ".pdf").build();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentDisposition(contentDisposition);
+        return ResponseEntity
+                .ok()
+                .header("Content-Type", fileType + "; charset=UTF-8")
+                .headers(headers)
+                .body(bytes);
+    }
+
+    public void exportToExcel(HttpServletResponse response, JasperPrint jasperPrint, String fileType, String fileName) throws IOException, JRException {
+        response.setContentType(fileType);
+        response.setHeader("Content-Disposition", "inline; " + fileName + ".xls");
+        final OutputStream outputStream = response.getOutputStream();
+        JRXlsExporter exporter = new JRXlsExporter();
+        exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+        exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputStream));
+        SimpleXlsReportConfiguration xlsReportConfiguration = new SimpleXlsReportConfiguration();
+        xlsReportConfiguration.setOnePagePerSheet(false);
+        xlsReportConfiguration.setCollapseRowSpan(true);
+        xlsReportConfiguration.setIgnoreGraphics(false);
+        xlsReportConfiguration.setWhitePageBackground(false);
+        exporter.setConfiguration(xlsReportConfiguration);
+        exporter.exportReport();
     }
 
 }

@@ -6,7 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -22,7 +25,7 @@ public class VisitPlanning extends Auditable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "SITE_ID", nullable = false)
+    @JoinColumn(name = "SITE_ID", nullable = false, unique = true)
     private Site site;
 
     @Column(name = "ENGINEER_SITE_V1", length = 100)
@@ -41,4 +44,28 @@ public class VisitPlanning extends Auditable {
     private String engineerOMV2;
     @Column(name = "ENGINEER_OM_DATE_V2")
     private Date engineerOMDateV2;
+
+    public List<AuditSite> getD9Dorms() {
+        if (site != null && !site.getAuditSite().isEmpty()) {
+            return site.getAuditSite().stream().filter(x -> x.getTypeAuditSite() != null &&
+                    x.getTypeAuditSite().getLabel().equals("Formulaire D9")).collect(Collectors.toList());
+        }
+        return new ArrayList<>();
+    }
+
+    public boolean isFirstVisit() {
+        if (site != null) {
+            List<AuditSite> list = getD9Dorms();
+            return !list.isEmpty() ? list.get(0).getFirstVisit() : false;
+        }
+        return false;
+    }
+
+    public boolean isSecondVisit() {
+        if (site != null) {
+            List<AuditSite> list = getD9Dorms();
+            return !list.isEmpty() ? list.get(0).getSecondVisit() : false;
+        }
+        return false;
+    }
 }

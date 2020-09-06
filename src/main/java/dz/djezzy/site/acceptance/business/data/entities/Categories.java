@@ -53,6 +53,9 @@ public class Categories implements Serializable {
     @JoinColumn(name = "PREVIOUS_CATEGORY_ID")
     private Categories previous;
 
+    @Column(name = "ORDER_NUM", unique = true)
+    private Integer orderNum;
+
     @OneToMany(mappedBy = "categories")
     private List<SubCategories> subCategoriesList;
 

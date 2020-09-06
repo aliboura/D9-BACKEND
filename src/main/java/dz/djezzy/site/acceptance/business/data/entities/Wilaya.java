@@ -12,7 +12,7 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(schema = "NDEPDATA", name = "WILAYA")
+@Table(schema = "DEPDATA", name = "WILAYA")
 public class Wilaya implements Serializable {
 
     @Id

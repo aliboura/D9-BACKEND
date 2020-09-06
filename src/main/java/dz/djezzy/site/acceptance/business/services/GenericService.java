@@ -22,6 +22,8 @@ public interface GenericService<T, DTO, ID> {
 
     Page<DTO> findAll(@Nullable Specification<T> spec, Pageable pageable);
 
+    List<DTO> findAll(@Nullable Specification<T> spec, Sort sort);
+
     DTO save(DTO dto);
 
     Iterable<DTO> saveAll(Iterable<DTO> iterable);

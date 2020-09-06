@@ -11,25 +11,27 @@ import dz.djezzy.site.acceptance.business.repository.AuditSiteRepository;
 import dz.djezzy.site.acceptance.business.services.AuditSiteLineService;
 import dz.djezzy.site.acceptance.business.services.AuditSiteService;
 import dz.djezzy.site.acceptance.business.services.StatusService;
+import dz.djezzy.site.acceptance.tools.AppsUtils;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class AuditSiteServiceIMPL extends GenericServiceImpl<AuditSiteRepository, AuditSite, AuditSiteDto, Integer>
         implements AuditSiteService {
 
     private final StatusService statusService;
+    private final AuditSiteRepository auditSiteRepository;
     private final AuditSiteLineService auditSiteLineService;
-
-    public AuditSiteServiceIMPL(StatusService statusService, AuditSiteLineService auditSiteLineService) {
-        this.statusService = statusService;
-        this.auditSiteLineService = auditSiteLineService;
-    }
 
     @Override
     public StatusAuditSiteDto createStatusAudit(AuditSiteDto entity) {
@@ -37,6 +39,7 @@ public class AuditSiteServiceIMPL extends GenericServiceImpl<AuditSiteRepository
         statusAuditSite.setStatusId(entity.getCurrentSatusId());
         statusAuditSite.setStatusLabel(entity.getCurrentSatusLabel());
         statusAuditSite.setAuditSiteId(entity.getId());
+        statusAuditSite.setUsername(AppsUtils.getUserPrincipal());
         statusAuditSite.setCurrent(true);
         if (entity.getCurrentSatusLabel().equals(StatusEnum.Conform.toString()) ||
                 entity.getCurrentSatusLabel().equals(StatusEnum.Accepted.toString())) {
@@ -165,4 +168,25 @@ public class AuditSiteServiceIMPL extends GenericServiceImpl<AuditSiteRepository
         }
         return steps.getAuditSite();
     }
+
+    @Override
+    public Page<AuditSiteDto> findByEngineerSite(String username, Pageable pageable) {
+        return auditSiteRepository.findByEngineerSite(username, pageable).map(data -> asDto(data));
+    }
+
+    @Override
+    public List<AuditSiteDto> findByEngineerSite(String username) {
+        return asDto(auditSiteRepository.findByEngineerSite(username));
+    }
+
+    @Override
+    public List<AuditSiteDto> findByEngineerSite(String username, Integer statusId) {
+        return asDto(auditSiteRepository.findByEngineerSite(username, statusId));
+    }
+
+    @Override
+    public List<AuditSiteDto> findByEngineerSite(String username, Integer statusId, Date fromDate, Date toDate) {
+        return asDto(auditSiteRepository.findByEngineerSite(username, statusId, fromDate, toDate));
+    }
+
 }

@@ -19,9 +19,9 @@ public class SiteDto implements Serializable {
     private String codeSite;
     private Date dateD1;
     private String userV1;
-    private Date UserV1Date;
+    private Date userV1Date;
     private String userV2;
-    private Date UserV2Date;
+    private Date userV2Date;
     private String nomSite;
     private String numSite;
     private String prioriteRadio;

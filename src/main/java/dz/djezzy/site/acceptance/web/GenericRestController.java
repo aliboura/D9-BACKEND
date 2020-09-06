@@ -4,13 +4,13 @@ import cz.jirutka.rsql.parser.RSQLParser;
 import cz.jirutka.rsql.parser.ast.Node;
 import dz.djezzy.site.acceptance.business.data.specification.CustomRsqlVisitor;
 import dz.djezzy.site.acceptance.business.services.GenericService;
+import dz.djezzy.site.acceptance.tools.AppsUtils;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -37,10 +37,7 @@ public class GenericRestController<S extends GenericService<T, DTO, ID>, T, DTO,
     @GetMapping(params = {"sort", "field"})
     public List<DTO> findAll(@RequestParam(value = "sort") String sort,
                              @RequestParam(value = "field") String field) {
-        if (sort.equalsIgnoreCase("ASC"))
-            listAll = service.findAll(Sort.by(Direction.ASC, field));
-        else
-            listAll = service.findAll(Sort.by(Direction.DESC, field));
+        listAll = service.findAll(Sort.by(AppsUtils.getSortDirection(sort), field));
         return listAll;
     }
 
@@ -55,26 +52,30 @@ public class GenericRestController<S extends GenericService<T, DTO, ID>, T, DTO,
                              @RequestParam("size") int size,
                              @RequestParam("sort") String sort,
                              @RequestParam("field") String field) {
-        if (sort.equalsIgnoreCase("ASC") || sort.equalsIgnoreCase("ascend"))
-            return service.findAll(PageRequest.of(page, size, Sort.by(Direction.ASC, field)));
-        else
-            return service.findAll(PageRequest.of(page, size, Sort.by(Direction.DESC, field)));
+        return service.findAll(PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
     }
 
     @GetMapping(params = {"page", "size", "sort", "field", "search"})
     @ResponseBody
-    public Page<DTO> findAllByRsql(@RequestParam("page") int page,
+    public Page<DTO> findAllByRSql(@RequestParam("page") int page,
                                    @RequestParam("size") int size,
                                    @RequestParam("sort") String sort,
                                    @RequestParam("field") String field,
                                    @RequestParam(value = "search") String search) {
         Node rootNode = new RSQLParser().parse(search);
         Specification<T> spec = rootNode.accept(new CustomRsqlVisitor<>());
-        if (sort.equalsIgnoreCase("ASC") || sort.equalsIgnoreCase("ascend"))
-            return service.findAll(spec, PageRequest.of(page, size, Sort.by(Direction.ASC, field)));
-        else
-            return service.findAll(spec, PageRequest.of(page, size, Sort.by(Direction.DESC, field)));
+        return service.findAll(spec, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
 
+    }
+
+    @GetMapping(params = {"sort", "field", "search"})
+    @ResponseBody
+    public List<DTO> findAllByRSql(@RequestParam("sort") String sort,
+                                   @RequestParam("field") String field,
+                                   @RequestParam(value = "search") String search) {
+        Node rootNode = new RSQLParser().parse(search);
+        Specification<T> spec = rootNode.accept(new CustomRsqlVisitor<>());
+        return service.findAll(spec, Sort.by(AppsUtils.getSortDirection(sort), field));
     }
 
     @PostMapping

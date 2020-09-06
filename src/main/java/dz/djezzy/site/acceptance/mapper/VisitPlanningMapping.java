@@ -21,7 +21,9 @@ public interface VisitPlanningMapping extends GenericMapper<VisitPlanning, Visit
             @Mapping(source = "site.regionId", target = "regionId"),
             @Mapping(source = "site.wilaya.label", target = "wilayaLabel"),
             @Mapping(source = "site.typeSite.id", target = "typeSiteId"),
-            @Mapping(source = "site.audited", target = "audited")
+            @Mapping(source = "site.audited", target = "audited"),
+            @Mapping(expression = "java(source.isFirstVisit())", target = "firstVisit"),
+            @Mapping(expression = "java(source.isSecondVisit())", target = "secondVisit")
     })
     @Override
     VisitPlanningDto toDto(VisitPlanning source);

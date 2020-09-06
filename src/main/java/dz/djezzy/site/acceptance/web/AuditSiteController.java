@@ -6,22 +6,19 @@ import dz.djezzy.site.acceptance.business.data.entities.AuditSite;
 import dz.djezzy.site.acceptance.business.data.enums.StatusEnum;
 import dz.djezzy.site.acceptance.business.services.AuditSiteService;
 import dz.djezzy.site.acceptance.business.services.CategoriesService;
+import dz.djezzy.site.acceptance.business.services.SiteService;
 import dz.djezzy.site.acceptance.business.services.StatusAuditSiteService;
 import dz.djezzy.site.acceptance.reporting.ReportService;
 import dz.djezzy.site.acceptance.tools.ApiConstant;
 import dz.djezzy.site.acceptance.tools.AppsUtils;
 import lombok.AllArgsConstructor;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.http.ContentDisposition;
-import org.springframework.http.HttpHeaders;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +27,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,6 +37,7 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
 
     private final StatusAuditSiteService statusAuditSiteService;
     private final AuditSiteService auditSiteService;
+    private final SiteService siteService;
     private final ReportService reportService;
     private final CategoriesService categoriesService;
 
@@ -50,6 +47,14 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
     @PostMapping
     public AuditSiteDto create(@RequestBody AuditSiteDto entity) {
         AuditSiteDto saved = super.create(entity);
+        if (saved.getAudited()) {
+            Optional<SiteDto> siteOpt = siteService.findById(entity.getSiteId());
+            if (siteOpt.isPresent() && !siteOpt.get().getAudited()) {
+                SiteDto site = siteOpt.get();
+                site.setAudited(true);
+                siteService.save(site);
+            }
+        }
         StatusAuditSiteDto dto = auditSiteService.createStatusAudit(saved);
         statusAuditSiteService.save(dto);
         return saved;
@@ -118,75 +123,11 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
         return ResponseEntity.ok(saved);
     }
 
-    @GetMapping(value = "/toPdf", params = {"id"})
-    public ResponseEntity<byte[]> exportToPdf(@RequestParam("id") Integer id) throws IOException, JRException, WriterException {
-        Optional<AuditSiteDto> auditSite = auditSiteService.findById(id);
-        if (auditSite.isPresent()) {
-            List<AuditSiteDto> data = Arrays.asList(auditSite.get());
-            Map<String, Object> params = new HashMap<>();
-            params.put("P_AUDIT", auditSite.get().getId());
-            JRBeanCollectionDataSource dataSourceLines = new JRBeanCollectionDataSource(auditSite.get().getAuditSiteLineDtoList());
-            params.put("PAuditSiteLinesCollect", dataSourceLines);
-            List<String> status = auditSite.get().getStatusAuditSitesDtoList().stream().map(x -> x.getStatusLabel() + " - " + x.getStatusDate()).collect(Collectors.toList());
-            InputStream qrcode = AppsUtils.writeImage("png", AppsUtils.generateMatrix(status.toString(), 400));
-            params.put("P_QR", qrcode);
-            JRBeanCollectionDataSource dataSourceRecaps = new JRBeanCollectionDataSource(getAuditRecap(auditSite.get()));
-            params.put("PAuditRecapsCollect", dataSourceRecaps);
-
-            JasperPrint jasperPrint = reportService.exportReport("d9-forms", data, params);
-            byte[] bytes = JasperExportManager.exportReportToPdf(jasperPrint);
-            ContentDisposition contentDisposition = ContentDisposition.builder("inline")
-                    .filename("audit-d9" + ".pdf").build();
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentDisposition(contentDisposition);
-            return ResponseEntity
-                    .ok()
-                    .header("Content-Type", "application/pdf; charset=UTF-8")
-                    .headers(headers)
-                    .body(bytes);
-        }
-        return (ResponseEntity<byte[]>) ResponseEntity.badRequest();
-    }
-
-    @GetMapping(value = "/toExcel", params = {"id"})
-    public @ResponseBody
-    void exportToExcel(@RequestParam("id") Integer id, HttpServletResponse response) throws IOException, JRException {
-        Optional<AuditSiteDto> auditSite = auditSiteService.findById(id);
-        if (auditSite.isPresent()) {
-            List<AuditSiteDto> data = Arrays.asList(auditSite.get());
-            Map<String, Object> params = new HashMap<>();
-            params.put("P_AUDIT", auditSite.get().getId());
-            JRBeanCollectionDataSource dataSourceLines = new JRBeanCollectionDataSource(auditSite.get().getAuditSiteLineDtoList());
-            params.put("PAuditSiteLinesCollect", dataSourceLines);
-
-            JRBeanCollectionDataSource dataSourceRecaps = new JRBeanCollectionDataSource(getAuditRecap(auditSite.get()));
-            params.put("PAuditRecapsCollect", dataSourceRecaps);
-
-            JasperPrint jasperPrint = reportService.exportReport("d9-forms", data, params);
-            response.setContentType("application/x-xls");
-            response.setHeader("Content-Disposition", "inline; filename=d9-forms.xls");
-
-            final OutputStream outputStream = response.getOutputStream();
-
-            JRXlsExporter exporter = new JRXlsExporter();
-            exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputStream));
-            SimpleXlsReportConfiguration xlsReportConfiguration = new SimpleXlsReportConfiguration();
-            xlsReportConfiguration.setOnePagePerSheet(false);
-            xlsReportConfiguration.setCollapseRowSpan(true);
-            xlsReportConfiguration.setIgnoreGraphics(false);
-//            xlsReportConfiguration.setRemoveEmptySpaceBetweenRows(true);
-//            xlsReportConfiguration.setDetectCellType(false);
-//            xlsReportConfiguration.setWhitePageBackground(false);
-            exporter.setConfiguration(xlsReportConfiguration);
-            exporter.exportReport();
-        }
-    }
-
-
     private List<AuditRecap> getAuditRecap(AuditSiteDto auditSiteDto) {
         List<AuditRecap> recaps = new ArrayList<>();
-        List<CategoriesDto> categoriesList = categoriesService.findByStatus(Boolean.TRUE);
+        List<CategoriesDto> categoriesList = categoriesService.findByStatus(Boolean.TRUE).stream()
+                .sorted(Comparator.comparingInt(CategoriesDto::getOrderNum))
+                .collect(Collectors.toList());
         if (!categoriesList.isEmpty())
             for (CategoriesDto cat : categoriesList) {
                 recaps.add(new AuditRecap(cat.getLabel(), checkDecision(cat, auditSiteDto)));
@@ -270,6 +211,63 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
                         (StringUtils.isNotBlank(x.getSecondDecisionLabel()) &&
                                 x.getSecondDecisionLabel().equals(StatusEnum.None.toString())))
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping(params = {"page", "size", "sort", "field", "engineer"})
+    public Page<AuditSiteDto> findByEngineerSite(
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("sort") String sort,
+            @RequestParam("field") String field,
+            @RequestParam("engineer") String username) {
+        return auditSiteService.findByEngineerSite(username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
+    }
+
+
+    @GetMapping(value = "/toPdf", params = {"id"})
+    public ResponseEntity<byte[]> exportToPdf(@RequestParam("id") Integer id) throws IOException, JRException, WriterException {
+        Optional<AuditSiteDto> auditSite = auditSiteService.findById(id);
+        if (auditSite.isPresent()) {
+            List<AuditSiteDto> data = Arrays.asList(auditSite.get());
+            Map<String, Object> params = new HashMap<>();
+            params.put("P_AUDIT", auditSite.get().getId());
+            JRBeanCollectionDataSource dataSourceLines = new JRBeanCollectionDataSource(auditSite.get().getAuditSiteLineDtoList());
+            params.put("PAuditSiteLinesCollect", dataSourceLines);
+            List<String> status = auditSite.get().getStatusAuditSitesDtoList().stream().map(x -> x.getStatusLabel() + " - " + x.getStatusDate()).collect(Collectors.toList());
+            InputStream qrcode = AppsUtils.writeImage("png", AppsUtils.generateMatrix(status.toString(), 400));
+            params.put("P_QR", qrcode);
+            params.put("P_USER_PRINT", AppsUtils.getUserPrincipal().toUpperCase());
+            JRBeanCollectionDataSource dataSourceRecaps = new JRBeanCollectionDataSource(getAuditRecap(auditSite.get()));
+            params.put("PAuditRecapsCollect", dataSourceRecaps);
+
+            JasperPrint jasperPrint = reportService.coompileReport("d9-forms", data, params);
+
+            return reportService.exportToPDF(jasperPrint, "application/pdf", "audit-d9");
+        }
+        return (ResponseEntity<byte[]>) ResponseEntity.badRequest();
+    }
+
+    @GetMapping(value = "/toExcel", params = {"id"})
+    public @ResponseBody
+    void exportToExcel(@RequestParam("id") Integer id, HttpServletResponse response) throws IOException, JRException {
+        Optional<AuditSiteDto> auditSite = auditSiteService.findById(id);
+        if (auditSite.isPresent()) {
+            List<AuditSiteDto> data = Arrays.asList(auditSite.get());
+
+            Map<String, Object> params = new HashMap<>();
+            params.put("P_AUDIT", auditSite.get().getId());
+
+            JRBeanCollectionDataSource dataSourceLines = new JRBeanCollectionDataSource(auditSite.get().getAuditSiteLineDtoList());
+            params.put("PAuditSiteLinesCollect", dataSourceLines);
+
+            JRBeanCollectionDataSource dataSourceRecaps = new JRBeanCollectionDataSource(getAuditRecap(auditSite.get()));
+            params.put("PAuditRecapsCollect", dataSourceRecaps);
+            params.put("P_USER_PRINT", AppsUtils.getUserPrincipal().toUpperCase());
+
+            JasperPrint jasperPrint = reportService.coompileReport("d9-forms", data, params);
+
+            reportService.exportToExcel(response, jasperPrint, "application/x-xls", "filename=d9-forms");
+        }
     }
 
 }

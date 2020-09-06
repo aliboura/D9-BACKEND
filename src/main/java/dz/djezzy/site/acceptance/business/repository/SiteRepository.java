@@ -19,16 +19,27 @@ public interface SiteRepository extends JpaRepository<Site, Long>, QuerydslPredi
     @Query(value = "SELECT s FROM Site s where s.audited = ?1 and s.wilaya.id IN ?2")
     Page<Site> findBySites(Boolean audited, List<Integer> cities, Pageable pageable);
 
-    @Query(value = "SELECT s FROM Site s where s.audited = ?1 and lower(s.codeSite) Like ?2 and s.wilaya.id IN ?3")
+    @Query(value = "SELECT s FROM Site s where s.audited = ?1 " +
+            "and (lower(s.codeSite) like ?2 or lower(s.wilaya.label) like ?2) " +
+            "and s.wilaya.id IN ?3 order by s.dateD1 desc")
     Page<Site> findByLikeCodeSite(Boolean audited, String codeSite, List<Integer> cities, Pageable pageable);
 
-    @Query(value = "SELECT s FROM Site s where s.audited = false and s.codeSite = ?1 and (s.userV1 = ?2 or s.userV2 = ?2)")
-    Page<Site> findSites(String codeSite, String userV1, Pageable pageable);
+    @Query(value = "SELECT s FROM Site s, VisitPlanning p " +
+            "where s.id = p.site.id " +
+            "and s.audited = false " +
+            "and s.codeSite = ?1")
+    Page<Site> findSites(String codeSite, String username, Pageable pageable);
 
 
-    @Query(value = "SELECT s FROM Site s where s.audited = false and s.codeSite = ?1 and s.wilaya.id IN ?2 and (s.userV1 = ?3 or s.userV2 = ?3)")
-    Page<Site> findSites(String codeSite, List<Integer> wilayas, String userV1, Pageable pageable);
+    @Query(value = "SELECT s FROM Site s, VisitPlanning p " +
+            "where s.id = p.site.id " +
+            "and s.audited = false " +
+            "and s.codeSite = ?1 " +
+            "and s.wilaya.id IN ?2")
+    Page<Site> findSites(String codeSite, List<Integer> wilayas, String username, Pageable pageable);
 
-    @Query(value = "SELECT s FROM Site s where s.audited = false and s.wilaya.id IN ?1 and (s.userV1 = ?2 or s.userV2 = ?2)")
-    Page<Site> findSitesByUserWilayas(List<Integer> wilayas, String userV1, Pageable pageable);
+    @Query(value = "SELECT s FROM Site s, VisitPlanning  p " +
+            "where s.id = p.site.id " +
+            "and s.audited = false")
+    Page<Site> findSitesByUserWilayas(String username, Pageable pageable);
 }

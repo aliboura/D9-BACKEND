@@ -16,8 +16,10 @@ public interface CategoriesMapping extends GenericMapper<Categories, CategoriesD
             @Mapping(source = "typeAuditSite.label", target = "typeAuditSiteLabel"),
             @Mapping(source = "next.id", target = "nextCatId"),
             @Mapping(source = "next.label", target = "nextCatLabel"),
+            @Mapping(source = "next.orderNum", target = "nextCatOrder"),
             @Mapping(source = "previous.id", target = "previousCatId"),
             @Mapping(source = "previous.label", target = "previousCatLabel"),
+            @Mapping(source = "previous.orderNum", target = "previousCatOrder"),
             @Mapping(source = "subCategoriesList", target = "listSubCategories")
     })
     @Override
@@ -28,8 +30,10 @@ public interface CategoriesMapping extends GenericMapper<Categories, CategoriesD
             @Mapping(target = "typeAuditSite.label", source = "typeAuditSiteLabel"),
             @Mapping(target = "next.id", source = "nextCatId"),
             @Mapping(target = "next.label", source = "nextCatLabel"),
+            @Mapping(target = "next.orderNum", source = "nextCatOrder"),
             @Mapping(target = "previous.id", source = "previousCatId"),
             @Mapping(target = "previous.label", source = "previousCatLabel"),
+            @Mapping(target = "previous.orderNum", source = "previousCatOrder"),
             @Mapping(target = "subCategoriesList", source = "listSubCategories")
     })
     @Override

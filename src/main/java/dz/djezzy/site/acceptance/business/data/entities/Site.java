@@ -7,8 +7,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -16,6 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "SITE", schema = "DEPDATA")
 public class Site implements Serializable {
+
 
     @Id
     @Column(name = "SITE_ID")
@@ -49,18 +52,6 @@ public class Site implements Serializable {
     @Column(name = "SERVICE_DEMANDEUR", length = 10)
     private String serviceDemandeur;
 
-    @Column(name = "USER_V1", length = 100)
-    private String userV1;
-
-    @Column(name = "USER_V1_DATE")
-    private Date UserV1Date;
-
-    @Column(name = "USER_V2", length = 100)
-    private String userV2;
-
-    @Column(name = "USER_V2_DATE")
-    private Date UserV2Date;
-
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "AUDITED")
     private Boolean audited;
@@ -79,15 +70,71 @@ public class Site implements Serializable {
 
     @OrderBy("id DESC")
     @OneToMany(mappedBy = "site")
-    private List<AuditSite> auditSite;
+    private List<AuditSite> auditSite = new ArrayList<>();
 
     @OrderBy("id DESC")
     @OneToMany(mappedBy = "site")
-    private List<VisitPlanning> VisitPlanningList;
+    private List<VisitPlanning> visitPlanningList = new ArrayList<>();
 
     public Site(String codeSite, String nomSite, String numSite) {
         this.codeSite = codeSite;
         this.nomSite = nomSite;
         this.numSite = numSite;
+    }
+
+    public String getUserV1() {
+        if (!visitPlanningList.isEmpty()) {
+            return visitPlanningList.get(0).getEngineerSiteV1();
+        }
+        return "-";
+    }
+
+    public String getUserV2() {
+        if (!visitPlanningList.isEmpty()) {
+            return visitPlanningList.get(0).getEngineerSiteV2();
+        }
+        return "-";
+    }
+
+    public String getUserOMV1() {
+        if (!visitPlanningList.isEmpty()) {
+            return visitPlanningList.get(0).getEngineerOMV1();
+        }
+        return "-";
+    }
+
+    public String getUserOMV2() {
+        if (!visitPlanningList.isEmpty()) {
+            return visitPlanningList.get(0).getEngineerOMV2();
+        }
+        return "-";
+    }
+
+    public Date getUserDateV1() {
+        if (!visitPlanningList.isEmpty()) {
+            return visitPlanningList.get(0).getEngineerSiteDateV1();
+        }
+        return null;
+    }
+
+    public Date getUserDateV2() {
+        if (!visitPlanningList.isEmpty()) {
+            return visitPlanningList.get(0).getEngineerSiteDateV2();
+        }
+        return null;
+    }
+
+    public Date getUserOMDateV1() {
+        if (!visitPlanningList.isEmpty()) {
+            return visitPlanningList.get(0).getEngineerOMDateV1();
+        }
+        return null;
+    }
+
+    public Date getUserOMDateV2() {
+        if (!visitPlanningList.isEmpty()) {
+            return visitPlanningList.get(0).getEngineerOMDateV1();
+        }
+        return null;
     }
 }

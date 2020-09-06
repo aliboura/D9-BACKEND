@@ -173,8 +173,12 @@
     </dependencies>
 
     <build>
+        <finalName>D9-forms</finalName>
         <plugins>
             <plugin>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>

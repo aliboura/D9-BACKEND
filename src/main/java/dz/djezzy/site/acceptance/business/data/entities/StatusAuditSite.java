@@ -40,6 +40,10 @@ public class StatusAuditSite extends Auditable {
     @Column(name = "LAST")
     private boolean last;
 
+    @NotNull
+    @Column(name = "USERNAME")
+    private String username;
+
     @ManyToOne
     @JoinColumn(name = "STATUS_ID")
     private Status status;

@@ -73,22 +73,38 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
                 }
             }
             case GREATER_THAN: {
-                return builder.greaterThan(root.<String>get(property), argument.toString());
+                if (argument instanceof LocalDate) {
+                    return builder.greaterThan(root.<String>get(property).as(LocalDate.class), (LocalDate) argument);
+                } else {
+                    return builder.greaterThan(root.<String>get(property), argument.toString());
+                }
             }
             case GREATER_THAN_OR_EQUAL: {
-                return builder.greaterThanOrEqualTo(root.<String>get(property), argument.toString());
+                if (argument instanceof LocalDate) {
+                    return builder.greaterThanOrEqualTo(root.<String>get(property).as(LocalDate.class), (LocalDate) argument);
+                } else {
+                    return builder.greaterThanOrEqualTo(root.<String>get(property), argument.toString());
+                }
             }
             case LESS_THAN: {
-                return builder.lessThan(root.<String>get(property), argument.toString());
+                if (argument instanceof LocalDate) {
+                    return builder.lessThan(root.<String>get(property).as(LocalDate.class), (LocalDate) argument);
+                } else {
+                    return builder.lessThan(root.<String>get(property), argument.toString());
+                }
             }
             case LESS_THAN_OR_EQUAL: {
-                return builder.lessThanOrEqualTo(root.<String>get(property), argument.toString());
+                if (argument instanceof LocalDate) {
+                    return builder.lessThanOrEqualTo(root.<String>get(property).as(LocalDate.class), (LocalDate) argument);
+                } else {
+                    return builder.lessThanOrEqualTo(root.<String>get(property), argument.toString());
+                }
             }
             case IN: {
                 if (null != join) {
                     return join.<String>get(property.split(Pattern.quote("."))[lengthJoin - 1]).in(args.toArray(new Integer[args.size()]));
                 } else
-                    return root.get(property).in(args.toArray(new String[args.size()]));
+                    return root.get(property).in(args.toArray());
             }
             case NOT_IN:
                 return builder.not(root.get(property).in(args));
@@ -133,10 +149,6 @@ public class GenericRsqlSpecification<T> implements Specification<T> {
         }).collect(Collectors.toList());
 
         return args;
-    }
-
-    private DateFormat format() {
-        return new SimpleDateFormat("dd/MM/yyyy");
     }
 
 }

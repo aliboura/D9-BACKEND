@@ -32,7 +32,7 @@ public class AuditSite extends Auditable {
     private String userId;
 
     @Column(name = "WILAYA_ID")
-    private int wilayaId;
+    private Integer wilayaId;
 
     @Column(name = "REGION_ID")
     private String regionId;

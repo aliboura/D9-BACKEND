@@ -6,17 +6,17 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import dz.djezzy.site.acceptance.business.data.dto.RoleDto;
+import dz.djezzy.site.acceptance.reporting.ReportDto;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AppsUtils {
@@ -52,4 +52,20 @@ public class AppsUtils {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         return formatter.parse(value);
     }
+
+    public static InputStream geQrCode(ReportDto report) throws WriterException, IOException {
+        return AppsUtils.writeImage("png", AppsUtils.generateMatrix(report.getQrCode(), 400));
+    }
+
+    public static List<Integer> getIdList(String params) {
+        String[] ids = params.split(",");
+        return Arrays.stream(ids).map(x -> Integer.parseInt(x)).collect(Collectors.toList());
+    }
+
+    public static String getUserPrincipal() {
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        return (String) auth.getPrincipal();
+    }
+
 }

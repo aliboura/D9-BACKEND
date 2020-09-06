@@ -22,6 +22,7 @@ public class CategoriesDto implements Serializable {
     private Boolean status;
     private Boolean first;
     private Boolean last;
+    private Integer orderNum;
 
     private Integer typeAuditSiteId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -30,9 +31,14 @@ public class CategoriesDto implements Serializable {
     private Integer nextCatId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String nextCatLabel;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Integer nextCatOrder;
+
     private Integer previousCatId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String previousCatLabel;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Integer previousCatOrder;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private List<SubCategoriesDto> listSubCategories = new ArrayList<>();

@@ -58,6 +58,11 @@ public class GenericServiceImpl<S extends JpaRepository<T, ID> & QuerydslPredica
         return dao.findAll(spec, pageable).map(data -> asDto(data));
     }
 
+    @Override
+    public List<DTO> findAll(Specification<T> spec, Sort sort) {
+        return asDto(dao.findAll(spec, sort));
+    }
+
 
     @Override
     @Transactional
