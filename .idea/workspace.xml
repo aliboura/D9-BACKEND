@@ -2,57 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8390fa26-708b-4782-bbc2-52e3b5ecc028" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/reporting/ReportDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/reporting/RepportVisitController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/audit.jasper" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/audit.jrxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/d9-forms.jasper" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/AuditSiteLineCSV.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/FileResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/ResponseMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/config/CollectionConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/mapper/AuditSiteLineCSVMapping.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/tools/CSVUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/tools/ExcelUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/tools/FileTypes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/FilesUploadController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cert_d9test-api.djezzy.dz.cer" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/d9test-api.p12" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/d9test-api.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/forms-d9.XLSX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/forms-d9.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/template-d9.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/network-acceptance.iml" beforeDir="false" afterPath="$PROJECT_DIR$/network-acceptance.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/audit/AuditorAwareImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/audit/AuditorAwareImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/AuditSiteDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/AuditSiteDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/CategoriesDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/CategoriesDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/SiteDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/SiteDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/StatusAuditSiteDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/StatusAuditSiteDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/VisitPlanningDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/VisitPlanningDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/AuditSite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/AuditSite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/Categories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/Categories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/Site.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/Site.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/StatusAuditSite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/StatusAuditSite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/VisitPlanning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/VisitPlanning.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/Wilaya.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/entities/Wilaya.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/specification/GenericRsqlSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/specification/GenericRsqlSpecification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/AuditSiteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/AuditSiteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/SiteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/SiteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/VisitPlanningRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/VisitPlanningRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/NetworkAcceptanceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/NetworkAcceptanceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/AuditSiteLineDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/data/dto/AuditSiteLineDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/AuditSiteLineRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/AuditSiteLineRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/CategoriesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/CategoriesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/DecisionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/repository/DecisionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/AuditSiteLineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/AuditSiteLineService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/AuditSiteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/AuditSiteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/GenericService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/GenericService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/SiteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/SiteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/VisitPlanningService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/VisitPlanningService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/CategoriesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/CategoriesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/DecisionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/DecisionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/AuditSiteLineServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/AuditSiteLineServiceIMPL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/AuditSiteServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/AuditSiteServiceIMPL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/GenericServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/GenericServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/SiteServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/SiteServiceIMPL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/VisitPlanningServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/VisitPlanningServiceIMPL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/mapper/AuditSiteMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/mapper/AuditSiteMapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/mapper/CategoriesMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/mapper/CategoriesMapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/mapper/SiteMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/mapper/SiteMapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/mapper/VisitPlanningMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/mapper/VisitPlanningMapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/reporting/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/reporting/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/reporting/ReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/reporting/ReportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/tools/AppsUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/tools/AppsUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/AuditSiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/AuditSiteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/GenericRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/GenericRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/SiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/SiteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/VisitPlanningController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/VisitPlanningController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/CategoriesServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/CategoriesServiceIMPL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/DecisionServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/business/services/impl/DecisionServiceIMPL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/tools/ApiConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/tools/ApiConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/AuditSiteLineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dz/djezzy/site/acceptance/web/AuditSiteLineController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/reports/d9-forms.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reports/d9-forms.jrxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="network-acceptance" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -94,7 +87,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/reports" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/uploads" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -102,7 +95,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.45057473" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.tslint" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -117,11 +110,11 @@
       <recent name="dz.djezzy.site.acceptance.business.services.impl" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\WORK\java\network-acceptance\uploads" />
       <recent name="F:\WORK\java\network-acceptance\src\main\resources\reports" />
       <recent name="F:\WORK\java\network-acceptance\src\main\resources\reporting" />
       <recent name="F:\WORK\java\network-acceptance\src\main\resources" />
       <recent name="F:\WORK\java\network-acceptance\src\main\java\dz\djezzy\site\acceptance\config" />
-      <recent name="F:\WORK\java\network-acceptance\src\main\java\dz\djezzy\site\acceptance\web" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -304,7 +297,31 @@
       <workItem from="1595232489613" duration="173000" />
       <workItem from="1598516736666" duration="2563000" />
       <workItem from="1598783126218" duration="1130000" />
-      <workItem from="1599383127353" duration="364000" />
+      <workItem from="1599383127353" duration="1429000" />
+      <workItem from="1599467361678" duration="1123000" />
+      <workItem from="1599554340749" duration="1783000" />
+      <workItem from="1599643196370" duration="8908000" />
+      <workItem from="1599726862989" duration="5220000" />
+      <workItem from="1599985694616" duration="2495000" />
+      <workItem from="1599996195651" duration="1189000" />
+      <workItem from="1600022499347" duration="1671000" />
+      <workItem from="1600077953064" duration="6513000" />
+      <workItem from="1600159325551" duration="7208000" />
+      <workItem from="1600245785016" duration="16420000" />
+      <workItem from="1600331027179" duration="13408000" />
+      <workItem from="1600352628824" duration="658000" />
+      <workItem from="1600594082462" duration="2222000" />
+      <workItem from="1600599244327" duration="610000" />
+      <workItem from="1600700034036" duration="1214000" />
+      <workItem from="1600943678248" duration="2454000" />
+      <workItem from="1600957045024" duration="5349000" />
+      <workItem from="1601195880744" duration="4599000" />
+      <workItem from="1601371545162" duration="2800000" />
+      <workItem from="1601458289152" duration="6914000" />
+      <workItem from="1601539939311" duration="1176000" />
+      <workItem from="1601802996643" duration="5399000" />
+      <workItem from="1601815134752" duration="1833000" />
+      <workItem from="1601887818634" duration="2148000" />
     </task>
     <task id="LOCAL-00001" summary="add -- project commit">
       <created>1583336861395</created>
@@ -397,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590488597073</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add -- planning visit api é">
+      <created>1599383680859</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1599383680859</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,184 +452,138 @@
     <MESSAGE value="add -- update power supply form" />
     <MESSAGE value="add -- security and user role region wilaya create" />
     <MESSAGE value="add -- planning visit api" />
-    <option name="LAST_COMMIT_MESSAGE" value="add -- planning visit api" />
+    <MESSAGE value="add -- planning visit api é" />
+    <option name="LAST_COMMIT_MESSAGE" value="add -- planning visit api é" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="266" y="127" width="1100" height="531" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592228637930">
+    <state x="275" y="28" key="#Notifications" timestamp="1599383901922">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="266" y="127" width="1100" height="531" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1592228637930" />
-    <state x="544" y="142" key="#com.intellij.ide.util.MemberChooser" timestamp="1592151193774">
+    <state x="275" y="28" key="#Notifications/0.0.1366.738@0.0.1366.738" timestamp="1599383901922" />
+    <state x="2131" y="-106" key="#com.intellij.ide.util.MemberChooser" timestamp="1601805547318">
+      <screen x="1366" y="-308" width="1920" height="1050" />
+    </state>
+    <state x="2131" y="-106" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601805547318" />
+    <state x="2077" y="-101" width="731" height="592" key="#xdebugger.evaluate" timestamp="1600347519550">
+      <screen x="1366" y="-308" width="1920" height="1050" />
+    </state>
+    <state x="2077" y="-101" key="#xdebugger.evaluate/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1600347519550" />
+    <state x="506" y="146" width="731" height="592" key="#xdebugger.evaluate/0.0.1366.738@0.0.1366.738" timestamp="1600086601352" />
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1599383664427">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="-1155" y="-199" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591698031583" />
-    <state x="544" y="142" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1592151193774" />
-    <state x="544" y="142" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1590684138609" />
-    <state x="220" y="121" width="731" height="592" key="#xdebugger.evaluate" timestamp="1592229283038">
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1599383664427" />
+    <state x="526" y="198" key="FileChooserDialogImpl" timestamp="1600024017247">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="-1611" y="-232" key="#xdebugger.evaluate/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591698318755" />
-    <state x="220" y="121" width="985" height="592" key="#xdebugger.evaluate/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1592229283038" />
-    <state x="506" y="146" width="731" height="592" key="#xdebugger.evaluate/0.0.1366.738@0.0.1366.738" timestamp="1592214638732" />
-    <state x="342" y="0" key="CommitChangelistDialog2" timestamp="1590488585039">
+    <state x="526" y="198" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1600024017247" />
+    <state width="1323" height="164" key="GridCell.Tab.0.bottom" timestamp="1601888292727">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="342" y="0" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1590488585039" />
-    <state x="526" y="198" key="FileChooserDialogImpl" timestamp="1592225537814">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="526" y="198" key="FileChooserDialogImpl/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1591088724974" />
-    <state x="2106" y="-27" key="FileChooserDialogImpl/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1591018198938" />
-    <state x="526" y="198" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1592225537814" />
-    <state width="1323" height="165" key="GridCell.Tab.0.bottom" timestamp="1598799062222">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.bottom/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="222" key="GridCell.Tab.0.bottom/0.0.1366.738/-1920.-424.1920.1170@0.0.1366.738" timestamp="1591696740950" />
     <state width="1323" height="165" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1598783683103" />
-    <state width="1877" height="208" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1591018652340" />
-    <state width="1323" height="191" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.-432.1920.1170@0.0.1366.738" timestamp="1592311279986" />
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819351185" />
     <state width="1323" height="165" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1594047595576" />
-    <state width="1323" height="165" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1598799062222" />
-    <state width="1323" height="165" key="GridCell.Tab.0.center" timestamp="1598799062222">
+    <state width="1323" height="164" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1601888292727" />
+    <state width="1323" height="164" key="GridCell.Tab.0.center" timestamp="1601888292727">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.center/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="222" key="GridCell.Tab.0.center/0.0.1366.738/-1920.-424.1920.1170@0.0.1366.738" timestamp="1591696740950" />
     <state width="1323" height="165" key="GridCell.Tab.0.center/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1598783683102" />
-    <state width="1877" height="208" key="GridCell.Tab.0.center/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1591018652340" />
-    <state width="1323" height="191" key="GridCell.Tab.0.center/0.0.1366.738/1366.-432.1920.1170@0.0.1366.738" timestamp="1592311279986" />
+    <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819351185" />
     <state width="1323" height="165" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1594047595576" />
-    <state width="1323" height="165" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1598799062222" />
-    <state width="1323" height="165" key="GridCell.Tab.0.left" timestamp="1598799062222">
+    <state width="1323" height="164" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1601888292727" />
+    <state width="1323" height="164" key="GridCell.Tab.0.left" timestamp="1601888292727">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.left/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="222" key="GridCell.Tab.0.left/0.0.1366.738/-1920.-424.1920.1170@0.0.1366.738" timestamp="1591696740950" />
     <state width="1323" height="165" key="GridCell.Tab.0.left/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1598783683101" />
-    <state width="1877" height="208" key="GridCell.Tab.0.left/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1591018652340" />
-    <state width="1323" height="191" key="GridCell.Tab.0.left/0.0.1366.738/1366.-432.1920.1170@0.0.1366.738" timestamp="1592311279986" />
+    <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819351185" />
     <state width="1323" height="165" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1594047595576" />
-    <state width="1323" height="165" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1598799062222" />
-    <state width="1323" height="165" key="GridCell.Tab.0.right" timestamp="1598799062222">
+    <state width="1323" height="164" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1601888292727" />
+    <state width="1323" height="164" key="GridCell.Tab.0.right" timestamp="1601888292727">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.right/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="222" key="GridCell.Tab.0.right/0.0.1366.738/-1920.-424.1920.1170@0.0.1366.738" timestamp="1591696740950" />
     <state width="1323" height="165" key="GridCell.Tab.0.right/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1598783683102" />
-    <state width="1877" height="208" key="GridCell.Tab.0.right/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1591018652340" />
-    <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.738/1366.-432.1920.1170@0.0.1366.738" timestamp="1592311279986" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819351185" />
     <state width="1323" height="165" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1594047595576" />
-    <state width="1323" height="165" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1598799062222" />
-    <state width="1323" height="165" key="GridCell.Tab.1.bottom" timestamp="1598799062222">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1323" height="164" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1601888292727" />
+    <state width="1877" height="259" key="GridCell.Tab.1.bottom" timestamp="1601819351182">
+      <screen x="1366" y="-308" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.1.bottom/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="222" key="GridCell.Tab.1.bottom/0.0.1366.738/-1920.-424.1920.1170@0.0.1366.738" timestamp="1591696740950" />
     <state width="1323" height="165" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1598783683103" />
-    <state width="1877" height="208" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1591018652335" />
-    <state width="1323" height="191" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.-432.1920.1170@0.0.1366.738" timestamp="1592311279987" />
+    <state width="1877" height="259" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819351182" />
     <state width="1323" height="165" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1594047595577" />
-    <state width="1323" height="165" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1598799062222" />
-    <state width="1323" height="165" key="GridCell.Tab.1.center" timestamp="1598799062222">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1323" height="178" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1600108211254" />
+    <state width="1877" height="259" key="GridCell.Tab.1.center" timestamp="1601819351182">
+      <screen x="1366" y="-308" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.1.center/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="222" key="GridCell.Tab.1.center/0.0.1366.738/-1920.-424.1920.1170@0.0.1366.738" timestamp="1591696740950" />
     <state width="1323" height="165" key="GridCell.Tab.1.center/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1598783683103" />
-    <state width="1877" height="208" key="GridCell.Tab.1.center/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1591018652335" />
-    <state width="1323" height="191" key="GridCell.Tab.1.center/0.0.1366.738/1366.-432.1920.1170@0.0.1366.738" timestamp="1592311279986" />
+    <state width="1877" height="259" key="GridCell.Tab.1.center/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819351182" />
     <state width="1323" height="165" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1594047595577" />
-    <state width="1323" height="165" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1598799062222" />
-    <state width="1323" height="165" key="GridCell.Tab.1.left" timestamp="1598799062222">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1323" height="178" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1600108211254" />
+    <state width="1877" height="259" key="GridCell.Tab.1.left" timestamp="1601819351182">
+      <screen x="1366" y="-308" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.1.left/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="222" key="GridCell.Tab.1.left/0.0.1366.738/-1920.-424.1920.1170@0.0.1366.738" timestamp="1591696740950" />
     <state width="1323" height="165" key="GridCell.Tab.1.left/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1598783683103" />
-    <state width="1877" height="208" key="GridCell.Tab.1.left/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1591018652335" />
-    <state width="1323" height="191" key="GridCell.Tab.1.left/0.0.1366.738/1366.-432.1920.1170@0.0.1366.738" timestamp="1592311279986" />
+    <state width="1877" height="259" key="GridCell.Tab.1.left/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819351182" />
     <state width="1323" height="165" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1594047595576" />
-    <state width="1323" height="165" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1598799062222" />
-    <state width="1323" height="165" key="GridCell.Tab.1.right" timestamp="1598799062222">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1323" height="178" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1600108211254" />
+    <state width="1877" height="259" key="GridCell.Tab.1.right" timestamp="1601819351182">
+      <screen x="1366" y="-308" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.1.right/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="222" key="GridCell.Tab.1.right/0.0.1366.738/-1920.-424.1920.1170@0.0.1366.738" timestamp="1591696740950" />
     <state width="1323" height="165" key="GridCell.Tab.1.right/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1598783683103" />
-    <state width="1877" height="208" key="GridCell.Tab.1.right/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1591018652335" />
-    <state width="1323" height="191" key="GridCell.Tab.1.right/0.0.1366.738/1366.-432.1920.1170@0.0.1366.738" timestamp="1592311279987" />
+    <state width="1877" height="259" key="GridCell.Tab.1.right/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819351182" />
     <state width="1323" height="165" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1594047595577" />
-    <state width="1323" height="165" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1598799062222" />
-    <state width="1323" height="178" key="GridCell.Tab.2.bottom" timestamp="1592248323290">
+    <state width="1323" height="178" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1600108211254" />
+    <state width="1877" height="278" key="GridCell.Tab.2.bottom" timestamp="1601819349920">
+      <screen x="1366" y="-308" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="278" key="GridCell.Tab.2.bottom/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819349920" />
+    <state width="1323" height="178" key="GridCell.Tab.2.bottom/0.0.1366.738@0.0.1366.738" timestamp="1600108211254" />
+    <state width="1877" height="278" key="GridCell.Tab.2.center" timestamp="1601819349919">
+      <screen x="1366" y="-308" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="278" key="GridCell.Tab.2.center/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819349919" />
+    <state width="1323" height="178" key="GridCell.Tab.2.center/0.0.1366.738@0.0.1366.738" timestamp="1600108211254" />
+    <state width="1877" height="278" key="GridCell.Tab.2.left" timestamp="1601819349919">
+      <screen x="1366" y="-308" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="278" key="GridCell.Tab.2.left/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819349919" />
+    <state width="1323" height="178" key="GridCell.Tab.2.left/0.0.1366.738@0.0.1366.738" timestamp="1600108211254" />
+    <state width="1877" height="278" key="GridCell.Tab.2.right" timestamp="1601819349919">
+      <screen x="1366" y="-308" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="278" key="GridCell.Tab.2.right/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601819349919" />
+    <state width="1323" height="178" key="GridCell.Tab.2.right/0.0.1366.738@0.0.1366.738" timestamp="1600108211254" />
+    <state x="184" y="12" key="SettingsEditor" timestamp="1600024087261">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.2.bottom/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="179" key="GridCell.Tab.2.bottom/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1591192861773" />
-    <state width="1323" height="178" key="GridCell.Tab.2.bottom/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1592248323290" />
-    <state width="1323" height="178" key="GridCell.Tab.2.bottom/0.0.1366.738@0.0.1366.738" timestamp="1592226879324" />
-    <state width="1323" height="178" key="GridCell.Tab.2.center" timestamp="1592248323290">
+    <state x="184" y="12" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1600024087261" />
+    <state x="275" y="103" key="Vcs.Push.Dialog.v2" timestamp="1599384084905">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.2.center/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="179" key="GridCell.Tab.2.center/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1591192861773" />
-    <state width="1323" height="178" key="GridCell.Tab.2.center/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1592248323290" />
-    <state width="1323" height="178" key="GridCell.Tab.2.center/0.0.1366.738@0.0.1366.738" timestamp="1592226879323" />
-    <state width="1323" height="178" key="GridCell.Tab.2.left" timestamp="1592248323290">
+    <state x="275" y="103" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1599384084905" />
+    <state x="441" y="99" width="607" height="537" key="find.popup" timestamp="1601892413238">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.2.left/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="179" key="GridCell.Tab.2.left/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1591192861773" />
-    <state width="1323" height="178" key="GridCell.Tab.2.left/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1592248323290" />
-    <state width="1323" height="178" key="GridCell.Tab.2.left/0.0.1366.738@0.0.1366.738" timestamp="1592226879323" />
-    <state width="1323" height="178" key="GridCell.Tab.2.right" timestamp="1592248323290">
+    <state x="1986" y="-167" width="854" height="765" key="find.popup/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1600347363970" />
+    <state x="441" y="99" width="607" height="537" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1601892413238" />
+    <state x="364" y="161" key="git4idea.merge.GitPullDialog" timestamp="1599384205953">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.2.right/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591706409589" />
-    <state width="1323" height="179" key="GridCell.Tab.2.right/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1591192861773" />
-    <state width="1323" height="178" key="GridCell.Tab.2.right/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1592248323290" />
-    <state width="1323" height="178" key="GridCell.Tab.2.right/0.0.1366.738@0.0.1366.738" timestamp="1592226879323" />
-    <state x="184" y="12" key="SettingsEditor" timestamp="1591088797725">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="184" y="12" key="SettingsEditor/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1591088797725" />
-    <state x="1625" y="-291" key="SettingsEditor/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1591018647404" />
-    <state x="-6" y="65" width="1364" height="609" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591518220327">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="-6" y="65" width="1364" height="609" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.738@0.0.1366.738" timestamp="1591518220327" />
-    <state x="547" y="311" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590488523444">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="547" y="311" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1590488523444" />
-    <state x="441" y="99" width="607" height="537" key="find.popup" timestamp="1593336413286">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="441" y="99" width="607" height="537" key="find.popup/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1591093991179" />
-    <state x="380" y="101" width="607" height="537" key="find.popup/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1592148911351" />
-    <state x="441" y="99" width="607" height="537" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1593336413286" />
+    <state x="364" y="161" key="git4idea.merge.GitPullDialog/0.0.1366.738@0.0.1366.738" timestamp="1599384205953" />
     <state x="65" y="72" key="new project wizard" timestamp="1594200367544">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="65" y="72" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1594200367544" />
-    <state x="438" y="171" width="672" height="677" key="run.anything.popup" timestamp="1593592599534">
+    <state x="438" y="171" width="672" height="677" key="run.anything.popup" timestamp="1601887889152">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="-1304" y="-153" width="945" height="1074" key="run.anything.popup/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591700252444" />
-    <state x="438" y="171" width="672" height="677" key="run.anything.popup/0.0.1366.738/-1920.-424.1920.1170@0.0.1366.738" timestamp="1591694481990" />
-    <state x="438" y="171" width="672" height="677" key="run.anything.popup/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1591192068246" />
-    <state x="1982" y="-65" width="945" height="964" key="run.anything.popup/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1591017716615" />
-    <state x="438" y="171" width="672" height="677" key="run.anything.popup/0.0.1366.738/1366.-432.1920.1170@0.0.1366.738" timestamp="1592297967503" />
+    <state x="1982" y="-65" width="945" height="964" key="run.anything.popup/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1601816276052" />
     <state x="438" y="171" width="672" height="677" key="run.anything.popup/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1593433356200" />
-    <state x="438" y="171" width="672" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1593592599534" />
-    <state x="443" y="160" width="672" height="477" key="search.everywhere.popup" timestamp="1592310400292">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="438" y="171" width="672" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1601887889152" />
+    <state x="1989" y="-80" width="945" height="679" key="search.everywhere.popup" timestamp="1600335783388">
+      <screen x="1366" y="-308" width="1920" height="1050" />
     </state>
-    <state x="-1297" y="-170" width="945" height="757" key="search.everywhere.popup/0.0.1366.738/-1920.-424.1920.1170@-1920.-424.1920.1170" timestamp="1591697859042" />
-    <state x="443" y="160" width="672" height="477" key="search.everywhere.popup/0.0.1366.738/1366.-308.1920.1050@0.0.1366.738" timestamp="1591190917881" />
-    <state x="443" y="160" width="672" height="477" key="search.everywhere.popup/0.0.1366.738/1366.-432.1920.1170@0.0.1366.738" timestamp="1592310400292" />
-    <state x="443" y="160" width="672" height="477" key="search.everywhere.popup/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1592231114458" />
-    <state x="443" y="160" width="672" height="477" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1592225353703" />
+    <state x="1989" y="-80" width="945" height="679" key="search.everywhere.popup/0.0.1366.738/1366.-308.1920.1050@1366.-308.1920.1050" timestamp="1600335783388" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

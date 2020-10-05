@@ -1,9 +1,6 @@
 package dz.djezzy.site.acceptance.business.services.impl;
 
-import dz.djezzy.site.acceptance.business.data.dto.AuditSiteDto;
-import dz.djezzy.site.acceptance.business.data.dto.AuditStepsDto;
-import dz.djezzy.site.acceptance.business.data.dto.StatusAuditSiteDto;
-import dz.djezzy.site.acceptance.business.data.dto.StatusDto;
+import dz.djezzy.site.acceptance.business.data.dto.*;
 import dz.djezzy.site.acceptance.business.data.entities.AuditSite;
 import dz.djezzy.site.acceptance.business.data.enums.DecisionEnum;
 import dz.djezzy.site.acceptance.business.data.enums.StatusEnum;
@@ -187,6 +184,20 @@ public class AuditSiteServiceIMPL extends GenericServiceImpl<AuditSiteRepository
     @Override
     public List<AuditSiteDto> findByEngineerSite(String username, Integer statusId, Date fromDate, Date toDate) {
         return asDto(auditSiteRepository.findByEngineerSite(username, statusId, fromDate, toDate));
+    }
+
+    @Override
+    @Transactional
+    public Iterable<AuditSiteLineCSV> saveAllCsvLines(Iterable<Object> auditSiteLineCSVS, AuditSiteDto auditSiteDto) {
+        if (auditSiteLineCSVS != null)
+            if (auditSiteLineCSVS.iterator().hasNext()) {
+                auditSiteLineCSVS.forEach(x -> {
+                    AuditSiteLineDto newAuditLine = auditSiteLineService.save(new AuditSiteLineDto((AuditSiteLineCSV) x, auditSiteDto.getId()));
+                    auditSiteDto.getAuditSiteLineDtoList().add(newAuditLine);
+                });
+                save(auditSiteDto);
+            }
+        return null;
     }
 
 }

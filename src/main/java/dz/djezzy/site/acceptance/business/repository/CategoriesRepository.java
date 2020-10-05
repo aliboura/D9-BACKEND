@@ -1,7 +1,6 @@
 package dz.djezzy.site.acceptance.business.repository;
 
 import dz.djezzy.site.acceptance.business.data.entities.Categories;
-import dz.djezzy.site.acceptance.business.data.entities.Site;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -16,8 +15,12 @@ public interface CategoriesRepository extends JpaRepository<Categories, Integer>
     @Query("select c from Categories c where c.first = true and c.status = true")
     List<Categories> findFirstCategory();
 
+    @Query("select c from Categories c where c.last = true and c.status = true")
+    List<Categories> findLastCategory();
+
     @Query("select c from Categories c where c.first = true and c.status = true and c.typeAuditSite.id = ?1")
     List<Categories> findFirstCategoryByTypeAuditSite(Integer typeAuditSiteId);
 
     List<Categories> findByStatus(Boolean status);
+
 }

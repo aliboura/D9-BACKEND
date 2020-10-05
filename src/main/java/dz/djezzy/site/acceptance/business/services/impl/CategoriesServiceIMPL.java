@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -25,6 +27,12 @@ public class CategoriesServiceIMPL extends GenericServiceImpl<CategoriesReposito
     }
 
     @Override
+    public CategoriesDto findLastCategory() {
+        List<Categories> list = categoriesRepository.findLastCategory();
+        return list != null && !list.isEmpty() ? asDto(list.get(0)) : null;
+    }
+
+    @Override
     public CategoriesDto findFirstCategoryByTypeAuditSite(Integer typeAuditSiteId) {
         List<Categories> list = categoriesRepository.findFirstCategoryByTypeAuditSite(typeAuditSiteId);
         return list != null && !list.isEmpty() ? asDto(list.get(0)) : null;
@@ -33,5 +41,10 @@ public class CategoriesServiceIMPL extends GenericServiceImpl<CategoriesReposito
     @Override
     public List<CategoriesDto> findByStatus(Boolean status) {
         return asDto(categoriesRepository.findByStatus(status));
+    }
+
+    @Override
+    public HashMap<String, Integer> getLabelMaps() {
+        return (HashMap<String, Integer>) categoriesRepository.findAll().stream().filter(cat -> cat.getStatus()).collect(Collectors.toMap(Categories::getLabel, Categories::getId));
     }
 }

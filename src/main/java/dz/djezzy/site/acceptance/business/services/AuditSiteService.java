@@ -1,9 +1,6 @@
 package dz.djezzy.site.acceptance.business.services;
 
-import dz.djezzy.site.acceptance.business.data.dto.AuditSiteDto;
-import dz.djezzy.site.acceptance.business.data.dto.AuditStepsDto;
-import dz.djezzy.site.acceptance.business.data.dto.StatusAuditSiteDto;
-import dz.djezzy.site.acceptance.business.data.dto.StatusDto;
+import dz.djezzy.site.acceptance.business.data.dto.*;
 import dz.djezzy.site.acceptance.business.data.entities.AuditSite;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,5 +34,7 @@ public interface AuditSiteService extends GenericService<AuditSite, AuditSiteDto
     List<AuditSiteDto> findByEngineerSite(String username, Integer statusId);
 
     List<AuditSiteDto> findByEngineerSite(String username, Integer statusId, Date fromDate, Date toDate);
+
+    Iterable<AuditSiteLineCSV> saveAllCsvLines(Iterable<Object> iterable, AuditSiteDto auditSiteDto);
 
 }
