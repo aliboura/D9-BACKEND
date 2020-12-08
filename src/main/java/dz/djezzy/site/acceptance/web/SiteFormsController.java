@@ -10,11 +10,16 @@ import dz.djezzy.site.acceptance.business.services.SiteFormsService;
 import dz.djezzy.site.acceptance.business.services.SiteService;
 import dz.djezzy.site.acceptance.business.services.StatusService;
 import dz.djezzy.site.acceptance.tools.ApiConstant;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequestMapping(ApiConstant.SITE_FORMS_API)
 public class SiteFormsController extends GenericRestController<SiteFormsService, SiteForms, SiteFormsDto, Integer> {
@@ -34,9 +39,10 @@ public class SiteFormsController extends GenericRestController<SiteFormsService,
         return siteFormsService.findByCodeSite(codeSite);
     }
 
-    @Override
-    @PostMapping
-    public SiteFormsDto create(@RequestBody SiteFormsDto entity) {
+    @PostMapping(value = "/files", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public @ResponseStatus(HttpStatus.CREATED)
+    SiteFormsDto createForms(@Valid @RequestBody() SiteFormsDto entity) {
+        log.info("/files - entity: " + entity.toString());
         if (entity.getDecisionLabel() != null && entity.getCodeSite() != null) {
             SiteDto site = siteService.findByCodeSite(entity.getCodeSite());
             Optional<StatusDto> statusDto;

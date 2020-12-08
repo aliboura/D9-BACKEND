@@ -8,6 +8,7 @@ import dz.djezzy.site.acceptance.tools.AppsUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -89,6 +90,19 @@ public class SiteController extends GenericRestController<SiteService, Site, Sit
             @RequestParam("user") String username) {
 
         return service.findSitesByUserWilayas(username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
+    }
+
+    @GetMapping(params = {"page", "size", "sort", "field", "wilayas", "username"})
+    public Page<SiteDto> findByCitiesUserV1(@RequestParam("page") int page,
+                                            @RequestParam("size") int size,
+                                            @RequestParam("sort") String sort,
+                                            @RequestParam("field") String field,
+                                            @RequestParam("wilayas") String wilayas,
+                                            @RequestParam("username") String username) {
+        String[] ids = wilayas.split(",");
+        List<Integer> cities = Arrays.stream(ids).map(x -> Integer.parseInt(x)).collect(Collectors.toList());
+
+        return service.findByCitiesUserV1(false, cities, username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
     }
 
 }

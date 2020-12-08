@@ -21,6 +21,8 @@ public class Site implements Serializable {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SITE_SEQ")
+    @SequenceGenerator(sequenceName = "SITE_SEQUENCE_ID", allocationSize = 1, name = "SITE_SEQ", initialValue = 100)
     @Column(name = "SITE_ID")
     private Long id;
 
@@ -55,6 +57,10 @@ public class Site implements Serializable {
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "AUDITED")
     private Boolean audited;
+
+    @Convert(converter = BooleanToCharConverter.class)
+    @Column(name = "closed")
+    private Boolean closed;
 
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "POWER_SUPPLY_CONFORM")

@@ -4,10 +4,7 @@ import com.google.zxing.WriterException;
 import dz.djezzy.site.acceptance.business.data.dto.*;
 import dz.djezzy.site.acceptance.business.data.entities.AuditSite;
 import dz.djezzy.site.acceptance.business.data.enums.StatusEnum;
-import dz.djezzy.site.acceptance.business.services.AuditSiteService;
-import dz.djezzy.site.acceptance.business.services.CategoriesService;
-import dz.djezzy.site.acceptance.business.services.SiteService;
-import dz.djezzy.site.acceptance.business.services.StatusAuditSiteService;
+import dz.djezzy.site.acceptance.business.services.*;
 import dz.djezzy.site.acceptance.reporting.ReportService;
 import dz.djezzy.site.acceptance.tools.ApiConstant;
 import dz.djezzy.site.acceptance.tools.AppsUtils;
@@ -35,11 +32,12 @@ import java.util.stream.Collectors;
 @RequestMapping(ApiConstant.AUDIT_SITE_API)
 public class AuditSiteController extends GenericRestController<AuditSiteService, AuditSite, AuditSiteDto, Integer> {
 
-    private final StatusAuditSiteService statusAuditSiteService;
-    private final AuditSiteService auditSiteService;
     private final SiteService siteService;
     private final ReportService reportService;
+    private final AuditSiteService auditSiteService;
     private final CategoriesService categoriesService;
+    private final AuditSiteLineService auditSiteLineService;
+    private final StatusAuditSiteService statusAuditSiteService;
 
 
     @Transactional
@@ -71,6 +69,11 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
             doSaved.setCurrentSatusLabel(status.get().getLabel());
             if (status.get().getLabel().equals(StatusEnum.Conform.toString())) {
                 doSaved.setClosed(true);
+                Optional<SiteDto> site = siteService.findById(doSaved.getSiteId());
+                if (site.isPresent()) {
+                    site.get().setClosed(true);
+                    siteService.save(site.get());
+                }
             }
             if (status.get().getLabel().equals(StatusEnum.Validate_Site.toString())) {
                 if (doSaved.getFirstVisit() && !doSaved.getSecondVisit()) {
@@ -110,8 +113,11 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
 
     @Transactional
     @PutMapping("/second-visit")
-    public ResponseEntity<AuditSiteDto> secondVisit(@RequestBody AuditSiteDto entity) {
-        AuditSiteDto doSave = auditSiteService.setCurrentStatus(entity, StatusEnum.In_Progress_Validate_V2.toString());
+    public ResponseEntity<AuditSiteDto> secondVisit(@RequestBody AuditSecondVisitDto entity) {
+        if (!entity.getAuditSiteLines().isEmpty()) {
+            auditSiteLineService.saveAll(entity.getAuditSiteLines());
+        }
+        AuditSiteDto doSave = auditSiteService.setCurrentStatus(entity.getAuditSite(), StatusEnum.In_Progress_Validate_V2.toString());
         doSave.setSecondCheckDate(new Date());
         doSave.setSecondCheck(true);
         AuditSiteDto saved = auditSiteService.save(doSave);

@@ -12,6 +12,12 @@ public interface CategoriesService extends GenericService<Categories, Categories
 
     CategoriesDto findLastCategory();
 
+    List<CategoriesDto> findAllActive();
+
+    List<CategoriesDto> findAllOnlyFirst();
+
+    List<CategoriesDto> findAllOnlyLast();
+
     CategoriesDto findFirstCategoryByTypeAuditSite(Integer typeAuditSiteId);
 
     List<CategoriesDto> findByStatus(Boolean status);

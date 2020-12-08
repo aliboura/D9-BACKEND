@@ -22,6 +22,7 @@ public interface VisitPlanningMapping extends GenericMapper<VisitPlanning, Visit
             @Mapping(source = "site.wilaya.label", target = "wilayaLabel"),
             @Mapping(source = "site.typeSite.id", target = "typeSiteId"),
             @Mapping(source = "site.audited", target = "audited"),
+            @Mapping(source = "site.closed", target = "closed"),
             @Mapping(expression = "java(source.isFirstVisit())", target = "firstVisit"),
             @Mapping(expression = "java(source.isSecondVisit())", target = "secondVisit")
     })
@@ -36,7 +37,8 @@ public interface VisitPlanningMapping extends GenericMapper<VisitPlanning, Visit
             @Mapping(target = "site.regionId", source = "regionId"),
             @Mapping(target = "site.wilaya.label", source = "wilayaLabel"),
             @Mapping(target = "site.typeSite.id", source = "typeSiteId"),
-            @Mapping(target = "site.audited", source = "audited")
+            @Mapping(target = "site.audited", source = "audited"),
+            @Mapping(target = "site.closed", source = "closed")
     })
     @Override
     VisitPlanning toModel(VisitPlanningDto target);

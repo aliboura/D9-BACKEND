@@ -21,4 +21,6 @@ public interface SiteService extends GenericService<Site, SiteDto, Long> {
 
     Page<SiteDto> findSitesByUserWilayas(String username, Pageable pageable);
 
+    Page<SiteDto> findByCitiesUserV1(Boolean audited, List<Integer> cities, String username, Pageable pageable);
+
 }

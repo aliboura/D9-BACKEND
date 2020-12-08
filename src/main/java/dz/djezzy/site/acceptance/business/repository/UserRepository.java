@@ -15,6 +15,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User>, JpaSpecificationExecutor<User> {
 
+    @Query(value = "select u from User u where lower(u.username) = lower(?1)")
     Optional<User> findByUsername(String name);
 
     @Query(value = "select distinct(u.*) from depdata.user u, depdata.role r, depdata.user_role ur, depdata.user_wilaya w " +

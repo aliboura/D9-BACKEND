@@ -33,6 +33,21 @@ public class CategoriesServiceIMPL extends GenericServiceImpl<CategoriesReposito
     }
 
     @Override
+    public List<CategoriesDto> findAllActive() {
+        return asDto(categoriesRepository.findAllActive());
+    }
+
+    @Override
+    public List<CategoriesDto> findAllOnlyFirst() {
+        return asDto(categoriesRepository.findAllOnlyFirst());
+    }
+
+    @Override
+    public List<CategoriesDto> findAllOnlyLast() {
+        return asDto(categoriesRepository.findAllOnlyLast());
+    }
+
+    @Override
     public CategoriesDto findFirstCategoryByTypeAuditSite(Integer typeAuditSiteId) {
         List<Categories> list = categoriesRepository.findFirstCategoryByTypeAuditSite(typeAuditSiteId);
         return list != null && !list.isEmpty() ? asDto(list.get(0)) : null;

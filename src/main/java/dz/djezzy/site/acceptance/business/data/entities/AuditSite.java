@@ -112,7 +112,7 @@ public class AuditSite extends Auditable {
     private Site site;
 
     @OrderBy("id ASC")
-    @OneToMany(mappedBy = "auditSite", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "auditSite")
     private List<AuditSiteLine> auditLineList = new ArrayList<>();
 
     @OrderBy("id ASC")

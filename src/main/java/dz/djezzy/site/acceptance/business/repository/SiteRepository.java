@@ -19,6 +19,7 @@ public interface SiteRepository extends JpaRepository<Site, Long>, QuerydslPredi
     @Query(value = "SELECT s FROM Site s where s.audited = ?1 and s.wilaya.id IN ?2")
     Page<Site> findBySites(Boolean audited, List<Integer> cities, Pageable pageable);
 
+
     @Query(value = "SELECT s FROM Site s where s.audited = ?1 " +
             "and (lower(s.codeSite) like ?2 or lower(s.wilaya.label) like ?2) " +
             "and s.wilaya.id IN ?3 order by s.dateD1 desc")
@@ -27,7 +28,8 @@ public interface SiteRepository extends JpaRepository<Site, Long>, QuerydslPredi
     @Query(value = "SELECT s FROM Site s, VisitPlanning p " +
             "where s.id = p.site.id " +
             "and s.audited = false " +
-            "and s.codeSite = ?1")
+            "and s.codeSite = ?1 " +
+            "and p.engineerSiteV1 = ?2 ")
     Page<Site> findSites(String codeSite, String username, Pageable pageable);
 
 
@@ -35,11 +37,20 @@ public interface SiteRepository extends JpaRepository<Site, Long>, QuerydslPredi
             "where s.id = p.site.id " +
             "and s.audited = false " +
             "and s.codeSite = ?1 " +
+            "and p.engineerSiteV1 = ?3 " +
             "and s.wilaya.id IN ?2")
     Page<Site> findSites(String codeSite, List<Integer> wilayas, String username, Pageable pageable);
 
     @Query(value = "SELECT s FROM Site s, VisitPlanning  p " +
             "where s.id = p.site.id " +
+            "and p.engineerSiteV1 = ?1 " +
             "and s.audited = false")
     Page<Site> findSitesByUserWilayas(String username, Pageable pageable);
+
+    @Query(value = "SELECT s FROM Site s, VisitPlanning p " +
+            "where s.id = p.site.id " +
+            "and s.audited = ?1 " +
+            "and p.engineerSiteV1 = ?3 " +
+            "and s.wilaya.id IN ?2")
+    Page<Site> findByCitiesUserV1(Boolean audited, List<Integer> cities, String username, Pageable pageable);
 }

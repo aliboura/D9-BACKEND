@@ -56,6 +56,7 @@ public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto>
             @Mapping(target = "typeAuditSite.label", source = "typeAuditSiteLabel"),
             @Mapping(target = "site.id", source = "siteId"),
             @Mapping(target = "site.audited", source = "audited"),
+            @Mapping(target = "site.closed", source = "siteClosed"),
             @Mapping(target = "site.codeSite", source = "siteCode"),
             @Mapping(target = "site.nomSite", source = "siteName"),
             @Mapping(target = "site.dateD1", source = "dateD1"),

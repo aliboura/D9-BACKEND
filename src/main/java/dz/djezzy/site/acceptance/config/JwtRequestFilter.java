@@ -1,8 +1,6 @@
 package dz.djezzy.site.acceptance.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import dz.djezzy.site.acceptance.business.data.dto.UserDto;
-import dz.djezzy.site.acceptance.business.repository.UserRepository;
 import dz.djezzy.site.acceptance.business.services.UserService;
 import dz.djezzy.site.acceptance.tools.AppsUtils;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
@@ -24,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Log4j2
 @Component

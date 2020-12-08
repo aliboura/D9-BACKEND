@@ -1,6 +1,7 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
 import dz.djezzy.site.acceptance.business.data.audit.Auditable;
+import dz.djezzy.site.acceptance.tools.StringToByteConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class SiteForms extends Auditable {
     @Column(name = "FILE_TYPE", length = 100)
     private String fileType;
 
+    //  @Convert(converter = StringToByteConverter.class)
     @Column(name = "FORMS_FILE")
     private byte[] formsFile;
 

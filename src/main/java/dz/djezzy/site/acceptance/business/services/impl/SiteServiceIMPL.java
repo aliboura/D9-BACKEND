@@ -50,4 +50,9 @@ public class SiteServiceIMPL extends GenericServiceImpl<SiteRepository, Site, Si
     public Page<SiteDto> findSitesByUserWilayas(String username, Pageable pageable) {
         return siteRepository.findSitesByUserWilayas(username, pageable).map(data -> asDto(data));
     }
+
+    @Override
+    public Page<SiteDto> findByCitiesUserV1(Boolean audited, List<Integer> cities, String username, Pageable pageable) {
+        return siteRepository.findByCitiesUserV1(audited, cities, username, pageable).map(data -> asDto(data));
+    }
 }

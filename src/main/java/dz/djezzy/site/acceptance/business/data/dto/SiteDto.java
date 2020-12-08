@@ -28,6 +28,7 @@ public class SiteDto implements Serializable {
     private String regionId;
     private String serviceDemandeur;
     private Boolean audited;
+    private Boolean closed;
     private Boolean powerSupplyConform;
 
     private String typeSiteId;

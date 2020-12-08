@@ -15,8 +15,17 @@ public interface CategoriesRepository extends JpaRepository<Categories, Integer>
     @Query("select c from Categories c where c.first = true and c.status = true")
     List<Categories> findFirstCategory();
 
+    @Query("select c from Categories c where c.status = true order by c.orderNum asc")
+    List<Categories> findAllActive();
+
     @Query("select c from Categories c where c.last = true and c.status = true")
     List<Categories> findLastCategory();
+
+    @Query("select c from Categories c where c.first = false and c.status = true order by c.orderNum asc")
+    List<Categories> findAllOnlyFirst();
+
+    @Query("select c from Categories c where c.last = false and c.status = true order by c.orderNum asc")
+    List<Categories> findAllOnlyLast();
 
     @Query("select c from Categories c where c.first = true and c.status = true and c.typeAuditSite.id = ?1")
     List<Categories> findFirstCategoryByTypeAuditSite(Integer typeAuditSiteId);

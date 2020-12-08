@@ -33,6 +33,7 @@ public class AuditSiteDto extends AuditableDto {
 
     private Long siteId;
     private Boolean audited;
+    private Boolean siteClosed;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String siteCode;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)

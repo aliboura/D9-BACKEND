@@ -16,6 +16,6 @@ public class TypeSiteDto implements Serializable {
     private String id;
     private String typeDetailEquip;
     private String typeInstallation;
-    private String typeSiteLib;
+    private String label;
 
 }
