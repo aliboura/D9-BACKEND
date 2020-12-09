@@ -1,6 +1,5 @@
 package dz.djezzy.site.acceptance.business.data.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import dz.djezzy.site.acceptance.tools.BytesDeserializer;
 import lombok.Getter;
@@ -18,9 +17,12 @@ public class UserDto implements Serializable {
 
     private Long id;
     private String username;
+    private String matricule;
+    private String fullName;
     private String firstName;
     private String lastName;
     private String email;
+    private String phone;
     private String regionId;
     @JsonDeserialize(using = BytesDeserializer.class)
     private byte[] imgProfile;

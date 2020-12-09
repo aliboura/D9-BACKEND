@@ -18,6 +18,10 @@ public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredi
     @Query(value = "select u from User u where lower(u.username) = lower(?1)")
     Optional<User> findByUsername(String name);
 
+    Optional<User> findByMatricule(String matricule);
+    Optional<User> findByPhone(String matricule);
+    Optional<User> findByEmail(String email);
+
     @Query(value = "select distinct(u.*) from depdata.user u, depdata.role r, depdata.user_role ur, depdata.user_wilaya w " +
             "where u.id = ur.user_id " +
             "and r.id = ur.role_id " +

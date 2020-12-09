@@ -20,6 +20,8 @@ public interface SiteMapping extends GenericMapper<Site, SiteDto> {
             @Mapping(source = "userDateV1", target = "userV1Date"),
             @Mapping(source = "userV2", target = "userV2"),
             @Mapping(source = "userDateV2", target = "userV2Date"),
+            @Mapping(source = "userOMV1", target = "userOMV1"),
+            @Mapping(source = "userOMV2", target = "userOMV2"),
             @Mapping(source = "wilaya.id", target = "wilayaId"),
             @Mapping(source = "wilaya.label", target = "wilayaLabel")
     })

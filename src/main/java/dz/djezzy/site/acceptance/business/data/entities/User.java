@@ -31,17 +31,24 @@ public class User implements Serializable {
     @Column(name = "username", unique = true)
     private String username;
 
-    @NotNull
+    @Column(name = "matricule")
+    private String matricule;
+
+    @Column(name = "full_name")
+    private String fullName;
+
     @Column(name = "firstname")
     private String firstName;
 
-    @NotNull
     @Column(name = "lastname")
     private String lastName;
 
     @Email
     @Column(name = "email")
     private String email;
+
+    @Column(name = "phone")
+    private String phone;
 
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "enabled")
