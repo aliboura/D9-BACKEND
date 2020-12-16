@@ -83,7 +83,7 @@ public class VisitPlanningServiceIMPL extends GenericServiceImpl<VisitPlanningRe
 
         String mailSubject = "D9 Notification";
 
-        // helper.setFrom("d9.notifications@djezzy.dz", "Site Transfers D9");
+        helper.setFrom("d9.notifications@djezzy.dz", "Site Transfers D9");
         helper.setFrom("mr.boumendjas@gmail.com", "Site Transfers D9");
         helper.setTo(mailRequest.getMails());
         helper.setSubject(mailSubject);
@@ -103,8 +103,7 @@ public class VisitPlanningServiceIMPL extends GenericServiceImpl<VisitPlanningRe
 
         String mailSubject = "D9 Notification";
 
-        // helper.setFrom("d9.notifications@djezzy.dz", "Site Transfers D9");
-        helper.setFrom("mr.boumendjas@gmail.com", "Site Transfers D9");
+        helper.setFrom("d9.notifications@djezzy.dz", "Site Transfers D9");
         helper.setTo(mailRequest.getMails());
         helper.setSubject(mailSubject);
         helper.setText(AppsUtils.getMailContent(true, mailRequest.getCodeSite(), mailRequest.getDateVisit(), mailRequest.getIngenieurSite(), mailRequest.getIngenieurOM()), true);
