@@ -2,9 +2,13 @@ package dz.djezzy.site.acceptance.mapper;
 
 import dz.djezzy.site.acceptance.business.data.dto.AuditSiteDto;
 import dz.djezzy.site.acceptance.business.data.entities.AuditSite;
+import dz.djezzy.site.acceptance.business.data.entities.Site;
 import dz.djezzy.site.acceptance.mapper.config.GenericMapper;
+import dz.djezzy.site.acceptance.tools.SiteUtils;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
+
+import java.util.Date;
 
 @Mapper(componentModel = "spring", uses = {
         CategoriesMapping.class,
@@ -26,14 +30,6 @@ public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto>
             @Mapping(source = "site.typeSite.id", target = "typeSiteId"),
             @Mapping(source = "site.wilaya.label", target = "wilayaLabel"),
             @Mapping(source = "site.serviceDemandeur", target = "serviceDemandeur"),
-            @Mapping(source = "site.userV1", target = "siteUserV1"),
-            @Mapping(source = "site.userOMV1", target = "siteUserOMV1"),
-            @Mapping(source = "site.userDateV1", target = "siteUserDateV1"),
-            @Mapping(source = "site.userOMDateV1", target = "siteUserOMDateV1"),
-            @Mapping(source = "site.userV2", target = "siteUserV2"),
-            @Mapping(source = "site.userOMV2", target = "siteUserOMV2"),
-            @Mapping(source = "site.userDateV2", target = "siteUserDateV2"),
-            @Mapping(source = "site.userOMDateV2", target = "siteUserOMDateV2"),
             @Mapping(source = "currentSatus.id", target = "currentSatusId"),
             @Mapping(source = "currentSatus.label", target = "currentSatusLabel"),
             @Mapping(source = "currentSatus.description", target = "currentSatusDescription"),
@@ -46,7 +42,15 @@ public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto>
             @Mapping(source = "secondDecision.id", target = "secondDecisionId"),
             @Mapping(source = "secondDecision.label", target = "secondDecisionLabel"),
             @Mapping(source = "auditLineList", target = "auditSiteLineDtoList"),
-            @Mapping(source = "statusAuditSitesList", target = "statusAuditSitesDtoList")
+            @Mapping(source = "statusAuditSitesList", target = "statusAuditSitesDtoList"),
+            @Mapping(expression = "java(AuditSiteMapping.getUserV1(source.getSite()))", target = "siteUserV1"),
+            @Mapping(expression = "java(AuditSiteMapping.getUserOMV1(source.getSite()))", target = "siteUserOMV1"),
+            @Mapping(expression = "java(AuditSiteMapping.getUserDateV1(source.getSite()))", target = "siteUserDateV1"),
+            @Mapping(expression = "java(AuditSiteMapping.getUserOMDateV1(source.getSite()))", target = "siteUserOMDateV1"),
+            @Mapping(expression = "java(AuditSiteMapping.getUserV2(source.getSite()))", target = "siteUserV2"),
+            @Mapping(expression = "java(AuditSiteMapping.getUserOMV2(source.getSite()))", target = "siteUserOMV2"),
+            @Mapping(expression = "java(AuditSiteMapping.getUserDateV2(source.getSite()))", target = "siteUserDateV2"),
+            @Mapping(expression = "java(AuditSiteMapping.getUserOMDateV2(source.getSite()))", target = "siteUserOMDateV2"),
     })
     @Override
     AuditSiteDto toDto(AuditSite source);
@@ -95,6 +99,39 @@ public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto>
             entity.setTypeAuditSite(null);
         }
         return entity;
+    }
+
+    static String getUserV1(Site source) {
+        return SiteUtils.getUserV1(source);
+    }
+
+    static String getUserOMV1(Site source) {
+        return SiteUtils.getUserOMV1(source);
+    }
+
+
+    static String getUserV2(Site source) {
+        return SiteUtils.getUserV2(source);
+    }
+
+    static String getUserOMV2(Site source) {
+        return SiteUtils.getUserOMV2(source);
+    }
+
+    static String getUserDateV1(Site source) {
+        return SiteUtils.getUserDateV1String(source);
+    }
+
+    static String getUserDateV2(Site source) {
+        return SiteUtils.getUserDateV2String(source);
+    }
+
+    static String getUserOMDateV1(Site source) {
+        return SiteUtils.getUserOMDateV1String(source);
+    }
+
+    static String getUserOMDateV2(Site source) {
+        return SiteUtils.getUserOMDateV2String(source);
     }
 
 }

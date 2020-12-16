@@ -15,7 +15,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class GenericRestController<S extends GenericService<T, DTO, ID>, T, DTO, ID> implements Serializable {

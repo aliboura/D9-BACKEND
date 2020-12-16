@@ -20,7 +20,8 @@ public interface SiteFormsMapping extends GenericMapper<SiteForms, SiteFormsDto>
 
     @Mappings({
             @Mapping(target = "decision.id", source = "decisionId"),
-            @Mapping(target = "decision.label", source = "decisionLabel")
+            @Mapping(target = "decision.label", source = "decisionLabel"),
+            @Mapping(source = "formsFile", target = "formsFile"),
     })
     @Override
     SiteForms toModel(SiteFormsDto target);

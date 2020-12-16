@@ -68,4 +68,18 @@ public class AppsUtils {
         return (String) auth.getPrincipal();
     }
 
+    public static String getMailContent(String code, String date, String ingSite, String ingOM) {
+
+        String mailContent = "<div " +
+                "style='width:98%;height: 70px;background: #f1f1f1;border: 1px solid #e9e9e9;margin: 5px;font-size: 22px;font-weight: 500;font-family: Century Gothic'>" +
+                "<img src='cid:logoImage' width='55' style='margin-right: 10px' />" +
+                "Site Transfert [ D9 ].</div>";
+        mailContent += "<div style='width:98%;padding:10px;border: 1px solid #e9e9e9;margin: 5px;height: auto;margin-top: 10px'>" +
+                " <h1 style='color: #343a40;margin: 10px;font-family: Century Gothic'>Site N°: " + code + "</h1>";
+        mailContent += "<h5 style='color: #343a40;margin: 10px;font-weight: 400;font-family: Century Gothic'>Vous avez une nouvelle visite programmé pour le site N°: <span style='color: #1E88E5;'>#" + code + "</span> &ensp;&ensp; le : " + date + ".</h5>";
+        mailContent += "<h5 style='color: #343a40;margin: 10px;font-weight: 400;font-family: Century Gothic'>Ingénieur Site : " + ingSite + "</h5>";
+        mailContent += "<h5 style='color: #343a40;margin: 10px;font-weight: 400;font-family: Century Gothic'>Ingénieur O&M : " + ingOM + "</h5><br/>";
+        return mailContent;
+    }
+
 }

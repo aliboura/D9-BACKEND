@@ -1,21 +1,24 @@
 package dz.djezzy.site.acceptance.web;
 
+import dz.djezzy.site.acceptance.business.data.dto.MailRequest;
 import dz.djezzy.site.acceptance.business.data.dto.RoleDto;
 import dz.djezzy.site.acceptance.business.data.dto.UserDto;
 import dz.djezzy.site.acceptance.business.data.dto.VisitPlanningDto;
 import dz.djezzy.site.acceptance.business.data.entities.VisitPlanning;
 import dz.djezzy.site.acceptance.business.services.UserService;
 import dz.djezzy.site.acceptance.business.services.VisitPlanningService;
+import dz.djezzy.site.acceptance.exception.ApplicationException;
 import dz.djezzy.site.acceptance.tools.ApiConstant;
 import dz.djezzy.site.acceptance.tools.AppsUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,6 +29,59 @@ public class VisitPlanningController extends GenericRestController<VisitPlanning
 
     private final UserService userService;
     private final VisitPlanningService visitPlanningService;
+
+    @PostMapping
+    @Override
+    public VisitPlanningDto create(@RequestBody VisitPlanningDto entity) {
+        VisitPlanningDto saved = visitPlanningService.save(entity);
+        if (saved != null) {
+            try {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+                String[] emails = setMails(entity.getEngineerSiteV1Mail(), entity.getEngineerOMV1Mail());
+                String send = visitPlanningService.sendV1Notifications(new MailRequest(entity.getSiteCode(), dateFormat.format(entity.getEngineerSiteDateV1()), entity.getEngineerSiteV1FullName(), entity.getEngineerOMV1FullName(), emails));
+                if (send != "OK") {
+                    throw new ApplicationException("Mail non envoyé");
+                }
+            } catch (UnsupportedEncodingException e) {
+                throw new ApplicationException(e.getMessage());
+            } catch (MessagingException e) {
+                throw new ApplicationException(e.getMessage());
+            }
+        }
+        return saved;
+    }
+
+    @PutMapping
+    @Override
+    public VisitPlanningDto update(VisitPlanningDto entity) {
+        VisitPlanningDto saved = visitPlanningService.save(entity);
+        if (saved != null && saved.getAudited()) {
+            try {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+                String[] emails = setMails(entity.getEngineerSiteV1Mail(), entity.getEngineerOMV1Mail());
+                String send = visitPlanningService.sendV1Notifications(new MailRequest(entity.getSiteCode(), dateFormat.format(entity.getEngineerSiteDateV2()), entity.getEngineerSiteV2FullName(), entity.getEngineerOMV2FullName(), emails));
+                if (send != "OK") {
+                    throw new ApplicationException("Mail non envoyé");
+                }
+            } catch (UnsupportedEncodingException e) {
+                throw new ApplicationException(e.getMessage());
+            } catch (MessagingException e) {
+                throw new ApplicationException(e.getMessage());
+            }
+        }
+        return saved;
+    }
+
+    private String[] setMails(String mailEngineerSite, String mailEngineerOM) {
+        List<String> mails = new ArrayList<>();
+        if (mailEngineerSite != null) {
+            mails.add(mailEngineerSite);
+        }
+        if (mailEngineerOM != null) {
+            mails.add(mailEngineerOM);
+        }
+        return mails.toArray(new String[0]);
+    }
 
     @GetMapping(params = {"page", "size", "sort", "field", "cities"})
     public Page<VisitPlanningDto> findByCities(
