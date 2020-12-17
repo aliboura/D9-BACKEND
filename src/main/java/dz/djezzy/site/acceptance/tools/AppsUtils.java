@@ -68,18 +68,21 @@ public class AppsUtils {
         return (String) auth.getPrincipal();
     }
 
-    public static String getMailContent(Boolean secondVisit, String code, String date, String ingSite, String ingOM) {
+    public static String getMailContent(Boolean secondVisit, String code, String date, String siteAddress, String ingSite, String ingOM) {
         String secondTxt = secondVisit ? "deuxième" : "nouvelle";
         String mailContent = "<div " +
                 "style='width:98%;height: 70px;background: #f1f1f1;border: 1px solid #e9e9e9;margin: 5px;font-size: 22px;font-weight: 500;font-family: Century Gothic'>" +
-                "<img src='cid:logoImage' width='55' style='margin-right: 10px' />" +
-                "Site Transfert [ D9 ].</div>";
-        mailContent += "<div style='width:96%;padding:10px;border-bottom: 1px solid #d0d0d0;margin: 5px;height: auto;margin-top: 10px'>" +
+                "<img src='cid:logoImage' width='284' style='margin: 0px 15px 0px 5px;' />" +
+                "</div>";
+        mailContent += "<br/><div style='width:96%;padding:10px;border-bottom: 1px solid #d0d0d0;margin: 5px;height: auto;margin-top: 10px'>" +
                 " <h1 style='color: #343a40;margin: 10px;font-family: Century Gothic'>Site N°: " + code + "</h1>";
-        mailContent += "<h5 style='color: #343a40;margin: 10px;font-weight: 400;font-family: Century Gothic'>Vous avez une " + secondTxt + " visite programmé pour le site N°: <span style='color: #1E88E5;'>#" + code + "</span> &ensp;&ensp; le : " + date + ".</h5>";
-        mailContent += "<h5 style='color: #343a40;margin: 10px;font-weight: 400;font-family: Century Gothic'>Ingénieur Site : " + ingSite + "</h5>";
-        mailContent += "<h5 style='color: #343a40;margin: 10px 10px 0px 10px;font-weight: 400;font-family: Century Gothic'>Ingénieur O&M : " + ingOM + "</h5><br/></div>";
-        mailContent += "<h5 style='color: #343a40;margin-left: 10px;font-family: Century Gothic;margin-top: -3px;font-weight: 400;font-size: 11px;'>Cet email est une notification automatique, merci de ne pas répondre à ce message. Connectez-vous sur la plateforme Site Transfert [ D9 ] pour retrouver tous les sites auxquel vous êtes affectés.</h5>";
+        mailContent += "<h5 style='color: #343a40;margin: 10px;font-weight: 400;font-family: Century Gothic'>Bonjour,</h5>";
+        mailContent += "<h5 style='color: #343a40;margin: 10px 10px 10px 15px;font-weight: 400;font-family: Century Gothic'>Vous avez une " + secondTxt + " visite programmée le " + date + " du site N°: <span style='color: #1E88E5;'>#" + code + "</span>.</h5>";
+        mailContent += "<h5 style='color: #343a40;margin: 10px 10px 10px 15px;font-weight: 400;font-family: Century Gothic'><strong>Lieu du site :</strong> " + siteAddress + "</h5>";
+        mailContent += "<h5 style='color: #343a40;margin: 10px 10px 10px 15px;font-weight: 400;font-family: Century Gothic'><strong>Ingénieur Site :</strong> " + ingSite + "</h5>";
+        mailContent += "<h5 style='color: #343a40;margin: 10px 10px 0px 15px;font-weight: 400;font-family: Century Gothic'><strong>Ingénieur O&M :</strong> " + ingOM + "</h5><br/>";
+        mailContent += "<h5 style='color: #343a40;margin: 10px;font-weight: 400;font-family: Century Gothic'>Cordialement.</h5></div>";
+        mailContent += "<h5 style='color: #343a40;margin-left: 10px;font-family: Century Gothic;margin-top: -3px;font-weight: 400;font-size: 11px;'>Cet email est une notification automatique, merci de ne pas répondre à ce message. Connectez-vous sur la plateforme Site Transfert [ D9 ] pour retrouver tous les sites auxquels vous êtes affectés.</h5>";
         return mailContent;
     }
 

@@ -17,7 +17,6 @@ public class VisitPlanningDto extends AuditableDto {
     private Long id;
     private Long siteId;
     private String siteCode;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String siteName;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Date dateD1;

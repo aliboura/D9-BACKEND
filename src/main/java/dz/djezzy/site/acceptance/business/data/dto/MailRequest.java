@@ -13,6 +13,7 @@ public class MailRequest implements Serializable {
 
     private String codeSite;
     private String DateVisit;
+    private String siteAddress;
     private String ingenieurSite;
     private String ingenieurOM;
     private String[] mails;

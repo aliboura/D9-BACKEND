@@ -38,7 +38,7 @@ public class VisitPlanningController extends GenericRestController<VisitPlanning
             try {
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 String[] emails = setMails(entity.getEngineerSiteV1Mail(), entity.getEngineerOMV1Mail());
-                String send = visitPlanningService.sendV1Notifications(new MailRequest(entity.getSiteCode(), dateFormat.format(entity.getEngineerSiteDateV1()), entity.getEngineerSiteV1FullName(), entity.getEngineerOMV1FullName(), emails));
+                String send = visitPlanningService.sendV1Notifications(new MailRequest(entity.getSiteCode(), dateFormat.format(entity.getEngineerSiteDateV1()), entity.getSiteName(), entity.getEngineerSiteV1FullName(), entity.getEngineerOMV1FullName(), emails));
                 if (send != "OK") {
                     throw new ApplicationException("Mail non envoyé");
                 }
@@ -59,7 +59,7 @@ public class VisitPlanningController extends GenericRestController<VisitPlanning
             try {
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 String[] emails = setMails(entity.getEngineerSiteV2Mail(), entity.getEngineerOMV2Mail());
-                String send = visitPlanningService.sendV2Notifications(new MailRequest(entity.getSiteCode(), dateFormat.format(entity.getEngineerSiteDateV2()), entity.getEngineerSiteV2FullName(), entity.getEngineerOMV2FullName(), emails));
+                String send = visitPlanningService.sendV2Notifications(new MailRequest(entity.getSiteCode(), dateFormat.format(entity.getEngineerSiteDateV2()), entity.getSiteName(), entity.getEngineerSiteV2FullName(), entity.getEngineerOMV2FullName(), emails));
                 if (send != "OK") {
                     throw new ApplicationException("Mail non envoyé");
                 }
