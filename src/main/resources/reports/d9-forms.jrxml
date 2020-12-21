@@ -133,30 +133,18 @@
 				</reportElement>
 				<imageExpression><![CDATA["reports/logo.png"]]></imageExpression>
 			</image>
-			<textField pattern="MMMM d, yyyy">
-				<reportElement x="495" y="70" width="75" height="20" forecolor="#3B3B3B" uuid="b82cde6d-cf9e-476f-b09e-58a8172cb714">
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="433" y="70" width="105" height="20" forecolor="#3B3B3B" uuid="b82cde6d-cf9e-476f-b09e-58a8172cb714">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<box padding="3"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Arial Black" size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{auditDate}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="460" y="70" width="35" height="20" forecolor="#3B3B3B" uuid="b04d0d4c-341f-491e-9ec9-5872077f8df9">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<box padding="3"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Black" size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Date :]]></text>
-			</staticText>
 			<image isUsingCache="false">
 				<reportElement x="480" y="12" width="65" height="60" uuid="502251b9-cb3d-4de2-95c0-650ba890ca73">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
