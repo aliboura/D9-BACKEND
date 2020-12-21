@@ -39,7 +39,6 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
     private final AuditSiteLineService auditSiteLineService;
     private final StatusAuditSiteService statusAuditSiteService;
 
-
     @Transactional
     @Override
     @PostMapping

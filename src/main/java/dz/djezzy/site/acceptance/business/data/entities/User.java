@@ -52,19 +52,19 @@ public class User implements Serializable {
 
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "enabled")
-    private boolean enabled;
+    private Boolean enabled;
 
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "expired")
-    private boolean expired;
+    private Boolean expired;
 
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "credentials")
-    private boolean credentials;
+    private Boolean credentials;
 
     @Convert(converter = BooleanToCharConverter.class)
     @Column(name = "locked")
-    private boolean locked;
+    private Boolean locked;
 
     @Column(name = "REGION_ID")
     private String regionId;

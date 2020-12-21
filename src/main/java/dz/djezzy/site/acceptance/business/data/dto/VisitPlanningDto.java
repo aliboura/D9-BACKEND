@@ -24,7 +24,6 @@ public class VisitPlanningDto extends AuditableDto {
     private String regionId;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String wilayaLabel;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Boolean audited;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Boolean closed;

@@ -1,6 +1,7 @@
 package dz.djezzy.site.acceptance.business.services;
 
 import dz.djezzy.site.acceptance.business.data.dto.MailRequest;
+import dz.djezzy.site.acceptance.business.data.dto.MailResponse;
 import dz.djezzy.site.acceptance.business.data.dto.VisitPlanningDto;
 import dz.djezzy.site.acceptance.business.data.entities.VisitPlanning;
 import org.springframework.data.domain.Page;
@@ -32,8 +33,8 @@ public interface VisitPlanningService extends GenericService<VisitPlanning, Visi
 
     Integer countEngineerOM(String username, Date date);
 
-    String sendV1Notifications(MailRequest mailRequest) throws UnsupportedEncodingException, MessagingException;
+    MailResponse<String> sendV1Notifications(MailRequest mailRequest) throws UnsupportedEncodingException, MessagingException;
 
-    String sendV2Notifications(MailRequest mailRequest) throws UnsupportedEncodingException, MessagingException;
+    MailResponse<String> sendV2Notifications(MailRequest mailRequest) throws UnsupportedEncodingException, MessagingException;
 
 }

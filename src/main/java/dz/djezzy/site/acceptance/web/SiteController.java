@@ -24,6 +24,13 @@ import java.util.stream.Collectors;
 @RequestMapping(ApiConstant.SITE_API)
 public class SiteController extends GenericRestController<SiteService, Site, SiteDto, Long> {
 
+    private final SiteService siteService;
+
+    @GetMapping(params = {"code"})
+    public SiteDto findByCodeSite(@RequestParam("code") String codeSite) {
+        return siteService.findByCodeSite(codeSite);
+    }
+
     @GetMapping(params = {"page", "size", "sort", "field", "codeSite", "username"})
     public Page<SiteDto> findSites(
             @RequestParam("page") int page,
@@ -33,7 +40,7 @@ public class SiteController extends GenericRestController<SiteService, Site, Sit
             @RequestParam("codeSite") String codeSite,
             @RequestParam("username") String username) {
 
-        return service.findSites(codeSite, username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
+        return siteService.findSites(codeSite, username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
     }
 
     @GetMapping(params = {"page", "size", "sort", "field", "cities"})
@@ -47,7 +54,7 @@ public class SiteController extends GenericRestController<SiteService, Site, Sit
         String[] ids = citiesIds.split(",");
         List<Integer> cities = Arrays.stream(ids).map(x -> Integer.parseInt(x)).collect(Collectors.toList());
 
-        return service.findBySites(false, cities, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
+        return siteService.findBySites(false, cities, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
     }
 
     @GetMapping(params = {"page", "size", "sort", "field", "codeSite", "cities"})
@@ -62,7 +69,7 @@ public class SiteController extends GenericRestController<SiteService, Site, Sit
         String[] ids = citiesIds.split(",");
         List<Integer> cities = Arrays.stream(ids).map(x -> Integer.parseInt(x)).collect(Collectors.toList());
 
-        return service.findByLikeCodeSite(false, "%" + codeSite.toLowerCase() + "%", cities, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
+        return siteService.findByLikeCodeSite(false, "%" + codeSite.toLowerCase() + "%", cities, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
     }
 
     @GetMapping(params = {"page", "size", "sort", "field", "codeSite", "wilayas", "username"})
@@ -78,7 +85,7 @@ public class SiteController extends GenericRestController<SiteService, Site, Sit
         String[] ids = wilayas.split(",");
         List<Integer> cities = Arrays.stream(ids).map(x -> Integer.parseInt(x)).collect(Collectors.toList());
 
-        return service.findSites(codeSite, cities, username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
+        return siteService.findSites(codeSite, cities, username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
     }
 
     @GetMapping(params = {"page", "size", "sort", "field", "user"})
@@ -89,7 +96,7 @@ public class SiteController extends GenericRestController<SiteService, Site, Sit
             @RequestParam("field") String field,
             @RequestParam("user") String username) {
 
-        return service.findSitesByUserWilayas(username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
+        return siteService.findSitesByUserWilayas(username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
     }
 
     @GetMapping(params = {"page", "size", "sort", "field", "wilayas", "username"})
@@ -102,7 +109,7 @@ public class SiteController extends GenericRestController<SiteService, Site, Sit
         String[] ids = wilayas.split(",");
         List<Integer> cities = Arrays.stream(ids).map(x -> Integer.parseInt(x)).collect(Collectors.toList());
 
-        return service.findByCitiesUserV1(false, cities, username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
+        return siteService.findByCitiesUserV1(false, cities, username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
     }
 
 }

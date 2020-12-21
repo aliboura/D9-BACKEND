@@ -19,7 +19,9 @@ public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredi
     Optional<User> findByUsername(String name);
 
     Optional<User> findByMatricule(String matricule);
+
     Optional<User> findByPhone(String matricule);
+
     Optional<User> findByEmail(String email);
 
     @Query(value = "select distinct(u.*) from depdata.user u, depdata.role r, depdata.user_role ur, depdata.user_wilaya w " +
@@ -37,5 +39,11 @@ public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredi
                     "and r.label = ?2 " +
                     "and w.wilaya_id IN ?3",
             nativeQuery = true)
-    Page<User> findUserByRoleFromCities(String username, String role, List<Integer> cities, Pageable pageable);
+    Page<User> findUserByRoleFromCities(String username, String role, List<Integer> cities, Pageable paageable);
+
+    @Query(value = "select u.email from User u where u.username IN ?1")
+    String[] findUsersMail(List<String> users);
+
+    @Query(value = "select u from User u where u.username IN ?1")
+    List<User> findUserInfo(List<String> users);
 }

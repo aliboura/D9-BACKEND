@@ -23,7 +23,8 @@ public class SiteServiceIMPL extends GenericServiceImpl<SiteRepository, Site, Si
 
     @Override
     public SiteDto findByCodeSite(String codeSite) {
-        return asDto(siteRepository.findByCodeSite(codeSite));
+        Site site = siteRepository.findByCodeSite(codeSite);
+        return site != null ? asDto(siteRepository.findByCodeSite(codeSite)) : null;
     }
 
     @Override

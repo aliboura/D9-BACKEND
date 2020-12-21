@@ -1,9 +1,7 @@
 package dz.djezzy.site.acceptance.web;
 
-import dz.djezzy.site.acceptance.business.data.dto.MailRequest;
-import dz.djezzy.site.acceptance.business.data.dto.RoleDto;
-import dz.djezzy.site.acceptance.business.data.dto.UserDto;
-import dz.djezzy.site.acceptance.business.data.dto.VisitPlanningDto;
+import com.sun.mail.util.MailConnectException;
+import dz.djezzy.site.acceptance.business.data.dto.*;
 import dz.djezzy.site.acceptance.business.data.entities.VisitPlanning;
 import dz.djezzy.site.acceptance.business.services.UserService;
 import dz.djezzy.site.acceptance.business.services.VisitPlanningService;
@@ -12,6 +10,7 @@ import dz.djezzy.site.acceptance.tools.ApiConstant;
 import dz.djezzy.site.acceptance.tools.AppsUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.*;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
@@ -30,57 +29,77 @@ public class VisitPlanningController extends GenericRestController<VisitPlanning
     private final UserService userService;
     private final VisitPlanningService visitPlanningService;
 
-    @PostMapping
-    @Override
-    public VisitPlanningDto create(@RequestBody VisitPlanningDto entity) {
-        VisitPlanningDto saved = visitPlanningService.save(entity);
-        if (saved != null) {
-            try {
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String[] emails = setMails(entity.getEngineerSiteV1Mail(), entity.getEngineerOMV1Mail());
-                String send = visitPlanningService.sendV1Notifications(new MailRequest(entity.getSiteCode(), dateFormat.format(entity.getEngineerSiteDateV1()), entity.getSiteName(), entity.getEngineerSiteV1FullName(), entity.getEngineerOMV1FullName(), emails));
-                if (send != "OK") {
-                    throw new ApplicationException("Mail non envoyé");
-                }
-            } catch (UnsupportedEncodingException e) {
-                throw new ApplicationException(e.getMessage());
-            } catch (MessagingException e) {
-                throw new ApplicationException(e.getMessage());
+    @Transactional
+    @PostMapping("/send")
+    public MailResponse<VisitPlanningDto> createVisitAndSendMail(@RequestBody VisitPlanningDto entity) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String[] emails = setMails(entity.getEngineerSiteV1Mail(), entity.getEngineerOMV1Mail());
+            MailResponse<String> send = visitPlanningService.sendV1Notifications(new MailRequest(entity.getSiteCode(), dateFormat.format(entity.getEngineerSiteDateV1()), entity.getSiteName(), entity.getEngineerSiteV1FullName(), entity.getEngineerOMV1FullName(), emails));
+            if (!send.isSuccess()) {
+                return new MailResponse<>("Erreur dans l'envoie du mail.");
             }
+            VisitPlanningDto saved = visitPlanningService.save(entity);
+            return new MailResponse<>(saved);
+        } catch (MailConnectException e) {
+            return new MailResponse<>(e.getMessage());
+        } catch (UnsupportedEncodingException e) {
+            return new MailResponse<>(e.getMessage());
+        } catch (MessagingException e) {
+            return new MailResponse<>(e.getMessage());
         }
-        return saved;
     }
 
-    @PutMapping
-    @Override
-    public VisitPlanningDto update(@RequestBody VisitPlanningDto entity) {
-        VisitPlanningDto saved = visitPlanningService.save(entity);
-        if (saved != null && saved.getAudited()) {
-            try {
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String[] emails = setMails(entity.getEngineerSiteV2Mail(), entity.getEngineerOMV2Mail());
-                String send = visitPlanningService.sendV2Notifications(new MailRequest(entity.getSiteCode(), dateFormat.format(entity.getEngineerSiteDateV2()), entity.getSiteName(), entity.getEngineerSiteV2FullName(), entity.getEngineerOMV2FullName(), emails));
-                if (send != "OK") {
-                    throw new ApplicationException("Mail non envoyé");
-                }
-            } catch (UnsupportedEncodingException e) {
-                throw new ApplicationException(e.getMessage());
-            } catch (MessagingException e) {
-                throw new ApplicationException(e.getMessage());
+    @PutMapping("/send")
+    public MailResponse<VisitPlanningDto> updateVisitAndSendMail(@RequestBody VisitPlanningDto entity) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            List<UserInfo> list = userService.findUserInfo(Arrays.asList(
+                    !entity.getAudited() ? entity.getEngineerSiteV1() : entity.getEngineerSiteV2(),
+                    !entity.getAudited() ? entity.getEngineerOMV1() : entity.getEngineerOMV2()));
+            String[] emails = list.stream().map(x -> x.getEmail()).collect(Collectors.toList()).toArray(new String[0]);
+            MailResponse<String> send = visitPlanningService.sendV2Notifications(
+                    new MailRequest(entity.getSiteCode(),
+                            dateFormat.format(entity.getAudited() ? entity.getEngineerSiteDateV2() : entity.getEngineerSiteDateV1()),
+                            entity.getSiteName(),
+                            getFullName(!entity.getAudited() ? entity.getEngineerSiteV1() : entity.getEngineerSiteV2(), list),
+                            getFullName(!entity.getAudited() ? entity.getEngineerOMV1() : entity.getEngineerOMV2(), list),
+                            emails));
+            if (!send.isSuccess()) {
+                return new MailResponse<>("Erreur dans l'envoie du mail.");
             }
+            VisitPlanningDto saved = visitPlanningService.save(entity);
+            return new MailResponse<>(saved);
+        } catch (MailConnectException e) {
+            return new MailResponse<>(e.getMessage());
+        } catch (UnsupportedEncodingException e) {
+            return new MailResponse<>(e.getMessage());
+        } catch (MessagingException e) {
+            return new MailResponse<>(e.getMessage());
         }
-        return saved;
+    }
+
+    private String getFullName(String username, List<UserInfo> list) {
+        return list.stream().filter(x -> x.getUsername().equalsIgnoreCase(username)).findAny().get().getFullName();
     }
 
     private String[] setMails(String mailEngineerSite, String mailEngineerOM) {
         List<String> mails = new ArrayList<>();
-        if (mailEngineerSite != null) {
+        if (mailEngineerSite != null && !mails.contains(mailEngineerSite)) {
             mails.add(mailEngineerSite);
         }
-        if (mailEngineerOM != null) {
+        if (mailEngineerOM != null && !mails.contains(mailEngineerSite)) {
             mails.add(mailEngineerOM);
         }
         return mails.toArray(new String[0]);
+    }
+
+    private String[] getMails(VisitPlanningDto visitPlanning) {
+        if (visitPlanning.getAudited()) {
+            return userService.findUsersMail(Arrays.asList(visitPlanning.getEngineerSiteV2(), visitPlanning.getEngineerOMV2()));
+        } else {
+            return userService.findUsersMail(Arrays.asList(visitPlanning.getEngineerSiteV1(), visitPlanning.getEngineerOMV1()));
+        }
     }
 
     @GetMapping(params = {"page", "size", "sort", "field", "cities"})

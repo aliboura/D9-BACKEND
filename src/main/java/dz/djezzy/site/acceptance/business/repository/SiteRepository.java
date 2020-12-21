@@ -19,7 +19,6 @@ public interface SiteRepository extends JpaRepository<Site, Long>, QuerydslPredi
     @Query(value = "SELECT s FROM Site s where s.audited = ?1 and s.wilaya.id IN ?2")
     Page<Site> findBySites(Boolean audited, List<Integer> cities, Pageable pageable);
 
-
     @Query(value = "SELECT s FROM Site s where s.audited = ?1 " +
             "and (lower(s.codeSite) like ?2 or lower(s.wilaya.label) like ?2) " +
             "and s.wilaya.id IN ?3 order by s.dateD1 desc")

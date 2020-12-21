@@ -26,10 +26,10 @@ public class UserDto implements Serializable {
     private String regionId;
     @JsonDeserialize(using = BytesDeserializer.class)
     private byte[] imgProfile;
-    private boolean enabled;
-    private boolean expired;
-    private boolean credentials;
-    private boolean locked;
+    private Boolean enabled;
+    private Boolean expired;
+    private Boolean credentials;
+    private Boolean locked;
 
     private Set<RoleDto> roleSet = new HashSet<>();
     private Set<WilayaRegionDto> wilayaSet = new HashSet<>();

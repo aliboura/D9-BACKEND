@@ -1,6 +1,8 @@
 package dz.djezzy.site.acceptance.business.services.impl;
 
+import com.sun.mail.util.MailConnectException;
 import dz.djezzy.site.acceptance.business.data.dto.MailRequest;
+import dz.djezzy.site.acceptance.business.data.dto.MailResponse;
 import dz.djezzy.site.acceptance.business.data.dto.VisitPlanningDto;
 import dz.djezzy.site.acceptance.business.data.entities.VisitPlanning;
 import dz.djezzy.site.acceptance.business.repository.VisitPlanningRepository;
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
+import java.net.ConnectException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -77,40 +80,58 @@ public class VisitPlanningServiceIMPL extends GenericServiceImpl<VisitPlanningRe
         return visitPlanningRepository.countEngineerOM(username, date);
     }
 
-    public String sendV1Notifications(MailRequest mailRequest) throws UnsupportedEncodingException, MessagingException {
+    @Transactional
+    public MailResponse<String> sendV1Notifications(MailRequest mailRequest) {
         MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        MimeMessageHelper helper = null;
+        try {
+            helper = new MimeMessageHelper(message, true);
 
-        String mailSubject = "D9 Notification";
+            String mailSubject = "D9 Notification";
 
-        helper.setFrom("d9.notifications@djezzy.dz", "Site Transfers D9");
-        helper.setTo(mailRequest.getMails());
-        helper.setSubject(mailSubject);
-        helper.setText(AppsUtils.getMailContent(false, mailRequest.getCodeSite(), mailRequest.getDateVisit(), mailRequest.getSiteAddress(), mailRequest.getIngenieurSite(), mailRequest.getIngenieurOM()), true);
+            helper.setFrom("d9.notifications@djezzy.dz", "Site Transfers D9");
+            helper.setTo(mailRequest.getMails());
+            helper.setSubject(mailSubject);
+            helper.setText(AppsUtils.getMailContent(false, mailRequest.getCodeSite(), mailRequest.getDateVisit(), mailRequest.getSiteAddress(), mailRequest.getIngenieurSite(), mailRequest.getIngenieurOM()), true);
 
-        ClassPathResource resource = new ClassPathResource("images/mail-logo.png");
-        helper.addInline("logoImage", resource);
+            ClassPathResource resource = new ClassPathResource("images/mail-logo.png");
+            helper.addInline("logoImage", resource);
 
-        javaMailSender.send(message);
-        return "OK";
+            javaMailSender.send(message);
+            return new MailResponse<>(true, "OK");
+        } catch (MailConnectException e) {
+            return new MailResponse<>(e.getMessage());
+        } catch (MessagingException e) {
+            return new MailResponse<>(e.getMessage());
+        } catch (UnsupportedEncodingException e) {
+            return new MailResponse<>(e.getMessage());
+        }
     }
 
     @Override
-    public String sendV2Notifications(MailRequest mailRequest) throws UnsupportedEncodingException, MessagingException {
+    public MailResponse<String> sendV2Notifications(MailRequest mailRequest) {
         MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        MimeMessageHelper helper = null;
+        try {
+            helper = new MimeMessageHelper(message, true);
 
-        String mailSubject = "D9 Notification";
+            String mailSubject = "D9 Notification";
+            helper.setFrom("d9.notifications@djezzy.dz", "Site Transfers D9");
+            helper.setTo(mailRequest.getMails());
+            helper.setSubject(mailSubject);
+            helper.setText(AppsUtils.getMailContent(true, mailRequest.getCodeSite(), mailRequest.getDateVisit(), mailRequest.getSiteAddress(), mailRequest.getIngenieurSite(), mailRequest.getIngenieurOM()), true);
 
-        helper.setFrom("d9.notifications@djezzy.dz", "Site Transfers D9");
-        helper.setTo(mailRequest.getMails());
-        helper.setSubject(mailSubject);
-        helper.setText(AppsUtils.getMailContent(true, mailRequest.getCodeSite(), mailRequest.getDateVisit(), mailRequest.getSiteAddress(), mailRequest.getIngenieurSite(), mailRequest.getIngenieurOM()), true);
+            ClassPathResource resource = new ClassPathResource("images/mail-logo.png");
+            helper.addInline("logoImage", resource);
 
-        ClassPathResource resource = new ClassPathResource("images/mail-logo.png");
-        helper.addInline("logoImage", resource);
-
-        javaMailSender.send(message);
-        return "OK";
+            javaMailSender.send(message);
+            return new MailResponse<>(true, "OK");
+        } catch (MailConnectException e) {
+            return new MailResponse<>(e.getMessage());
+        } catch (MessagingException e) {
+            return new MailResponse<>(e.getMessage());
+        } catch (UnsupportedEncodingException e) {
+            return new MailResponse<>(e.getMessage());
+        }
     }
 }
