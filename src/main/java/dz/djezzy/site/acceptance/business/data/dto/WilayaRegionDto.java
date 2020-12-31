@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,6 +19,6 @@ public class WilayaRegionDto implements Serializable {
 
     private Integer groupeId;
     private String groupeMails;
-    private List<String> groupSites;
-    private List<String> groupOMs;
+    private List<String> groupSites = new ArrayList<>();
+    private List<String> groupOMs = new ArrayList<>();
 }

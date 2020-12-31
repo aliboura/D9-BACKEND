@@ -104,8 +104,8 @@ public class AppsUtils {
         mailContent += "<h5 style='color: #343a40;margin: 10px;font-weight: 400;font-family: Century Gothic'>Bonjour,</h5>";
         mailContent += "<h5 style='color: #343a40;margin: 10px 10px 10px 15px;font-weight: 400;font-family: Century Gothic'>Le site N°: <span style='color: #1E88E5;'>#" + code + "</span> a été valider " + decisionLabel + " le : " + date + ".</h5>";
         mailContent += "<h5 style='color: #343a40;margin: 10px 10px 10px 15px;font-weight: 400;font-family: Century Gothic'><strong>Ingénieur Site :</strong> " + ingSite + "</h5>";
-        mailContent += "<h5 style='color: #343a40;margin: 10px 10px 0px 15px;font-weight: 400;font-family: Century Gothic'><strong>Ingénieur O&M :</strong> " + ingOM + "</h5><br/>";
-        mailContent += "<h5 style='color: #343a40;margin: 10px 10px 10px 15px;font-weight: 400;font-family: Century Gothic'><strong>Lieu du site :</strong> " + siteAddress + "</h5>";
+        mailContent += "<h5 style='color: #343a40;margin: 10px 10px 0px 15px;font-weight: 400;font-family: Century Gothic'><strong>Ingénieur O&M :</strong> " + ingOM + "</h5>";
+        mailContent += "<h5 style='color: #343a40;margin: 10px 10px 10px 15px;font-weight: 400;font-family: Century Gothic'><strong>Lieu du site :</strong> " + siteAddress + "</h5><br/>";
         mailContent += "<h5 style='color: #343a40;margin: 10px;font-weight: 400;font-family: Century Gothic'>Cordialement.</h5></div>";
         mailContent += "<h5 style='color: #343a40;margin-left: 10px;font-family: Century Gothic;margin-top: -3px;font-weight: 400;font-size: 11px;'>Cet email est une notification automatique, merci de ne pas répondre à ce message. Connectez-vous sur la plateforme Site Transfert [ D9 ] pour retrouver tous les sites auxquels vous êtes affectés.</h5>";
         return mailContent;

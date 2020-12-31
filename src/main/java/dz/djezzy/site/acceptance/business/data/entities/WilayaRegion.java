@@ -8,6 +8,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -35,10 +36,10 @@ public class WilayaRegion {
 
     @Type(type = "list-array")
     @Column(name = "GROUP_SITES", columnDefinition = "text[]")
-    private List<String> groupSites;
+    private List<String> groupSites = new ArrayList<>();
 
     @Type(type = "list-array")
     @Column(name = "GROUP_OMS", columnDefinition = "text[]")
-    private List<String> groupOMs;
+    private List<String> groupOMs = new ArrayList<>();
 
 }

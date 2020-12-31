@@ -19,5 +19,4 @@ public class ApiConstant {
     public static final String TYPE_SITE_API = "/type_sites";
     public static final String VISITS_API = "/visits";
     public static final String FILES_UPLOAD_API = "/uploads";
-    public static final String GROUPS_API = "/groups";
 }
