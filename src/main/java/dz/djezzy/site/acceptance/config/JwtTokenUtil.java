@@ -14,7 +14,10 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.security.*;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
 import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +31,7 @@ public class JwtTokenUtil implements Serializable {
 
     private Clock clock = DefaultClock.INSTANCE;
     private KeyStore keyStore;
+    private static final String domain = "djezzy.dz";
 
     @Value("${jwt.token.expiration.in.seconds}")
     private Long expiration;
@@ -69,7 +73,7 @@ public class JwtTokenUtil implements Serializable {
                 .parseClaimsJws(token).getBody();
     }
 
-    private Boolean isTokenExpired(String token) {
+    public Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(clock.now());
     }
@@ -95,10 +99,12 @@ public class JwtTokenUtil implements Serializable {
 
     private PublicKey getPublickey() {
         try {
-            return keyStore.getCertificate("djezzy.dz").getPublicKey();
+            return keyStore.getCertificate(domain).getPublicKey();
         } catch (KeyStoreException e) {
             throw new ApplicationException("Exception occured while " +
                     "retrieving public key from keystore");
         }
     }
+
+
 }

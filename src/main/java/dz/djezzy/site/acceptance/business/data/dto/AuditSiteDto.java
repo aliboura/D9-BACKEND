@@ -46,19 +46,15 @@ public class AuditSiteDto extends AuditableDto {
     private String wilayaLabel;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String serviceDemandeur;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String siteUserV1;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String siteUserDateV1;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String siteUserV2;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String siteUserDateV2;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String siteUserOMV1;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String siteUserOMDateV1;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String siteUserOMV2;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String siteUserOMDateV2;

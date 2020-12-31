@@ -13,6 +13,7 @@ import java.util.Date;
 @Mapper(componentModel = "spring", uses = {
         CategoriesMapping.class,
         DecisionMapping.class,
+        SiteMapping.class,
         StatusAuditSiteMapping.class,
         AuditSiteLineMapping.class})
 public interface AuditSiteMapping extends GenericMapper<AuditSite, AuditSiteDto> {

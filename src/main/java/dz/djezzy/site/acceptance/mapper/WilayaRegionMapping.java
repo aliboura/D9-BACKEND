@@ -10,4 +10,10 @@ import org.mapstruct.factory.Mappers;
 public interface WilayaRegionMapping extends GenericMapper<WilayaRegion, WilayaRegionDto> {
 
     WilayaRegionMapping INSTANCE = Mappers.getMapper(WilayaRegionMapping.class);
+
+    @Override
+    WilayaRegionDto toDto(WilayaRegion source);
+
+    @Override
+    WilayaRegion toModel(WilayaRegionDto target);
 }

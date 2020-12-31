@@ -25,14 +25,10 @@ public class VisitPlanningDto extends AuditableDto {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String wilayaLabel;
     private Boolean audited;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Boolean closed;
-    ;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String typeSiteId;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Boolean firstVisit;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Boolean secondVisit;
 
     private String engineerSiteV1;

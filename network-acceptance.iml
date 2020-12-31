@@ -110,6 +110,8 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.springframework.boot:spring-boot-devtools:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: com.vladmihalcea:hibernate-types-52:2.10.1" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.10.2" level="project" />
     <orderEntry type="library" name="Maven: com.querydsl:querydsl-apt:4.1.4" level="project" />
     <orderEntry type="library" name="Maven: com.querydsl:querydsl-codegen:4.1.4" level="project" />
     <orderEntry type="library" name="Maven: com.mysema.codegen:codegen:0.6.8" level="project" />
@@ -185,6 +187,7 @@
     <orderEntry type="library" name="Maven: com.opencsv:opencsv:5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.13" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.8.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test-autoconfigure:2.2.5.RELEASE" level="project" />

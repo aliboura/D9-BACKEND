@@ -32,11 +32,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private UserService userService;
 
-    @Value("${jwt.http.request.header}")
-    private String tokenHeader;
-
-    @Value("${jwt.http.request.prefix}")
-    private String prefix;
+    private final static String tokenHeader = "Authorization";
+    private final static String prefix = "DjezzyDevs-";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

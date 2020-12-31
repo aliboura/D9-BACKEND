@@ -33,8 +33,4 @@ public interface VisitPlanningService extends GenericService<VisitPlanning, Visi
 
     Integer countEngineerOM(String username, Date date);
 
-    MailResponse<String> sendV1Notifications(MailRequest mailRequest) throws UnsupportedEncodingException, MessagingException;
-
-    MailResponse<String> sendV2Notifications(MailRequest mailRequest) throws UnsupportedEncodingException, MessagingException;
-
 }

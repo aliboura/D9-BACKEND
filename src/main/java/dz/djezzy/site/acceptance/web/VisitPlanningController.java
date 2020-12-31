@@ -3,9 +3,9 @@ package dz.djezzy.site.acceptance.web;
 import com.sun.mail.util.MailConnectException;
 import dz.djezzy.site.acceptance.business.data.dto.*;
 import dz.djezzy.site.acceptance.business.data.entities.VisitPlanning;
+import dz.djezzy.site.acceptance.business.services.MailService;
 import dz.djezzy.site.acceptance.business.services.UserService;
 import dz.djezzy.site.acceptance.business.services.VisitPlanningService;
-import dz.djezzy.site.acceptance.exception.ApplicationException;
 import dz.djezzy.site.acceptance.tools.ApiConstant;
 import dz.djezzy.site.acceptance.tools.AppsUtils;
 import lombok.AllArgsConstructor;
@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 public class VisitPlanningController extends GenericRestController<VisitPlanningService, VisitPlanning, VisitPlanningDto, Long> {
 
     private final UserService userService;
+    private final MailService mailService;
     private final VisitPlanningService visitPlanningService;
 
     @Transactional
@@ -35,7 +36,16 @@ public class VisitPlanningController extends GenericRestController<VisitPlanning
         try {
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String[] emails = setMails(entity.getEngineerSiteV1Mail(), entity.getEngineerOMV1Mail());
-            MailResponse<String> send = visitPlanningService.sendV1Notifications(new MailRequest(entity.getSiteCode(), dateFormat.format(entity.getEngineerSiteDateV1()), entity.getSiteName(), entity.getEngineerSiteV1FullName(), entity.getEngineerOMV1FullName(), emails));
+            MailResponse<String> send = mailService.sendNotifications(
+                    false,
+                    new MailRequest(entity.getSiteCode(),
+                            dateFormat.format(entity.getEngineerSiteDateV1()),
+                            entity.getSiteName(),
+                            entity.getEngineerSiteV1FullName(),
+                            entity.getEngineerOMV1FullName(),
+                            null,
+                            emails,
+                            null));
             if (!send.isSuccess()) {
                 return new MailResponse<>("Erreur dans l'envoie du mail.");
             }
@@ -58,13 +68,16 @@ public class VisitPlanningController extends GenericRestController<VisitPlanning
                     !entity.getAudited() ? entity.getEngineerSiteV1() : entity.getEngineerSiteV2(),
                     !entity.getAudited() ? entity.getEngineerOMV1() : entity.getEngineerOMV2()));
             String[] emails = list.stream().map(x -> x.getEmail()).collect(Collectors.toList()).toArray(new String[0]);
-            MailResponse<String> send = visitPlanningService.sendV2Notifications(
+            MailResponse<String> send = mailService.sendNotifications(
+                    entity.getAudited(),
                     new MailRequest(entity.getSiteCode(),
-                            dateFormat.format(entity.getAudited() ? entity.getEngineerSiteDateV2() : entity.getEngineerSiteDateV1()),
+                            dateFormat.format(entity.getFirstVisit() ? entity.getEngineerSiteDateV2() : entity.getEngineerSiteDateV1()),
                             entity.getSiteName(),
-                            getFullName(!entity.getAudited() ? entity.getEngineerSiteV1() : entity.getEngineerSiteV2(), list),
-                            getFullName(!entity.getAudited() ? entity.getEngineerOMV1() : entity.getEngineerOMV2(), list),
-                            emails));
+                            getFullName(entity.getAudited() ? entity.getEngineerSiteV2() : entity.getEngineerSiteV1(), list),
+                            getFullName(entity.getAudited() ? entity.getEngineerOMV2() : entity.getEngineerOMV1(), list),
+                            null,
+                            emails,
+                            null));
             if (!send.isSuccess()) {
                 return new MailResponse<>("Erreur dans l'envoie du mail.");
             }

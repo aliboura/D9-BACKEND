@@ -1,18 +1,24 @@
 package dz.djezzy.site.acceptance.business.data.entities;
 
+import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.*;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "WILAYA_REGION", schema = "DEPDATA")
+@TypeDef(
+        name = "list-array",
+        typeClass = ListArrayType.class
+)
 public class WilayaRegion {
 
     @Id
@@ -26,5 +32,13 @@ public class WilayaRegion {
     @Basic
     @Column(name = "REGION_ID", length = 1)
     private String regionId;
+
+    @Type(type = "list-array")
+    @Column(name = "GROUP_SITES", columnDefinition = "text[]")
+    private List<String> groupSites;
+
+    @Type(type = "list-array")
+    @Column(name = "GROUP_OMS", columnDefinition = "text[]")
+    private List<String> groupOMs;
 
 }

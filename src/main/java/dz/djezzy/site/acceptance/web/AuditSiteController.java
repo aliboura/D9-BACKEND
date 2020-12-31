@@ -1,8 +1,10 @@
 package dz.djezzy.site.acceptance.web;
 
 import com.google.zxing.WriterException;
+import com.sun.mail.util.MailConnectException;
 import dz.djezzy.site.acceptance.business.data.dto.*;
 import dz.djezzy.site.acceptance.business.data.entities.AuditSite;
+import dz.djezzy.site.acceptance.business.data.entities.WilayaRegion;
 import dz.djezzy.site.acceptance.business.data.enums.StatusEnum;
 import dz.djezzy.site.acceptance.business.services.*;
 import dz.djezzy.site.acceptance.reporting.ReportService;
@@ -21,9 +23,15 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.activation.DataSource;
+import javax.mail.MessagingException;
+import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -33,9 +41,12 @@ import java.util.stream.Collectors;
 public class AuditSiteController extends GenericRestController<AuditSiteService, AuditSite, AuditSiteDto, Integer> {
 
     private final SiteService siteService;
+    private final UserService userService;
+    private final MailService mailService;
     private final ReportService reportService;
     private final AuditSiteService auditSiteService;
     private final CategoriesService categoriesService;
+    private final WilayaRegionService wilayaRegionService;
     private final AuditSiteLineService auditSiteLineService;
     private final StatusAuditSiteService statusAuditSiteService;
 
@@ -60,7 +71,7 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
     @PreAuthorize("hasAnyAuthority('ROLE_ENGINEER_SITE','ROLE_ENGINEER_OM')")
     @Transactional
     @PutMapping(value = "/goToFinish")
-    public AuditSiteDto goToFinish(@RequestBody AuditStepsDto steps) {
+    public AuditSiteDto goToFinish(@RequestBody AuditStepsDto steps) throws WriterException, JRException {
         AuditSiteDto doSaved = auditSiteService.goToNextSteps(steps);
         Optional<StatusDto> status = auditSiteService.checkStatus(doSaved);
         if (status.isPresent()) {
@@ -74,6 +85,7 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
                     siteService.save(site.get());
                 }
             }
+
             if (status.get().getLabel().equals(StatusEnum.Validate_Site.toString())) {
                 if (doSaved.getFirstVisit() && !doSaved.getSecondVisit()) {
                     doSaved.setFirstVisit(false);
@@ -89,7 +101,31 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
             StatusAuditSiteDto statusAuditSiteDto = auditSiteService.createStatusAudit(saved);
             statusAuditSiteService.save(statusAuditSiteDto);
         }
+
+        if (status.isPresent() && isLast(status.get())) {
+            sendMail(setUsers(saved, steps.getAuditSite()));
+        }
         return saved;
+    }
+
+    private AuditSiteDto setUsers(AuditSiteDto output, AuditSiteDto input) {
+        if (input.getSiteUserV1() != null && !input.getSiteUserV1().equals("-")) {
+            output.setSiteUserV1(input.getSiteUserV1());
+        }
+        if (input.getSiteUserV2() != null && !input.getSiteUserV2().equals("-")) {
+            output.setSiteUserV2(input.getSiteUserV2());
+        }
+        if (input.getSiteUserOMV1() != null && !input.getSiteUserOMV1().equals("-")) {
+            output.setSiteUserOMV1(input.getSiteUserOMV1());
+        }
+        if (input.getSiteUserOMV2() != null && !input.getSiteUserOMV2().equals("-")) {
+            output.setSiteUserOMV2(input.getSiteUserOMV2());
+        }
+        return output;
+    }
+
+    private boolean isLast(StatusDto status) {
+        return status.getLabel().equalsIgnoreCase(StatusEnum.No_Conform.toString()) || status.getLabel().equalsIgnoreCase(StatusEnum.Conform.toString()) || status.getLabel().equalsIgnoreCase(StatusEnum.Accepted.toString());
     }
 
     private void changeCurrentStatus(AuditSiteDto siteDto) {
@@ -228,25 +264,27 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
         return auditSiteService.findByEngineerSite(username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
     }
 
+    private JasperPrint getJasperPrint(AuditSiteDto auditSite) throws IOException, JRException, WriterException {
+        List<AuditSiteDto> data = Arrays.asList(auditSite);
+        Map<String, Object> params = new HashMap<>();
+        params.put("P_AUDIT", auditSite.getId());
+        JRBeanCollectionDataSource dataSourceLines = new JRBeanCollectionDataSource(auditSite.getAuditSiteLineDtoList());
+        params.put("PAuditSiteLinesCollect", dataSourceLines);
+        List<String> status = auditSite.getStatusAuditSitesDtoList().stream().map(x -> x.getStatusLabel() + " - " + x.getStatusDate()).collect(Collectors.toList());
+        InputStream qrcode = AppsUtils.writeImage("png", AppsUtils.generateMatrix(status.toString(), 400));
+        params.put("P_QR", qrcode);
+        params.put("P_USER_PRINT", AppsUtils.getUserPrincipal().toUpperCase());
+        JRBeanCollectionDataSource dataSourceRecaps = new JRBeanCollectionDataSource(getAuditRecap(auditSite));
+        params.put("PAuditRecapsCollect", dataSourceRecaps);
+
+        return reportService.coompileReport("d9-forms", data, params);
+    }
 
     @GetMapping(value = "/toPdf", params = {"id"})
     public ResponseEntity<byte[]> exportToPdf(@RequestParam("id") Integer id) throws IOException, JRException, WriterException {
         Optional<AuditSiteDto> auditSite = auditSiteService.findById(id);
         if (auditSite.isPresent()) {
-            List<AuditSiteDto> data = Arrays.asList(auditSite.get());
-            Map<String, Object> params = new HashMap<>();
-            params.put("P_AUDIT", auditSite.get().getId());
-            JRBeanCollectionDataSource dataSourceLines = new JRBeanCollectionDataSource(auditSite.get().getAuditSiteLineDtoList());
-            params.put("PAuditSiteLinesCollect", dataSourceLines);
-            List<String> status = auditSite.get().getStatusAuditSitesDtoList().stream().map(x -> x.getStatusLabel() + " - " + x.getStatusDate()).collect(Collectors.toList());
-            InputStream qrcode = AppsUtils.writeImage("png", AppsUtils.generateMatrix(status.toString(), 400));
-            params.put("P_QR", qrcode);
-            params.put("P_USER_PRINT", AppsUtils.getUserPrincipal().toUpperCase());
-            JRBeanCollectionDataSource dataSourceRecaps = new JRBeanCollectionDataSource(getAuditRecap(auditSite.get()));
-            params.put("PAuditRecapsCollect", dataSourceRecaps);
-
-            JasperPrint jasperPrint = reportService.coompileReport("d9-forms", data, params);
-
+            JasperPrint jasperPrint = getJasperPrint(auditSite.get());
             return reportService.exportToPDF(jasperPrint, "application/pdf", "audit-d9");
         }
         return (ResponseEntity<byte[]>) ResponseEntity.badRequest();
@@ -275,4 +313,62 @@ public class AuditSiteController extends GenericRestController<AuditSiteService,
         }
     }
 
+
+    private MailResponse<String> sendMail(AuditSiteDto entity) throws JRException, WriterException {
+        try {
+            List<String> emails = new ArrayList<>();
+            List<String> cc = new ArrayList<>();
+            JasperPrint jasperPrint = getJasperPrint(entity);
+            DataSource aAttachment = new ByteArrayDataSource(reportService.exportToByte(jasperPrint), "application/pdf");
+
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            List<UserInfo> list = userService.findUserInfo(Arrays.asList(
+                    entity.getSecondVisit() ? entity.getSiteUserV2() : entity.getSiteUserV1(),
+                    entity.getSecondVisit() ? entity.getSiteUserOMV2() : entity.getSiteUserOMV2()));
+            emails.addAll(list.stream().map(x -> x.getEmail()).collect(Collectors.toList()));
+            Optional<WilayaRegionDto> wilaya = wilayaRegionService.findById(entity.getWilayaId());
+            if (wilaya.isPresent()) {
+                if (wilaya.get().getGroupSites() != null)
+                    cc.addAll(wilaya.get().getGroupSites());
+                if (wilaya.get().getGroupOMs() != null)
+                    cc.addAll(wilaya.get().getGroupOMs());
+            }
+            MailResponse<String> send = mailService.sendNotifications(
+                    false,
+                    new MailRequest(entity.getSiteCode(),
+                            dateFormat.format(entity.getSecondVisit() ? entity.getSecondDecisionDate() : entity.getFirstDecisionDate()),
+                            entity.getSiteName(),
+                            entity.getSecondVisit() ? entity.getSecondDecisionEngineerSite() : entity.getFirstDecisionEngineerSite(),
+                            entity.getSecondVisit() ? entity.getSecondDecisionEngineerOM() : entity.getFirstDecisionEngineerOM(),
+                            entity.getSecondVisit() ? entity.getSecondDecisionLabel() : entity.getFirstDecisionLabel(),
+                            emails.toArray(new String[0]),
+                            cc.toArray(new String[0])),
+                    aAttachment);
+            if (!send.isSuccess()) {
+                return new MailResponse<>("Erreur dans l'envoie du mail.");
+            }
+            return new MailResponse<>("OK");
+        } catch (MailConnectException e) {
+            return new MailResponse<>(e.getMessage());
+        } catch (UnsupportedEncodingException e) {
+            return new MailResponse<>(e.getMessage());
+        } catch (MessagingException e) {
+            return new MailResponse<>(e.getMessage());
+        } catch (IOException e) {
+            return new MailResponse<>(e.getMessage());
+        }
+
+    }
+
+    private String[] setMails(String mailEngineerSite, String mailEngineerOM) {
+        List<String> mails = new ArrayList<>();
+        if (mailEngineerSite != null && !mails.contains(mailEngineerSite)) {
+            mails.add(mailEngineerSite + "@djezzy.dz");
+        }
+        if (mailEngineerOM != null && !mails.contains(mailEngineerSite)) {
+            mails.add(mailEngineerOM + "@djezzy.dz");
+        }
+        return mails.toArray(new String[0]);
+    }
 }

@@ -34,7 +34,7 @@ public class ReportService {
 
 
     public ResponseEntity<byte[]> exportToPDF(JasperPrint jasperPrint, String fileType, String fileName) throws JRException {
-        byte[] bytes = JasperExportManager.exportReportToPdf(jasperPrint);
+        byte[] bytes = exportToByte(jasperPrint);
         ContentDisposition contentDisposition = ContentDisposition.builder("inline")
                 .filename(fileName + ".pdf").build();
         HttpHeaders headers = new HttpHeaders();
@@ -44,6 +44,10 @@ public class ReportService {
                 .header("Content-Type", fileType + "; charset=UTF-8")
                 .headers(headers)
                 .body(bytes);
+    }
+
+    public byte[] exportToByte(JasperPrint jasperPrint) throws JRException {
+        return JasperExportManager.exportReportToPdf(jasperPrint);
     }
 
     public void exportToExcel(HttpServletResponse response, JasperPrint jasperPrint, String fileType, String fileName) throws IOException, JRException {
