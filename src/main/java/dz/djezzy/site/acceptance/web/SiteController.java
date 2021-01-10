@@ -112,4 +112,11 @@ public class SiteController extends GenericRestController<SiteService, Site, Sit
         return siteService.findByCitiesUserV1(false, cities, username, PageRequest.of(page, size, Sort.by(AppsUtils.getSortDirection(sort), field)));
     }
 
+    @GetMapping(params = {"regionId", "wilayas"})
+    public List<SiteDto> findNonAuditedSite(@RequestParam("regionId") String regionId, @RequestParam("wilayas") String wilayas) {
+        String[] ids = wilayas.split(",");
+        List<Integer> cities = Arrays.stream(ids).map(x -> Integer.parseInt(x)).collect(Collectors.toList());
+        return siteService.findNonAuditedSite(regionId, cities);
+    }
+
 }

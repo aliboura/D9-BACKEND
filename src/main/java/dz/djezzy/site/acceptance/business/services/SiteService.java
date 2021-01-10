@@ -23,4 +23,6 @@ public interface SiteService extends GenericService<Site, SiteDto, Long> {
 
     Page<SiteDto> findByCitiesUserV1(Boolean audited, List<Integer> cities, String username, Pageable pageable);
 
+    List<SiteDto> findNonAuditedSite(String regionId, List<Integer> cities);
+
 }

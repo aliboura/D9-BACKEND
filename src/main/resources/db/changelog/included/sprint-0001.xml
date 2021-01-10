@@ -15,4 +15,186 @@
 
     </changeSet>
 
+    <changeSet id="0001-02" author="RBOU">
+        <createIndex indexName="IDX_AUDIT_SITE_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE">
+            <column name="SITE_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AUDIT_USER_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE">
+            <column name="USER_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AUDIT_WILAYA_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE">
+            <column name="WILAYA_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AUDIT_REGION_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE">
+            <column name="REGION_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AUDIT_CATEGORIE_CURRENT_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE">
+            <column name="CATEGORIE_CURRENT_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AUDIT_FISRT_DECISION_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE">
+            <column name="FISRT_DECISION_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AUDIT_SECOND_DECISION_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE">
+            <column name="SECOND_DECISION_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AUDIT_STATUS_CURRENT_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE">
+            <column name="STATUS_CURRENT_ID"/>
+        </createIndex>
+        <!--        Audit Lines Indexes    -->
+        <createIndex indexName="IDX_AUDIT_LINE_LABEL"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE_LINE">
+            <column name="LABEL"/>
+        </createIndex>
+        <createIndex indexName="IDX_AUDIT_LINE_AUDIT_SITE_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE_LINE">
+            <column name="AUDIT_SITE_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AUDIT_LINE_SUB_CATEGORIES_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE_LINE">
+            <column name="SUB_CATEGORIES_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AUDIT_LINE_FIRST_DECISION_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE_LINE">
+            <column name="FIRST_DECISION_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AUDIT_LINE_SECOND_DECISION_ID"
+                     schemaName="DEPDATA"
+                     tableName="AUDIT_SITE_LINE">
+            <column name="SECOND_DECISION_ID"/>
+        </createIndex>
+        <!--        Site Indexes           -->
+        <createIndex indexName="IDX_SITE_CODE"
+                     schemaName="DEPDATA"
+                     tableName="SITE">
+            <column name="CODE_SITE"/>
+        </createIndex>
+        <createIndex indexName="IDX_SITE_DATE_D1"
+                     schemaName="DEPDATA"
+                     tableName="SITE">
+            <column name="DATE_D1"/>
+        </createIndex>
+        <createIndex indexName="IDX_SITE_REGION_ID"
+                     schemaName="DEPDATA"
+                     tableName="SITE">
+            <column name="REGION_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_SITE_WILAYA_ID"
+                     schemaName="DEPDATA"
+                     tableName="SITE">
+            <column name="WILAYA_ID"/>
+        </createIndex>
+        <!--        VISIT_PLANNING Indexes           -->
+        <createIndex indexName="IDX_VISIT_PLANNING_SITE_ID"
+                     schemaName="DEPDATA"
+                     tableName="VISIT_PLANNING">
+            <column name="SITE_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_VISIT_PLANNING_ENGINEER_SITE_V1"
+                     schemaName="DEPDATA"
+                     tableName="VISIT_PLANNING">
+            <column name="ENGINEER_SITE_V1"/>
+        </createIndex>
+        <createIndex indexName="IDX_VISIT_PLANNING_ENGINEER_SITE_V2"
+                     schemaName="DEPDATA"
+                     tableName="VISIT_PLANNING">
+            <column name="ENGINEER_SITE_V2"/>
+        </createIndex>
+        <createIndex indexName="IDX_VISIT_PLANNING_ENGINEER_OM_V1"
+                     schemaName="DEPDATA"
+                     tableName="VISIT_PLANNING">
+            <column name="ENGINEER_OM_V1"/>
+        </createIndex>
+        <createIndex indexName="IDX_VISIT_PLANNING_ENGINEER_OM_V2"
+                     schemaName="DEPDATA"
+                     tableName="VISIT_PLANNING">
+            <column name="ENGINEER_OM_V2"/>
+        </createIndex>
+        <!--        User Indexes           -->
+        <createIndex indexName="IDX_USER_ENGINEER_USERNAME"
+                     schemaName="DEPDATA"
+                     tableName="user"
+                     unique="true">
+            <column name="username"/>
+        </createIndex>
+        <createIndex indexName="IDX_USER_MATRICULE"
+                     schemaName="DEPDATA"
+                     tableName="user"
+                     unique="true">
+            <column name="matricule"/>
+        </createIndex>
+        <createIndex indexName="IDX_USER_EMAIL"
+                     schemaName="DEPDATA"
+                     tableName="user"
+                     unique="true">
+            <column name="email"/>
+        </createIndex>
+        <createIndex indexName="IDX_USER_PHONE"
+                     schemaName="DEPDATA"
+                     tableName="user"
+                     unique="true">
+            <column name="phone"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="0001-03" author="RBOU">
+        <!--        CATEGORY Indexes           -->
+        <createIndex indexName="IDX_CATEGORY_LABEL"
+                     schemaName="DEPDATA"
+                     tableName="CATEGORY"
+                     unique="true">
+            <column name="LABEL"/>
+        </createIndex>
+        <createIndex indexName="IDX_CATEGORY_NEXT_CATEGORY_ID"
+                     schemaName="DEPDATA"
+                     tableName="CATEGORY"
+                     unique="true">
+            <column name="NEXT_CATEGORY_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_CATEGORY_PREVIOUS_CATEGORY_ID"
+                     schemaName="DEPDATA"
+                     tableName="CATEGORY"
+                     unique="true">
+            <column name="PREVIOUS_CATEGORY_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_CATEGORY_orderNum"
+                     schemaName="DEPDATA"
+                     tableName="CATEGORY"
+                     unique="true">
+            <column name="orderNum"/>
+        </createIndex>
+        <!--        SUB_CATEGORY Indexes           -->
+        <createIndex indexName="IDX_SUB_CATEGORIES_LABEL"
+                     schemaName="DEPDATA"
+                     tableName="SUB_CATEGORIES"
+                     unique="true">
+            <column name="LABEL"/>
+        </createIndex>
+        <createIndex indexName="IDX_SUB_CATEGORIES_CATEGORY_ID"
+                     schemaName="DEPDATA"
+                     tableName="SUB_CATEGORIES"
+                     unique="true">
+            <column name="CATEGORY_ID"/>
+        </createIndex>
+    </changeSet>
+
 </databaseChangeLog>

@@ -52,4 +52,9 @@ public interface SiteRepository extends JpaRepository<Site, Long>, QuerydslPredi
             "and p.engineerSiteV1 = ?3 " +
             "and s.wilaya.id IN ?2")
     Page<Site> findByCitiesUserV1(Boolean audited, List<Integer> cities, String username, Pageable pageable);
+
+    @Query(value = "SELECT s.* FROM depdata.site s where " +
+            "NOT EXISTS(SELECT v.* FROM depdata.visit_planning v WHERE v.site_id = s.site_id) " +
+            "and s.region_id = ?1 and s.wilaya_id in ?2", nativeQuery = true)
+    List<Site> findNonAuditedSite(String regionId, List<Integer> cities);
 }
