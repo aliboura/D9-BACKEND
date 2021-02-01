@@ -5,6 +5,7 @@ public class ApiConstant {
     public static final String SITE_API = "/sites";
     public static final String SITE_FORMS_API = "/sites_forms";
     public static final String AUDIT_SITE_API = "/audit_sites";
+    public static final String V_AUDIT_SITE_API = "/v_audit_sites";
     public static final String TYPE_AUDIT_SITE_API = "/type_audit_sites";
     public static final String AUDIT_SITE_LINE_API = "/audit_lines";
     public static final String CATEGORY_API = "/categories";

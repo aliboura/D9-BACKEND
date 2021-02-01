@@ -6,14 +6,14 @@
 	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 
-    <changeSet id="0001-01" author="RBOU">
+<!--    <changeSet id="0001-01" author="RBOU">-->
 
-        <sql>
-            CREATE SCHEMA depdata;
-            CREATE SCHEMA ndepdata;
-        </sql>
+<!--        <sql>-->
+<!--            CREATE SCHEMA depdata;-->
+<!--            CREATE SCHEMA ndepdata;-->
+<!--        </sql>-->
 
-    </changeSet>
+<!--    </changeSet>-->
 
     <changeSet id="0001-02" author="RBOU">
         <createIndex indexName="IDX_AUDIT_SITE_ID"
@@ -132,26 +132,22 @@
         <!--        User Indexes           -->
         <createIndex indexName="IDX_USER_ENGINEER_USERNAME"
                      schemaName="DEPDATA"
-                     tableName="user"
-                     unique="true">
+                     tableName="user">
             <column name="username"/>
         </createIndex>
         <createIndex indexName="IDX_USER_MATRICULE"
                      schemaName="DEPDATA"
-                     tableName="user"
-                     unique="true">
+                     tableName="user">
             <column name="matricule"/>
         </createIndex>
         <createIndex indexName="IDX_USER_EMAIL"
                      schemaName="DEPDATA"
-                     tableName="user"
-                     unique="true">
+                     tableName="user">
             <column name="email"/>
         </createIndex>
         <createIndex indexName="IDX_USER_PHONE"
                      schemaName="DEPDATA"
-                     tableName="user"
-                     unique="true">
+                     tableName="user">
             <column name="phone"/>
         </createIndex>
     </changeSet>
@@ -160,41 +156,46 @@
         <!--        CATEGORY Indexes           -->
         <createIndex indexName="IDX_CATEGORY_LABEL"
                      schemaName="DEPDATA"
-                     tableName="CATEGORY"
-                     unique="true">
+                     tableName="CATEGORY">
             <column name="LABEL"/>
         </createIndex>
         <createIndex indexName="IDX_CATEGORY_NEXT_CATEGORY_ID"
                      schemaName="DEPDATA"
-                     tableName="CATEGORY"
-                     unique="true">
+                     tableName="CATEGORY">
             <column name="NEXT_CATEGORY_ID"/>
         </createIndex>
         <createIndex indexName="IDX_CATEGORY_PREVIOUS_CATEGORY_ID"
                      schemaName="DEPDATA"
-                     tableName="CATEGORY"
-                     unique="true">
+                     tableName="CATEGORY">
             <column name="PREVIOUS_CATEGORY_ID"/>
         </createIndex>
         <createIndex indexName="IDX_CATEGORY_orderNum"
                      schemaName="DEPDATA"
-                     tableName="CATEGORY"
-                     unique="true">
-            <column name="orderNum"/>
+                     tableName="CATEGORY">
+            <column name="ORDER_NUM"/>
         </createIndex>
         <!--        SUB_CATEGORY Indexes           -->
         <createIndex indexName="IDX_SUB_CATEGORIES_LABEL"
                      schemaName="DEPDATA"
-                     tableName="SUB_CATEGORIES"
-                     unique="true">
+                     tableName="SUB_CATEGORIES">
             <column name="LABEL"/>
         </createIndex>
         <createIndex indexName="IDX_SUB_CATEGORIES_CATEGORY_ID"
                      schemaName="DEPDATA"
-                     tableName="SUB_CATEGORIES"
-                     unique="true">
+                     tableName="SUB_CATEGORIES">
             <column name="CATEGORY_ID"/>
         </createIndex>
+    </changeSet>
+
+    <changeSet author="RBOU" id="0001-04">
+        <createView replaceIfExists="false"
+                    schemaName="DEPDATA"
+                    viewName="V_AUDIT_SITE">
+            SELECT a.id as audit_id, a.date_audit as date, s.code_site as code, s.audited, s.region_id as region,
+            w.id as wilaya_id, w.label as wilaya, a.first_visit, a.second_visit, st.id as status_id, st.label as status
+            FROM depdata.audit_site a, depdata.site s, depdata.status st, depdata.wilaya_region w
+            WHERE a.site_id = s.site_id AND st.id = a.status_current_id AND w.id = s.wilaya_id
+        </createView>
     </changeSet>
 
 </databaseChangeLog>

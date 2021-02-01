@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Base64;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -19,8 +20,9 @@ public class UserRestController extends GenericRestController<UserService, User,
     private final UserService userService;
 
     @GetMapping(params = {"username"})
-    public UserDto findByUsername(@RequestParam("username") String name) {
-        Optional<UserDto> optionalUserDto = userService.findByUsername(name);
+    public UserDto findByUsername(@RequestParam("username") String username) {
+        byte[] decodedBytes = Base64.getUrlDecoder().decode(username);
+        Optional<UserDto> optionalUserDto = userService.findByUsername(new String(decodedBytes));
         return optionalUserDto.isPresent() ? optionalUserDto.get() : null;
     }
 
