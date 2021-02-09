@@ -20,6 +20,6 @@ public class WilayaRegionServiceIMPL extends GenericServiceImpl<WilayaRegionRepo
 
     @Override
     public List<WilayaRegionDto> findByRegionId(String regionId) {
-        return asDto(wilayaRegionRepository.findByRegionId(regionId));
+        return toDto(wilayaRegionRepository.findByRegionId(regionId));
     }
 }

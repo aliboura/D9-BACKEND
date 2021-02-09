@@ -22,14 +22,14 @@ public class StatusServiceIMPL extends GenericServiceImpl<StatusRepository, Stat
     @Override
     public StatusDto findFirstStatus() {
         List<Status> list = statusRepository.findFirstStatus();
-        return list != null && !list.isEmpty() ? asDto(list.get(0)) : null;
+        return list != null && !list.isEmpty() ? toDto(list.get(0)) : null;
     }
 
     @Override
     public Optional<StatusDto> findByLabel(String label) {
         Optional<Status> opt = statusRepository.findByLabel(label);
         if (opt.isPresent()) {
-            return Optional.of(asDto(opt.get()));
+            return Optional.of(toDto(opt.get()));
         }
         return Optional.empty();
     }

@@ -24,38 +24,38 @@ public class VisitPlanningServiceIMPL extends GenericServiceImpl<VisitPlanningRe
 
     @Override
     public Page<VisitPlanningDto> findByCities(List<Integer> citiesIds, Pageable pageable) {
-        return visitPlanningRepository.findByCities(citiesIds, pageable).map(data -> asDto(data));
+        return visitPlanningRepository.findByCities(citiesIds, pageable).map(data -> toDto(data));
     }
 
     @Override
     public Optional<VisitPlanningDto> findBySiteId(Long id) {
         Optional<VisitPlanning> opt = visitPlanningRepository.findBySiteId(id);
-        return opt.isPresent() ? Optional.ofNullable(asDto(opt.get())) : Optional.empty();
+        return opt.isPresent() ? Optional.ofNullable(toDto(opt.get())) : Optional.empty();
     }
 
     @Override
     public Page<VisitPlanningDto> findByCode(String code, List<Integer> citiesIds, Pageable pageable) {
-        return visitPlanningRepository.findByCode(code, citiesIds, pageable).map(data -> asDto(data));
+        return visitPlanningRepository.findByCode(code, citiesIds, pageable).map(data -> toDto(data));
     }
 
     @Override
     public Page<VisitPlanningDto> findFirstVisitPlannings(String engineerSiteV1, Date fromDate, Date toDate, List<Integer> citiesIds, Pageable pageable) {
-        return visitPlanningRepository.findFirstVisitPlannings(engineerSiteV1, fromDate, toDate, citiesIds, pageable).map(data -> asDto(data));
+        return visitPlanningRepository.findFirstVisitPlannings(engineerSiteV1, fromDate, toDate, citiesIds, pageable).map(data -> toDto(data));
     }
 
     @Override
     public Page<VisitPlanningDto> findSecondVisitPlannings(String engineerSiteV2, Date fromDate, Date toDate, List<Integer> citiesIds, Pageable pageable) {
-        return visitPlanningRepository.findSecondVisitPlannings(engineerSiteV2, fromDate, toDate, citiesIds, pageable).map(data -> asDto(data));
+        return visitPlanningRepository.findSecondVisitPlannings(engineerSiteV2, fromDate, toDate, citiesIds, pageable).map(data -> toDto(data));
     }
 
     @Override
     public Page<VisitPlanningDto> findEngineerPlannings(String username, Pageable pageable) {
-        return visitPlanningRepository.findEngineerPlannings(username, pageable).map(data -> asDto(data));
+        return visitPlanningRepository.findEngineerPlannings(username, pageable).map(data -> toDto(data));
     }
 
     @Override
     public Page<VisitPlanningDto> findOMPlannings(String username, Pageable pageable) {
-        return visitPlanningRepository.findOMPlannings(username, pageable).map(data -> asDto(data));
+        return visitPlanningRepository.findOMPlannings(username, pageable).map(data -> toDto(data));
     }
 
     @Override

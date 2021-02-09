@@ -31,45 +31,45 @@ public class GenericServiceImpl<S extends JpaRepository<T, ID> & QuerydslPredica
     @Override
     @Transactional(readOnly = true)
     public List<DTO> findAll() {
-        return asDto(dao.findAll());
+        return toDto(dao.findAll());
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<DTO> findAll(Sort sort) {
-        return asDto(dao.findAll(sort));
+        return toDto(dao.findAll(sort));
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<DTO> findAll(Pageable pageable) {
-        return dao.findAll(pageable).map(data -> asDto(data));
+        return dao.findAll(pageable).map(data -> toDto(data));
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<DTO> findAll(Predicate predicate, Pageable pageable) {
-        return dao.findAll(predicate, pageable).map(data -> asDto(data));
+        return dao.findAll(predicate, pageable).map(data -> toDto(data));
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<DTO> findAll(Specification<T> spec, Pageable pageable) {
-        return dao.findAll(spec, pageable).map(data -> asDto(data));
+        return dao.findAll(spec, pageable).map(data -> toDto(data));
     }
 
     @Override
     public List<DTO> findAll(Specification<T> spec, Sort sort) {
-        return asDto(dao.findAll(spec, sort));
+        return toDto(dao.findAll(spec, sort));
     }
 
 
     @Override
     @Transactional
     public DTO save(DTO dto) {
-        T object = asObject(dto);
+        T object = toObject(dto);
         T saved = dao.save(object);
-        return asDto(saved);
+        return toDto(saved);
     }
 
     @Override
@@ -82,16 +82,19 @@ public class GenericServiceImpl<S extends JpaRepository<T, ID> & QuerydslPredica
     }
 
     @Override
+    @Transactional
     public void deleteById(ID id) {
         dao.deleteById(id);
     }
 
     @Override
+    @Transactional
     public void delete(DTO dto) {
-        dao.delete(asObject(dto));
+        dao.delete(toObject(dto));
     }
 
     @Override
+    @Transactional
     public void deleteAll(Iterable<DTO> iterable) {
         if (iterable != null) {
             iterable.forEach(x -> delete(x));
@@ -99,43 +102,39 @@ public class GenericServiceImpl<S extends JpaRepository<T, ID> & QuerydslPredica
     }
 
     @Override
-    @Transactional(readOnly = true)
     public DTO getOne(ID id) {
-        return asDto(dao.getOne(id));
+        return toDto(dao.getOne(id));
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Optional<DTO> findById(ID id) {
         Optional<T> opt = dao.findById(id);
-        return opt.isPresent() ? Optional.of(asDto(opt.get())) : Optional.empty();
+        return opt.isPresent() ? Optional.of(toDto(opt.get())) : Optional.empty();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Long count() {
         return dao.count();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<DTO> findAllByExample(DTO example) {
         return null;
     }
 
-    protected DTO asDto(T object) {
+    protected DTO toDto(T object) {
         return getMapper().toDto(object);
     }
 
-    protected List<DTO> asDto(List<T> objects) {
+    protected List<DTO> toDto(List<T> objects) {
         return getMapper().toDto(objects);
     }
 
-    protected T asObject(DTO dto) {
+    protected T toObject(DTO dto) {
         return getMapper().toModel(dto);
     }
 
-    protected List<T> asObject(List<DTO> dtos) {
+    protected List<T> toObject(List<DTO> dtos) {
         return getMapper().toModel(dtos);
     }
 

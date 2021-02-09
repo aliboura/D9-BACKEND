@@ -177,22 +177,22 @@ public class AuditSiteServiceIMPL extends GenericServiceImpl<AuditSiteRepository
 
     @Override
     public Page<AuditSiteDto> findByEngineerSite(String username, Pageable pageable) {
-        return auditSiteRepository.findByEngineerSite(username, pageable).map(data -> asDto(data));
+        return auditSiteRepository.findByEngineerSite(username, pageable).map(data -> toDto(data));
     }
 
     @Override
     public List<AuditSiteDto> findByEngineerSite(String username) {
-        return asDto(auditSiteRepository.findByEngineerSite(username));
+        return toDto(auditSiteRepository.findByEngineerSite(username));
     }
 
     @Override
     public List<AuditSiteDto> findByEngineerSite(String username, Integer statusId) {
-        return asDto(auditSiteRepository.findByEngineerSite(username, statusId));
+        return toDto(auditSiteRepository.findByEngineerSite(username, statusId));
     }
 
     @Override
     public List<AuditSiteDto> findByEngineerSite(String username, Integer statusId, Date fromDate, Date toDate) {
-        return asDto(auditSiteRepository.findByEngineerSite(username, statusId, fromDate, toDate));
+        return toDto(auditSiteRepository.findByEngineerSite(username, statusId, fromDate, toDate));
     }
 
     @Override

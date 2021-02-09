@@ -25,22 +25,16 @@ public class GenericRestController<S extends GenericService<T, DTO, ID>, T, DTO,
     @Autowired
     protected S service;
 
-    @Getter
-    @Setter
-    protected List<DTO> listAll;
-
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping
     public List<DTO> findAll() {
-        listAll = service.findAll();
-        return listAll;
+        return service.findAll();
     }
 
 
     @GetMapping(params = {"sort", "field"})
     public List<DTO> findAll(@RequestParam(value = "sort") String sort,
                              @RequestParam(value = "field") String field) {
-        listAll = service.findAll(Sort.by(AppsUtils.getSortDirection(sort), field));
-        return listAll;
+        return service.findAll(Sort.by(AppsUtils.getSortDirection(sort), field));
     }
 
     @GetMapping(params = {"page", "size"})
@@ -59,7 +53,7 @@ public class GenericRestController<S extends GenericService<T, DTO, ID>, T, DTO,
 
     @GetMapping(params = {"page", "size", "sort", "field", "search"})
     @ResponseBody
-    public Page<DTO> findAllByRSql(@RequestParam("page") int page,
+    public Page<DTO> findAll(@RequestParam("page") int page,
                                    @RequestParam("size") int size,
                                    @RequestParam("sort") String sort,
                                    @RequestParam("field") String field,
@@ -72,7 +66,7 @@ public class GenericRestController<S extends GenericService<T, DTO, ID>, T, DTO,
 
     @GetMapping(params = {"sort", "field", "search"})
     @ResponseBody
-    public List<DTO> findAllByRSql(@RequestParam("sort") String sort,
+    public List<DTO> findAll(@RequestParam("sort") String sort,
                                    @RequestParam("field") String field,
                                    @RequestParam(value = "search") String search) {
         Node rootNode = new RSQLParser().parse(search);

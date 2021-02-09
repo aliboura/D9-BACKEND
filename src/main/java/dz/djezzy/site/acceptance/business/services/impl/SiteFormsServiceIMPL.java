@@ -20,6 +20,6 @@ public class SiteFormsServiceIMPL extends GenericServiceImpl<SiteFormsRepository
 
     @Override
     public List<SiteFormsDto> findByCodeSite(String codeSite) {
-        return asDto(siteFormsRepository.findByCodeSite(codeSite));
+        return toDto(siteFormsRepository.findByCodeSite(codeSite));
     }
 }

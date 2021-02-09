@@ -27,25 +27,25 @@ public class UserServiceIMPL extends GenericServiceImpl<UserRepository, User, Us
     @Override
     public Optional<UserDto> findByUsername(String name) {
         Optional<User> opt = userRepository.findByUsername(name);
-        return opt.isPresent() ? Optional.of(asDto(opt.get())) : Optional.empty();
+        return opt.isPresent() ? Optional.of(toDto(opt.get())) : Optional.empty();
     }
 
     @Override
     public Optional<UserDto> findByMatricule(String matricule) {
         Optional<User> opt = userRepository.findByMatricule(matricule);
-        return opt.isPresent() ? Optional.of(asDto(opt.get())) : Optional.empty();
+        return opt.isPresent() ? Optional.of(toDto(opt.get())) : Optional.empty();
     }
 
     @Override
     public Optional<UserDto> findByPhone(String matricule) {
         Optional<User> opt = userRepository.findByPhone(matricule);
-        return opt.isPresent() ? Optional.of(asDto(opt.get())) : Optional.empty();
+        return opt.isPresent() ? Optional.of(toDto(opt.get())) : Optional.empty();
     }
 
     @Override
     public Optional<UserDto> findByEmail(String email) {
         Optional<User> opt = userRepository.findByEmail(email);
-        return opt.isPresent() ? Optional.of(asDto(opt.get())) : Optional.empty();
+        return opt.isPresent() ? Optional.of(toDto(opt.get())) : Optional.empty();
     }
 
     @Override

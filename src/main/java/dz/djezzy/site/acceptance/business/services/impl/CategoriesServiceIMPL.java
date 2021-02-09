@@ -23,39 +23,39 @@ public class CategoriesServiceIMPL extends GenericServiceImpl<CategoriesReposito
     @Override
     public CategoriesDto findFirstCategory() {
         List<Categories> list = categoriesRepository.findFirstCategory();
-        return list != null && !list.isEmpty() ? asDto(list.get(0)) : null;
+        return list != null && !list.isEmpty() ? toDto(list.get(0)) : null;
     }
 
     @Override
     public CategoriesDto findLastCategory() {
         List<Categories> list = categoriesRepository.findLastCategory();
-        return list != null && !list.isEmpty() ? asDto(list.get(0)) : null;
+        return list != null && !list.isEmpty() ? toDto(list.get(0)) : null;
     }
 
     @Override
     public List<CategoriesDto> findAllActive() {
-        return asDto(categoriesRepository.findAllActive());
+        return toDto(categoriesRepository.findAllActive());
     }
 
     @Override
     public List<CategoriesDto> findAllOnlyFirst() {
-        return asDto(categoriesRepository.findAllOnlyFirst());
+        return toDto(categoriesRepository.findAllOnlyFirst());
     }
 
     @Override
     public List<CategoriesDto> findAllOnlyLast() {
-        return asDto(categoriesRepository.findAllOnlyLast());
+        return toDto(categoriesRepository.findAllOnlyLast());
     }
 
     @Override
     public CategoriesDto findFirstCategoryByTypeAuditSite(Integer typeAuditSiteId) {
         List<Categories> list = categoriesRepository.findFirstCategoryByTypeAuditSite(typeAuditSiteId);
-        return list != null && !list.isEmpty() ? asDto(list.get(0)) : null;
+        return list != null && !list.isEmpty() ? toDto(list.get(0)) : null;
     }
 
     @Override
     public List<CategoriesDto> findByStatus(Boolean status) {
-        return asDto(categoriesRepository.findByStatus(status));
+        return toDto(categoriesRepository.findByStatus(status));
     }
 
     @Override
