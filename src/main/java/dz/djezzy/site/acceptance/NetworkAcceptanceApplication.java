@@ -2,6 +2,7 @@ package dz.djezzy.site.acceptance;
 
 import dz.djezzy.site.acceptance.business.data.audit.AuditorAwareImpl;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
